@@ -1,2 +1,2 @@
 # Introduction-to-Probability
-My detailed notes on 30 lectures introducing probability, taught at undergraduate first / second year level.
+Some detailed notes that I wrote, following 30 lectures at La Trobe University, Melbourne, introducing probability theory and calculus at the undergraduate first / second year level. Special thanks to Associate Professor Katherine Seaton who designed and taught the course on which these notes are based. All words written are my own, though the notes cover the same topics, in the same order, as the original course.
