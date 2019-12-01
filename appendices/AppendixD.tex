@@ -1,0 +1,40 @@
+\section{Appendix} \label{appendixD}
+\textbf{Proof of the sum of the finite geometric series}\bigskip \\
+
+\noindent For some real constants, $a$ and $c$, where $a$ is called the ``common ratio,'' the finite geometric series is defined to be,
+\[
+\sum_{k=0}^n ca^k \tag{where $n$ is some natural number}
+\]
+If we ignore the constant $c$ for the time being, and label this series $S$, and expand the sum, we get
+\[
+S = 1 + a + a^2 + \ldots + a^n. \tag{1}
+\]
+Multiplying both sides by $a$ we get
+\[
+aS = a + a^2 + a^3 + \ldots + a^{n+1}. \tag{2}
+\]
+If we subtract the equation labelled (2) from the equation labelled (1) we get
+\[
+S - aS = 1 + a + a^2 + \ldots + a^n - \brac{a + a^2 + a^3 + \ldots + a^{n+1}}.
+\]
+Simplifying both sides gives (lots of terms on the right hand side cancel out),
+\[
+S(1-a) = 1 - a^{n+1}
+\]
+Dividing both sides by $1-a$ gives
+\[
+S = \frac{1-a^{n+1}}{1-a}.
+\]
+Since $S$ was just our label for the series (ignoring $c$), we have
+\[
+\sum_{k=0}^n a^k = \frac{1-a^{n+1}}{1-a}.
+\]
+Multiplying both sides by $c$,
+\[
+c\sum_{k=0}^n a^k = c\frac{1-a^{n+1}}{1-a}.
+\]
+Since sums are linear this becomes
+\[
+\sum_{k=0}^n ca^k = c\frac{1-a^{n+1}}{1-a}.
+\]
+Which is the formula for the sum of the finite geometric series.

@@ -1,0 +1,372 @@
+
+%We know the distribution of X what is the distribution of Y? SEE SAVED BOOKMARK.
+\chapter{Lecture 21: Transformations of a random variable, and the method of distributions}
+
+\subsection{Important fact about increasing functions II} \label{increasing fact II}
+In section \ref{increasing fact I} we established that if $h$ is an increasing function, and we define $y = h(x)$, then $x_1 < x < x_2$ implies $h(x_1) < y < h(x_2)$. \\
+
+\noindent  Before we continue looking at transformations, we need to learn another important fact about increasing functions. Namely, that \textbf{the inverse of an increasing function is also an increasing function.} This means that for any increasing function, $h$, with $y = h(x)$:
+\[
+y_1 < y < y_2 \;\;\; \text{implies} \;\;\; h^{-1}(y_1) < x < h^{-1}(y_2).
+\]
+It also means that
+\[
+h(x_1) < y_1 \;\;\; \text{implies} \;\;\; x_1 < h^{-1}(y_1).
+\]
+The proofs of these facts all follow from the definition of an increasing function, and the definition of an inverse function. They are left as an exercise to the interested reader.
+
+\section{Transformations (functions) of a random variable} \label{sec21.1}
+In section \ref{scale - actual description}, we described what scaling a random variable is. Then in section \ref{transformation, functions} we mentioned that, under any transformation $Y = g(X)$, where $g$ is an increasing function, we have
+\[
+P(x_1 < X < x_2) = P(g(x_1) < Y < g(x_2)).
+\]
+If we instead wish to go from right to left, we can use the fact that $y = g(x)$ implies that $g^{-1}(y) = x$ to rewrite it as
+\[
+P(g^{-1}(y_1) < X < g^{-1}(y_2)) = P(y_1 < Y < y_2).
+\]
+As we stated previously, this just illustrates the following fact: When a variable, $X$, is transformed to a variable, $Y$, this does not change the probabilities of the events; it just means that $\set{Y = g(x)}$ now points to the same event as $\set{X = x}$. \\
+
+\noindent Suppose that we already know the distribution of $X$ and, given that $Y$ is some transformation of $X$, we wish to ask, what is the distribution of $Y$? \\
+
+\noindent This is a very basic and important question in probability, and in many cases the solution is easy to find. \\
+
+\noindent For example, we might know the distribution of the temperature, $X$, in celcius, in some situation, and we want to find the distribution of the temperature, $Y$, in fahrenheit. The conversion from celcius to farenheit is a transformation of $X$, i.e., $Y = g(X)$ where
+\[
+Y = \frac{9}{5}X + 32.
+\]
+We need to keep track of the different pdfs and cdfs. So, \textbf{for the variable $\boldsymbol{X}$ we label the pdf $\boldsymbol{f_X}$, and we label the cdf $\boldsymbol{F_X}$. Then, for $\boldsymbol{Y}$, we label the pdf $\boldsymbol{f_Y}$, and the cdf, $\boldsymbol{F_Y}$.} \label{f_X,F_X} \\
+
+\noindent The \textit{method of distributions} allows us to find the distribution of $Y$, under certain conditions.
+
+\section{Method of distributions} \label{mdistributions}
+This method works for any continuous random variable, $X$, that has been transformed by an invertible function, $g$ (see section \ref{inverse functions 3} for a revision of what an invertible function is). \\
+
+\noindent In section \ref{increasing decreasing 2} we proved that functions which are everywhere increasing or decreasing are always invertible. We now derive the method of distributions, only for the case where $g$ is increasing. Suppose we know the distribution of the continuous random variable, $X$, and we define $Y = g(X)$. In section \ref{sec21.1} we explained why $P(g^{-1}(y_1) < X < g^{-1}(y_2)) = P(y_1 < Y < y_2)$. Hence we have
+\[
+P(X < g^{-1}(y_2)) = P(Y < y_2).
+\]
+Notice that these are, by definition, the cdfs, $F_X$ and $F_Y$, of $X$ and $Y$, i.e.,
+\[
+F_X(g^{-1}(y_2)) = F_Y(y_2).
+\]
+So, replacing the dummy variable, $y_2$, with $y$, we have 
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.25\columnwidth}{
+	
+	\vskip 0.02cm
+	\begin{center}
+	$\displaystyle{F_Y(y) = F_X(g^{-1}(y)) }$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+
+\noindent This is really the most useful fact that we will derive in this section; it gives us the cdf of $Y$ in terms of the cdf of $X$. This is the main result that we use whenever we do the method of distributions. The important thing is that you remember this fact and understand how we arrived at it. \\
+
+\noindent We will now take it a little further. So far we have found the cdf of $Y$ in terms of the cdf of $X$. We would also like to find the pdf, $f_Y$, of $Y$. We know, for continuous random variables, that the cdf is an antiderivative of the pdf, so we get the pdf by differentiating the cdf. That is,
+\[
+f_Y(y) = \frac{d}{dy}\brac{F_Y(y)} \;\;\;\;\;\;\;\;\;\;\; (\bigstar)
+\]
+These steps all work very well. We could happily stop here with our derivation of the method of distributions. However, it could be nice to have a single formula, which gives the pdf of $Y$, in terms of the pdf of $X$. To get this formula, we first rewrite ($\bigstar$), recalling that $F_Y(y) = F_X(g^{-1}(y))$:
+\[
+f_Y(y) = \frac{d}{dy}\brac{F_X(g^{-1}(y))}.
+\]
+Now we need to use the chain rule (with $u = g^{-1}(y)$) on the right hand side, giving
+\begin{align*}
+f_Y(y) = f_X(u)\frac{d}{dy}\brac{g^{-1}(y)} \tag{since $\frac{d}{du}\brac{F_X(u) = f_X(u)}$}
+\end{align*}
+Replacing $u$ with $g^{-1}(y)$ gives us the following useful formula:
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.4\columnwidth}{
+	
+	\vskip 0.02cm
+	\begin{center}
+	$\displaystyle{f_Y(y) = f_X(g^{-1}(y))\frac{d}{dy}\brac{g^{-1}(y)}}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+
+\noindent In the case that $g$ is not an increasing function (i.e., if $g$ is decreasing) then the derivative of $g^{-1}$ will be negative (decreasing functions have a negative slope). So, it turns out that we just need to use the absolute value of $\frac{d}{dy}\brac{g^{-1}(y)}$ instead, giving
+\[
+f_Y(y) = f_X(g^{-1}(y))\abs{\frac{d}{dy}\brac{g^{-1}(y)}}.
+\]
+In practice, in this course, it may be easier to not use this formula. Instead, we can use the method of distributions in a step-by-step way. We will learn how to do this during the next few sections and examples.
+
+\subsection{Step-by-step with the case $\boldsymbol{Y = aX + b}$} \label{caseY=aX+b}
+Suppose we know the distribution of the continuous random variable, $X$, and we define $Y = g(X) = aX + b$, with $a > 0$. We use the method of distributions, in a step-by-step fashion, to find the distribution of $Y$, as follows. \\
+
+\noindent The key fact that we know (from the box near the start of section \ref{mdistributions}) is that $F_Y(y) = F_X(g^{-1}(y))$. To use this key fact, we will need to find $g^{-1}(y)$. We could just do this by solving for $x$ in the equation $y = ax + b$. However, the following steps allow us to find $g^{-1}(y)$, while also making it easy for us to remember the key fact.
+\begin{align*}
+F_Y(y) & = P(Y < y) \tag{by definition of $F_Y$} \\
+	  & = P(aX + b < y) \tag{since $Y = aX+b$} \\
+	  & = P(aX < y - b) \tag{manipulating inequalities} \\
+	  & = P(X < \frac{y - b}{a}) \tag{manipulating inequlities, since $a > 0$}  \\
+	  & = F_X\brac{ \frac{y - b}{a}} \;\;\;\;\;\;\;\;\;\; (\dagger) \tag{by definition of $F_X$}
+\end{align*}
+So, we found $g^{-1}(y) = \frac{y - b}{a}$. Now we can find $f_Y$ by differentiating ($\dagger$). As is always the case with this step, we need to do this using the chain rule:
+\begin{align*}
+f_Y(y) & = \frac{d}{dy}\brac{F_X\brac{ \frac{y - b}{a}}} \tag{differentiating ($\dagger$)} \\
+ 	& = F_X\;'\brac{u}u' \tag{chain rule, with $u = \frac{y - b}{a}$} \\
+ 	& = f_X(u)u' \tag{since $F_X\;'\brac{u} = f_X(u)$} \\
+ 	& = f_X(u)\frac{1}{a} \tag{since $u' = \frac{d}{dy}\brac{\frac{y-b}{a}} = \frac{d}{dy}\brac{\frac{y}{a} - \frac{b}{a}} = \frac{1}{a}$} \\
+ 	& = f_X\brac{\frac{y-b}{a}}\frac{1}{a} \tag{since $u = \frac{y-b}{a}$}.
+\end{align*}
+
+%As another example, we might know the distribution of the radius, $R$, of some spherical granules, but we wish to know the distribution of the volume $V$. We can find $V$ as a function (transformation) of $R$:
+%\[
+%V = \frac{4}{3}\pi R^3.
+%\]
+
+\subsection{$\boldsymbol{Y = aX + b}$ for normal distribution} \label{sec21.3}
+We can now prove that, in general, if $X \sim$ N$(\mu,\sigma^2)$ and $Y = aX + b$, where $a > 0$, then $Y \sim$ N($a\mu + b,a^2\sigma^2$). You may wish to attempt the proof first as an exercise. \\
+
+\solution
+We know from the result in section \ref{caseY=aX+b} that,
+\[
+f_Y(y) = f_X\brac{\frac{y-b}{a}}\frac{1}{a}.
+\]
+Now, $f_X$ is the pdf of N$(\mu,\sigma^2)$, so
+\begin{align*}
+f_Y(y) & = \frac{1}{\sigma \sqrt{2\pi}}\exp\brac{-\frac{\brac{\frac{y-b}{a}-\mu}^2}{2\sigma^2}} \times \frac{1}{a} \tag{from pdf of N$(\mu,\sigma^2)$ with $x = \frac{y-b}{a}$} \\
+	& = \frac{1}{\sigma \sqrt{2\pi}}\exp\brac{-\frac{\brac{\frac{y-b - a\mu}{a}}^2}{2\sigma^2}} \times \frac{1}{a} \tag{since $\frac{y-b}{a} - \mu = \frac{y-b}{a} - \frac{a\mu}{a} = \frac{y-b - a\mu}{a}$} \\
+	& = \frac{1}{\sigma \sqrt{2\pi}}\exp\brac{-\frac{\brac{y-b - a\mu}^2}{2a^2\sigma^2}} \times \frac{1}{a} \tag{index laws: $\bfrac{y-b - a\mu}{a}^2 = \frac{(y-b - a\mu)^2}{a^2}$} \\
+	& =  \frac{1}{\sigma \sqrt{2\pi}}\exp\brac{-\frac{\brac{y - (a\mu + b)}^2}{2a^2\sigma^2}}\times \frac{1}{a} \tag{since $y-b - a\mu = y-(b + a\mu)$} \\
+	& =  \frac{1}{\boldsymbol{a \sigma} \sqrt{2\pi}}\exp\brac{-\frac{\brac{y - \boldsymbol{(a\mu + b)}}^2}{2\boldsymbol{a^2\sigma^2}}}. \tag{moving the $\frac{1}{a}$ to the front}
+\end{align*}
+Which is the pdf of N($a\mu + b,a^2\sigma^2$). We have emboldened the parameters in the final step to make this easier to see. So $Y \sim$ N($a\mu + b,a^2\sigma^2$), as required.
+
+\subsection{Example}
+It is reasonable to assume that the body temperature of healthy adults is normally distributed. Let $\mathcal{T}$ measure body temperature in farenheit, and let $T$ measure body temperature in celcius. Given that $\mathcal{T} \sim$ N($98.2,0.62^2$), what is the distribution of $T$? \\
+
+\noindent Note that the conversion from farenheit to celcius is
+\[
+T = \frac{5}{9}\brac{\mathcal{T} - 32}
+\]
+\solution
+By expanding the brackets, we can see this is a straight line transformation of the form $T = a\mathcal{T} + b$, where $a = \frac{5}{9}$ and $b = -\frac{5}{9}32 = -\frac{160}{9}$. Since the transformation has this form, we conclude (by the result we just proved, above) that
+\[
+T \sim \; \text{N}(a98.2 + b,a^20.62^2)
+\]
+Substituting in our values for $a$ and $b$ gives $a98.2 + b = \frac{5}{9}98.2 - \frac{160}{9} \approx 36.8$, and  $a^20.62^2 = \bfrac{5}{9}^20.62^2 = (\frac{5}{9}0.62)^2 \approx 0.34$. Hence
+\[
+T \sim \; \text{N}(36.8,0.34^2) \tag{approximately}
+\]
+We can see from this that the most probable body temperature (in celcius) is 36.8 degrees, which sounds reasonable.
+
+\subsection{Standardising a normal distribution} \label{sec21.2}
+In section \ref{standard normal distribution}, we learned that any normally distributed random variable can be transformed, via translation and scaling, to a variable, $Z$, where $Z$ is distributed according to the standard normal distribution, N($0,1$). \\
+
+\noindent In fact, if $X \sim$ N($\mu,\sigma^2$), then the following transformation will result in $Z \sim$ N($0,1$).
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.2\columnwidth}{
+	
+	\vskip 0.02cm
+	\begin{center}
+	$\displaystyle{Z = \frac{X - \mu}{\sigma}}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+
+\noindent \textbf{Proof:} \\
+By separating the fraction, we can see that $Z = \frac{X - \mu}{\sigma} = \frac{X}{\sigma} - \frac{\mu}{\sigma}$ is a transformation of the form $Y = aX + b$, where $a = \frac{1}{\sigma}$ and $b = -\frac{\mu}{\sigma}$. Hence, since $X \sim$ N($\mu,\sigma^2$), we know by the proof we gave at the start of section \ref{sec21.3}, that $Z \sim$ N($a\mu + b,a^2\sigma^2$). Substituting in our values of $a$ and $b$ gives
+\[
+Z \sim \; \text{N}\brac{\frac{1}{\sigma}\mu - \frac{\mu}{\sigma},\;\;\bfrac{1}{\sigma}^2\sigma^2}
+\]
+We can simplify $\frac{1}{\sigma}\mu - \frac{\mu}{\sigma} = 0$ and $\bfrac{1}{\sigma}^2\sigma^2 = 1$, so
+\[
+Z \sim \; \text{N}(0,1), \;\;\;\;\;\; \text{as required.}
+\]
+
+\subsection{Scaling the gamma distribution} \label{ex21.1}
+In section \ref{rate/scale gamma} we claimed that if $X \sim$ Gamma($\alpha,\lambda$) and we define $Y = \frac{X}{c}$, for some $c > 0$, then $Y \sim$ Gamma($\alpha,c\lambda$). Now we can prove it using the method of distributions. \\
+
+\noindent \textbf{Proof:} \\
+\noindent The transformation $Y = \frac{X}{c}$ is actually of straight line form, with $a = \frac{1}{c}$ and $b = 0$, so we could use the formula we found in section \ref{caseY=aX+b} (but we wont). Instead will go through the steps from the beginning, so we can get more practice with the method of distributions. We have,
+\begin{align*}
+F_Y(y) & = P(Y < y) \tag{definition of $F_X$} \\
+	  & = P\brac{\frac{X}{c} < y} \tag{since $Y = \frac{X}{c}$} \\
+	  & = P\brac{X < cy} \tag{manipulating inequalities, as $c > 0$} \\
+	  & = F_X(cy).  \tag{definition of $F_X$}
+\end{align*}
+Differentiating this with the chain rule, we get
+\begin{align*}
+f_Y(y) & = f_X(cy) \frac{d}{dy}\brac{cy}  \\
+	 & = f_X(cy)c.
+\end{align*}
+We know that $f_X$ is the pdf of Gamma($\alpha,\lambda$), so 
+\begin{align*}
+f_Y(y) & = \frac{\lambda^\alpha}{\Gamma(\alpha)} (cy)^{\alpha - 1} \e^{-\lambda (cy)} \times c \tag{using pdf of Gamma($\alpha,\lambda$), with $x = cy$} \\
+	 & = \frac{\lambda^\alpha}{\Gamma(\alpha)} c^{\alpha - 1}c y^{\alpha - 1} \e^{-(c \lambda) y} \tag{bringing powers of $c$ together} \\
+	 & = \frac{(c\lambda)^\alpha}{\Gamma(\alpha)} y^{\alpha - 1} \e^{-(c \lambda) y}. \tag{since $(c)^{\alpha - 1}c = c^\alpha$}
+\end{align*}
+Which is the pdf of Gamma($\alpha,c\lambda$). Hence $Y \sim$ Gamma($\alpha,c\lambda$), as required.
+
+\section{Non straight-line transformations}
+We have looked at a few important cases and examples where the transformations have the form $Y = aX + b$. Now we look at some other types of transformations where we can use the method of distributions. Recall from section \ref{sec21.1} that to use this method we always require that the transformation is an invertible (i.e., increasing or decreasing) function. 
+
+\subsection{Uniform distribution with $\boldsymbol{Y = \frac{1}{X}}$}
+In section \ref{sec15.2}, we showed that the cdf of U($0,1$) is
+\[
+F(x) = \left\{\begin{array}{ll}
+0, & \;\; \text{if} \; x < 0 \smallskip \\
+x, & \;\; \text{if} \; 0 \leq x \leq 1 \smallskip \\
+1, & \;\; \text{if} \; x > 1
+\end{array} \right.
+\]
+Let $X \sim$ U$(0,1)$, and let $Y = \frac{1}{X}$. Find the probability density function for $Y$. \\
+
+\solution
+The function $\frac{1}{X}$ is invertible for $X > 0$. To check this, you can plot $\frac{1}{X}$ and see that it is strictly decreasing (recall from section \ref{increasing decreasing 2} that functions which are strictly increasing or decreasing are always invertible). Now,
+\begin{align*}
+F_y(y) & = P(Y < y) \\
+	 & = P(1/X < y) \tag{as $Y = 1/X$} \\
+	 & = P(1 < Xy) \tag{since $X > 0$} \\
+	 & = P(1/y < X) \tag{since $y > 0$} \\
+	 & = 1 - F_X(1/y). \tag{since $P(X > x) = 1 - F_X(x)$}
+\end{align*}
+\textbf{Case where $\boldsymbol{y \geq 1}$}. Now, when $0 < \frac{1}{y} \leq 1$ (i.e., whenever $y \geq 1$) we have $F_X(1/y) = 1/y$ (since $F_X(x) = x$ for $0 \leq x \leq 1$ by definition of $F_X$), so $F_Y(y) = 1-1/y$ whenever $y \geq 1$. Differentiating both sides of this gives
+\begin{align*}
+f_Y(y) & = \frac{d}{dy}\brac{1-1/y} \\
+	& = \frac{1}{y^2}.  \tag{using derivative of $y^{-1}$ (a power)}
+\end{align*}
+\textbf{Case where $\boldsymbol{y < 1}$}. Whenever $y < 1$, we have $1/y > 1$ or $1/y < 0$ (except for when $y = 0$, where $1/y$ is undefined). In both cases the rule for $F_X$ says that $F_X(1/y)$ is a constant (it is defined to be $0$ when $1/y < 0$ and defined to be $1$ when $1/y > 1$). So $F_Y(y)$ is also a constant whenever $y < 1$, since $F_Y(y) = 1 - F_X(1/y)$. Hence, the derivative of $F_Y(y)$ is zero, i.e., $f_Y(y) = 0$, whenever $y < 1$ (since the derivative of a constant is always zero). Thus
+\[
+f_Y(y) = \left\{\begin{array}{ll}
+0, & \;\; \text{if} \; y < 1 \;\; (\text{excluding $y = 0$}) \smallskip \\
+\frac{1}{y^2}, & \;\; \text{if} \; y \geq 1
+\end{array} \right.
+\]
+
+\subsection{Example}
+Let $R$ be a continuous random variable that measures the radius of small spherical particles. Suppose we define $V$ to be the random variable measuring the volume of those particles, i.e., we use to following formula for volume of a sphere in terms of its radius to give
+\[
+V = g(R) = \frac{4}{3}\pi R^3.
+\]
+So $V$ is obtained by a transformation, $g$, of $R$. If $R \sim$ Exponential($\lambda$), then what is the pdf of $V$? Is $V$ also exponentially distributed? \\
+
+\solution
+Since $g$ is an invertible function (it is increasing), we can use the method of distributions. We define $f_V$ and $f_R$ to be the pdfs of $V$ and $R$ respectively. We know the pdf of the exponential distribution from section \ref{exponential distribution}, for $r \geq 0$:
+\[
+f_R(r) = \lambda \e^{-\lambda r}, \;\;\;\;\; \text{for $r \geq 0$,\;\;\;\;\; and $f_R(r) = 0$ \; otherwise.}
+\]
+So far, in all of the examples, we have been doing the method of distributions in a step-by-step fashion. We could do it the same way in this example, but instead we will demonstrate the use of the formula that we developed at the start of section \ref{mdistributions} (in the box) which applies when $g$ is an increasing function:
+\[
+f_V(v) = f_R(g^{-1}(v))\frac{d}{dv}\brac{g^{-1}(v)} \qquad (\bigstar)
+\]
+Rearranging $V = g(R) = \frac{4}{3}\pi R^3$ to solve for $R$ gives, $R = g^{-1}(V) = \brac{\frac{3}{4\pi}V}^\frac{1}{3}$. We can see from this rule that $g^{-1}(v) \geq 0$ whenever $v \geq 0$. So, plugging this result for $g^{-1}$ into $f_R(r) = \lambda\e^{-\lambda r}$ gives,
+\[
+f_R\brac{g^{-1}(v)} = \lambda\e^{-\lambda  \brac{\frac{3}{4\pi}v}^\frac{1}{3}}, \;\; \text{for $v \geq 0$.} \qquad \qquad (1)
+\]
+For the case when $v < 0$, we get $g^{-1}(v) < 0$, so $f_R(g^{-1}(v)) = 0$ by definition of $f_R$. \\
+
+\noindent Now, we also need $\frac{d}{dv}\brac{g^{-1}(v)}$, which is
+\begin{align*}
+\frac{d}{dv}\brac{g^{-1}(v)} & = \frac{d}{dv}\brac{\frac{3}{4\pi}v}^\frac{1}{3} \\
+	& = \brac{\frac{3}{4\pi}}^\frac{1}{3}\frac{d}{dv}\brac{v}^\frac{1}{3} \tag{index laws and linearity} \\
+	& =  \brac{\frac{3}{4\pi}}^\frac{1}{3}\frac{1}{3}v^{-\frac{2}{3}} \qquad \qquad (2) \tag{since $\frac{1}{3} - 1 = -\frac{2}{3}$}
+\end{align*}
+Plugging (1) and (2) into the right hand side of ($\bigstar$) gives
+\[
+f_V(v) = \lambda\e^{-\lambda  \brac{\frac{3}{4\pi}v}^\frac{1}{3}}\brac{\frac{3}{4\pi}}^\frac{1}{3}\frac{1}{3}v^{-\frac{2}{3}}, \;\;\;\;\;\; \text{for $v \geq 0$, \;\;\;\; and $f_V(v) = 0$ otherwise}
+\]
+Which could be simplified further, but we will stop here. We can see from the rule for $f_V$ that $V$ is not exponentially distributed (as this is not the pdf of an exponential distribution).
+
+\section{Where method of distributions does not work} \label{where md not work}
+The method of distributions will not work in cases where the function, $g$, is non-invertible. Recall that a non-invertible function is a function that maps more than one element in its domain to some single element in its range. For example, the function $g(x) = x^2$ has $g(-1) = 1$ and $g(1) = 1$, so $g$ is not, in general, invertible. \\
+
+\noindent Recall that when we define $Y = g(X)$, for some transformation, $g$, the event $\set{X = a}$ is the same event as $\set{Y = g(a)}$ (see section \ref{rate/scale gamma}). When $g$ is a non-invertible function (e.g., $Y = g(X) = X^2$) we can have, for example, $\set{Y = a^2}$ refer to the both $\set{X = a}$ and $\set{X = -a}$ (see section \ref{square root} for a revision of invertibility of $x^2$). Hence, the reasoning that we used to derive the method of distributions does not apply here. \\
+
+\noindent Let $X \sim$ N($0,1$). Then $X$ can take positive and negative values. Now, define $Y = g(X) = X^2$. How can we find the distribution of $Y$? We can start off the same way as usual:
+\begin{align*}
+F_Y(y) & = P(Y < y) \\
+	& = P(X^2 < y).
+\end{align*}
+To solve for $y$ in the inequality $X^2 < y$, it is helpful to consider the following graph of $X$ versus $X^2$.
+\begin{center}
+\begin{tikzpicture} [scale = 0.5]
+\axesmacro{-4}{4}{-0.1}{6}{X}{X^2}
+\draw (-2,0) node {\tiny$|$} node [below = 1mm] {$-\sqrt{y}$};
+\draw (2,0) node {\tiny$|$} node [below = 1mm] {$\sqrt{y}$};
+\draw (0,4) node [rotate = 90] {\tiny$|$} node [above left] {$y$};
+\plotmacro{-2.3}{2.3}{(\x)^2}{black}
+\draw [dashed] (2,0) -- (2,4);
+\draw [dashed] (-2,0) -- (-2,4);
+\draw [dashed] (-2,4) -- (2,4);
+\end{tikzpicture}
+\end{center}
+We can see from the graph that $x^2 < y$ whenever $-\sqrt{y} < x < \sqrt{y}$. So, we conclude that
+\begin{align*}
+F_Y(y) = P(X^2 < y) & = P(-\sqrt{y} < X < \sqrt{y}) \\
+	& = \int_{-\sqrt{y}}^{\sqrt{y}} f_X(t) \; dt \tag{definition of probability for pdfs}
+%	& = F(\sqrt{y}) - F(-\sqrt{y}) \tag{this was explained in secion \ref{cdf}}
+%	& = \Phi(\sqrt{y}) - \Phi(-\sqrt{y}) \tag{$\Phi$ is the label for the cdf of N($0,1$)} \\
+%	& = \int_{-\infty}^{\sqrt{y}} \! f_X(t) \; dt - \!\! \int_{-\infty}^{-\sqrt{y}} \!\! f_X(t) \; dt \tag{definition of $\Phi$, section \ref{standard normal distribution}} \\
+%%	& =  
+\end{align*}
+If we differentiate both sides of this expression we can find $f_Y(y)$ in terms of $f_X$; but how are we going to differentiate this expression? It is an integral of the form
+\[
+I(y) = \int_{h(y)}^{k(y)} f(t) \; dt
+\]
+Where, in this case, we have $k(y) = \sqrt{y}$, and $h(y) = -\sqrt{y}$. We can derive a useful result called \textbf{Leibniz's rule}, which will help us differentiate integrals like this.
+\subsubsection{Leibniz's rule} \label{leibniz's rule}
+Using integral property (1) from section \ref{integration}, we have,
+\begin{align*}
+I(x)    & = \int_{h(x)}^{k(x)} f(t) \; dt \\
+	& = \int_{h(x)}^a f(t) \; dt + \int_a^{k(x)} f(t) \; dt \tag{for some arbitrary point, $a$} \\
+	& = -\int_a^{h(x)} f(t) \; dt + \int_a^{k(x)} f(t) \; dt. \tag{by definition in section \ref{integral b to a}}
+\end{align*}
+Recall $A(x)$, the accumulation function, from section \ref{A(x)}, was the integral from $a$ to $x$ of $f(t)$, with respect to $t$. So, using $A(x)$, we can rewrite the above as
+\[
+I(x) = A(k(x)) - A(h(x)).
+\]
+The chain rule says that $\frac{d}{dx}\brac{A(k(x))} = A'(k(x))k'(x)$, so
+\[
+I'(x) = A'(k(x))k'(x) - A'(h(x))h'(x).
+\]
+The second part of the fundamental theorem of calculus (section \ref{indefinite integral}) says that $\frac{d}{dx}\brac{\int_a^x f(t) \; dt} = f(x)$, which can be rewritten as $A'(x) = f(x)$. So we can conclude that
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.45\columnwidth}{
+	
+	\vskip 0.02cm
+	\begin{center}
+	$\displaystyle{I'(x) = f(k(x))k'(x) - f(h(x))h'(x)}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+
+\noindent Which is Leibniz's rule.
+
+\subsubsection{Using Leibniz's rule to complete our example}
+Recall, for our $Y = X^2$ example, that we had
+\[
+F_Y(y) = P(-\sqrt{y} < X < \sqrt{y}) = \int_{-\sqrt{y}}^{\sqrt{y}} f_X(t) \; dt
+\]
+Using Leibniz's rule, with $F_Y(y) = I(y)$, $h(x) = -\sqrt{y}$ and $k(x) = \sqrt{y}$, we now differentiate this expression, giving
+\begin{align*}
+f_Y(y) & = I'(y) \\
+	 & = f_X(k(x))k'(x) - f_X(h(x))h'(x) \tag{Leibniz's rule} \\
+	 & = f_X(\sqrt{y})\frac{1}{2}y^{-\frac{1}{2}} - f_X(-\sqrt{y})\brac{-\frac{1}{2}y^{-\frac{1}{2}}} \tag{notice $\sqrt{y} = y^{\frac{1}{2}}$ (a power)} \\
+	 & = f_X(\sqrt{y})\frac{1}{2}y^{-\frac{1}{2}} + f_X(-\sqrt{y})\frac{1}{2}y^{-\frac{1}{2}}.
+\end{align*}
+Now, $X \sim$ N($0,1$), so $f_X$ is the pdf of the standard normal distribution (section \ref{standard normal distribution}) which is an even function (you can check this by expressing it as a composition of some function with $x^2$, noting that $x^2$ is an even function, and then noting that any function composed with an even function is always an even function, which we proved in section \ref{proof20.1}). Hence, $f_X(-\sqrt{y}) = f_X(\sqrt{y})$, by the definition of even functions. So,
+\begin{align*}
+f_Y(y) & = f_X(\sqrt{y})\frac{1}{2}y^{-\frac{1}{2}} + f_X(\sqrt{y})\frac{1}{2}y^{-\frac{1}{2}} \\
+	& = 2f_X(\sqrt{y})\frac{1}{2}y^{-\frac{1}{2}} \\
+	& = \frac{y^{-\frac{1}{2}}}{\sqrt{2\pi}}\exp\brac{-\frac{y}{2}}. \tag{using pdf of N($0,1$) and $\sqrt{y}^2 = y$}
+\end{align*}
+So we have found the pdf of $Y$. Note that this expression involves $y^{-\frac{1}{2}}$, i.e., $\frac{1}{\sqrt{y}}$, which is undefined when $y < 0$. So, this pdf is only defined for $y \geq 0$. 

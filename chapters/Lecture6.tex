@@ -1,0 +1,349 @@
+
+\chapter{Lecture 6: Independence} \label{independence}
+When we introduced the multiplication rule (in section \ref{secmult}, page \pageref{secmult}) we used the term \textbf{independent} without giving any definition; we stated that the multiplication rule applies only when we have some number,~$n$, of \textbf{independent trials.}  \\
+
+\noindent Intuitively, two trials are independent from eachother when the outcome of one trial does not change the probability of any of the events associated with the other trial. As you might suspect, this suggests that we need to use the idea of conditional probability somewhere in our definition of independence. We want our mathematical definition of independence to say something along the lines of the following:
+\bigskip
+\begin{center}
+\begin{minipage}{0.6\columnwidth}{
+
+\vskip 0.02cm
+\begin{center}
+\textbf{Independence} of two events, $A$ and $B$, means that knowing that one event has happened does not give us information about whether the other has occurred.
+\end{center}
+}
+\end{minipage}
+\end{center}
+\bigskip
+
+\noindent It will be important to understand independence well; you will most likely be making use of it throughout your statistical career. In many statistical studies, independence is a crucial assumption. Knowing that events are independent can often simplify things, but incorrectly assuming independence will compromise the study.
+
+\subsection{Example} \label{ex604}
+Consider again the two dice example (example \ref{example2.2.1}, page \pageref{example2.2.1}). This time, we define new events, $D,E$ and $F$:
+\begin{align*}
+D & = \set{\text{Sum shown is a perfect square}}, \\ 
+E & = \set{\text{Each individual die shows a perfect square}}, \\ 
+F & = \set{\text{One odd number, and one even number, are showing}}.
+\end{align*}
+Note that a perfect square is a natural number that is the square of an integer; that is, it is the square of a positive or negative whole number. For example, $4$ is a perfect square because $4 = 2^2$ and $2$ is a whole number; but $3$ is not a perfect square since $\sqrt{3}$ is not a whole number (it is not even a rational number).\\
+
+\noindent\textbf{Question 1:} Find $D \cap E, \;\; D \cap F,$ and $E \cap F$. \\
+
+\textit{Solution:} \\
+There are (at least) two ways to do this. For example, we can recall that $\cap$ can be interpreted in English roughly to mean ``\textit{and}.'' Then we have,
+\begin{align*}
+D \cap E & = \set{\text{Sum shown is a perfect square \textit{and} each individual die shows a perfect square}} \\
+              & =  \varnothing.
+\end{align*}
+This method is good if we can quickly figure out, logically, what the elements are in the new event, $D \cap E.$ However, if it is possible to list the individual elements from $D$ and $E$ (i.e., if they have few elements), then it is probably safer to list the elements in each event, then intersect the events. In other words (noting that the only perfect squares less than $12$ are $1$, $4$ and $9$) we start by finding $D$, and $E$,
+\begin{align*}
+D & = \set{(2,2),(1,3),(3,1),(3,6),(6,3),(4,5),(5,4)} \\
+E & = \set{(1,1),(4,4),(1,4),(4,1)}
+\end{align*}
+Now, we intersect $D$ and $E$ by looking for elements that are both in $D$ \textit{and} in $E$. There are no such elements, so, as expected, we get $D \cap E = \varnothing$, as we did using the other method. \\
+
+\noindent To find the remaining sets, $D \cap F$ (and $E \cap F$), we can look for elements that are in $D$ (or $E$, respectively), that have one odd number showing and one even number showing (i.e., that are also in $F$). We get
+\begin{align*}
+D \cap F & = \set{(3,6),(6,3),(4,5),(5,4)} \\
+E \cap F & = \set{(1,4),(4,1)}
+\end{align*}
+\textbf{Question 2:} What probability can we assign to each individual outcome? \\
+
+\noindent \textit{Solution:} \\
+Since the dice are fair, the way that we have been listing events means that each outcome is equally likely. Thus, we can use the method from section \ref{sec222} to find the probabilities of the equally likely outcomes. It follows that each individual outcome has a probability of $\frac{1}{36}$, where 36 is the number of possible outcomes from rolling two dice (see example \ref{ex3.0.9}). It could have been that we chose a convention for listing outcomes where \textit{order} was not considered important, i.e., counting the two elements (1,4) and (4,1) as a single element, (1,4). Such a convention might even make more sense because our experiment does not call for us to consider the order in which we throw the dice. For more details on this, see example \ref{example2.2.4} on page  \pageref{example2.2.4}. Regardless, in our choice of convention for listing outcomes, the probability of each outcome ends up being~$\frac{1}{36}$. \\
+
+\noindent \textbf{Question 3:} What are the probabilities of each event we have found so far? \\
+
+\textit{Solution:} \\
+Since the elements are all equally likely outcomes, we just need to count the number of elements in each event. We have already listed the outcomes in $D$ and $E$, we just need to list the outcomes in $F$. We have,
+\begin{align*}
+F = &\{(1,2),(2,1),(1,4),(4,1),(1,6),(6,1),(2,3),(3,2),(2,5), \\
+       & (5,2),(3,4),(4,3),(3,6),(6,3),(4,5),(5,4),(5,6),(6,5)\}
+\end{align*}
+Hence,
+\begin{align*}
+P(D) & = \frac{7}{36} \tag{since $|D| = 7$} \\
+P(E) & = \frac{4}{36} = \frac{1}{9} \tag{since $|E| = 4$} \\
+P(F) & = \frac{18}{36} = \frac{1}{2} \tag{since $|F| = 18$} \\
+P(D \cap E) & = 0 \tag{since $|D \cap E| = 0$} \\
+P(D \cap F) & = \frac{4}{36} = \frac{1}{9} \tag{since $|D \cap F| = 4$} \\
+P(E \cap F) & = \frac{2}{36} = \frac{1}{18} \tag{since $|E \cap F| = 2$}.
+\end{align*}
+
+\noindent \textbf{Question 4:} Find all of the possible conditional probabilities that involve $D,E,$ and $F$. \\
+
+\textit{Solution:} \\
+We use the definition of conditional probability (see section \ref{sec508}) and our results from question~3. We get
+\begin{align*}
+P(D\! \mid \! E) & = \frac{P(D \cap E)}{P(E)} = \frac{0}{1/9} = 0\\
+P(E\! \mid \! D) & = \frac{P(E \cap D)}{P(D)} = \frac{P(D \cap E)}{P(D)} = \frac{0}{7/36} = 0\\
+P(D\! \mid \! F) & = \frac{P(D \cap F)}{P(F)} = \frac{1/9}{1/2} = \frac{2}{9}\\
+P(F \! \mid \! D) & = \frac{P(F \cap D)}{P(D)} = \frac{P(D \cap F)}{P(D)} = \frac{1/9}{7/36} = \frac{36/9}{7} = \frac{4}{7} \\
+P(E \! \mid \! F) & = \frac{P(E \cap F)}{P(F)} = \frac{2/36}{1/2} = \frac{1}{9}\\
+P(F\! \mid \! E) & = \frac{P(F \cap E)}{P(E)} = \frac{P(E \cap F)}{P(E)} = \frac{2/36}{1/9} = \frac{1}{2}
+\end{align*}
+We will highlight some interesting properties of the results in this example once we are done defining independence.
+
+\subsection{Definition of independence} \label{definition of independence}
+Events, $A$ and $B,$ are independent if knowledge that one of the events has happened does not change the probability assigned to the other event. In other words, $A$ and $B$ are independent if
+\[
+P(A \! \mid \! B) = P(A).
+\]
+However, by definition, $P(A \! \mid \! B) = \frac{P(A \cap B)}{P(B)}$, with $P(B) > 0,$ so this becomes
+\[
+\frac{P(A \cap B)}{P(B)} = P(A)
+\]
+Multiplying both sides by $P(B)$ gives the expression which we will take as the \textbf{definition of independence; i.e., we define $A$ and $B$ to be independent if}
+
+\bigskip
+\hfil\fbox{
+\begin{minipage}{0.4\columnwidth}{
+
+\vskip 0.02cm
+\begin{center}
+$P(A \cap B) = P(A)P(B),$ \\
+where $P(A)$ or $P(B)$ can be zero (but not both).
+\end{center}
+}
+\end{minipage}}
+\bigskip
+
+\noindent Note that (assuming $P(A)$ is non-zero) if $P(A \cap B) = P(A)P(B),$ then 
+\[
+P(B \! \mid \! A) = \frac{P(B \cap A)}{P(A)} = \frac{P(A \cap B)}{P(A)} = \frac{P(A)P(B)}{P(A)} = P(B) 
+\]
+So (assuming $P(A)$ and $P(B)$ are no-zero), if $P(A \! \mid \! B) = P(A)$, then $P(B \! \mid \! A) = P(B)$. \\
+
+\noindent It is a good exercise to show that \textbf{if events $\boldsymbol{A}$ and $\boldsymbol{B}$ are independent, then $\boldsymbol{A}$ and $\boldsymbol{B^c}$ are also independent}. This exercise is left for a practice class or assignment question. \\
+\textit{Hint: you need to show that $\mathit{P(A \cap B) = P(A)P(B)}$ implies $\mathit{P(A \cap B^c) = P(A)P(B^c).}$ Start from the fact that $(A \cap B) \cup (A \cap B^c) = A$ and that $A \cap B$ is disjoint from $A \cap B^c$. Then use the fact that $P(B^c) = 1 - P(B)$.} \\
+
+\noindent In example \ref{exacbc} we will show that \textbf{if $\boldsymbol{A}$ and $\boldsymbol{B}$ are independent, then $\boldsymbol{A^c}$ and $\boldsymbol{B^c}$ are independent,} since the proof of this is slightly harder.
+
+\subsection{Example}
+Have a look back at the previous example (example \ref{ex604}). Which pairs of the events, $D,E,$ and $F$, are independent from eachother? \\
+
+Using the results from question 3, we have
+\begin{align*}
+P(D \cap E) & = 0 \neq P(D)P(E) = \frac{7}{36}\times\frac{1}{9} \\
+P(D \cap F) & = \frac{1}{9} \neq P(D)P(F) = \frac{7}{36}\times\frac{1}{2} = \frac{7}{72} \\
+P(E \cap F) & = \frac{1}{18} = P(E)P(F)
+\end{align*}
+So $D$ and $E$ are not independent, nor are $D$ and $F$. However, $E$ and $F$ are independent. \\
+
+\noindent Recall that $D$ was the event, ``the sum shown is a perfect square,'' and $E$ was the event, ``only perfect squares are showing.'' It would have been difficult to determine intuitively if these two events are independent, and in fact it turned out (perhaps surprisingly) that they are not. In contrast, if an experiment consists of, for example, flipping a fair coin then rolling a balanced die, then it is intuitively easy to see that the two events, ``the die shows the number $2$,'' and ``the coin shows heads'' are independent from eachother. This comparison illustrates that sometimes it is intuitively easy to determine independence, while other times (in fact most times) it is actually necessary to check if the definition of independence is satisfied. It is, of course, always a good idea to check that the definition is satisfied (the result could be counterintuitive).
+
+\subsection{Example} \label{exacbc}
+Suppose that two events, $A$ and $B$, are independent. We will prove that this implies $A^c$~and~$B^c$ are independent. We have
+\begin{align*}
+P(A^c \cap B^c) & = P((A \cup B)^c) \tag{De Morgans Law, see page \pageref{de-morgans laws}} \\
+			  & = 1 - P(A \cup B) \tag{Consequence 2, p.measure axioms} \\
+			  & = 1 - \big(P(A) + P(B) - P(A \cap B)\big) \tag{Consequence 5, p.measure axioms} \\
+			  & = 1 - \big(P(A) + P(B) - P(A)P(B)\big) \tag{since $A$ and $B$ are independent} \\
+			  & = 1 - \big{(}P(A) + P(B)(1-P(A))\big{)} \tag{factoring $P(B)$ out of $P(B) - P(A)P(B)$} \\
+			  & = 1 - P(A) - P(B)(1-P(A)) \tag{expanding brackets} \\
+			  & = P(A^c) - P(B)P(A^c) \tag{Consequence 2, p.measure axioms} \\
+			  & = P(A^c)(1-P(B)) \tag{factoring out $P(A^c)$} \\
+			  & = P(A^c)P(B^c). \tag{Consequence 2, p.measure axioms}
+\end{align*}
+So $P(A^c \cap B^c) = P(A^c)P(B^c).$ Hence $A^c$ and $B^c$ are independent, as required.
+
+\subsection{Pairwise vs mutual independence} \label{pairwise independent} \label{mutual independence}
+The elements of a set $S$ of events are called \textbf{pairwise independent} if every pair of two events, $A$ and $B$, from $S$, are independent from eachother.  \\
+
+\noindent Suppose we know that the elements of a set of three events, $\set{A_1, A_2,A_3}$, are pairwise independent. Suppose we also know that two of these events have happened, say $A_1$ and $A_2$; then can we conclude that the probability that the third event, $A_3$, will happen, is unaffected? In other words, can we conclude that, since $A_3$ is independent from $A_1$, and since $A_3$ is also independent from $A_2,$ that $A_3$ is independent from the \textit{event} ($A_1$ \textit{and} $A_2$), i.e., the event $A_1 \cap A_2$? Mathematically, we are asking, does $P(A_3 \! \mid \! A_1 \cap A_2) = P(A_3)?$ Using the definition of independence, what we are really asking is,
+\begin{align*}
+\text{does} \;\; & \squac{P(A_1 \cap A_3) = P(A_1)P(A_3) \;\; \text{and} \;\; P(A_2 \cap A_3) = P(A_2)P(A_3)} \\
+			& \text{imply that} \;\; P(A_1 \cap A_2 \cap A_3) = P(A_1)P(A_2)P(A_3)?
+\end{align*}
+This idea is called \textbf{mutual independence}. We are asking if pairwise independence implies mutual independence.
+
+\noindent The answer is \textbf{no;} pairwise independence does not imply mutual independence. In order to prove that the answer is no, we only need to provide proof that it isn't true in at least one case. That is, we just need to provide a single counterexample. The counterexample is given in example \ref{exmut} below.
+
+\subsection{Example} \label{exmut} 
+This counterexample proves that pairwise independence does not imply mutual indpendence. Suppose that a fair coin is tossed twice. Define events $A, B, C$ so that
+\begin{align*}
+A & = \set{\text{A head is thrown on the first toss}}, \\
+B & = \set{\text{A head is thrown on the second toss}}, \\
+C & = \set{\text{Exactly one head is thrown}}.
+\end{align*}
+We can almost immediately see intuitively that $A$ and $B$ are independent. It turns out that $A,B,C$ are pairwise independent. To see this, lets list the outcomes in the events and then use the definition of independence. We have,
+\[
+A = \set{(h,h),(h,t)}, \;\;\;\; B = \set{(t,h),(h,h)}, \;\;\;\; C = \set{(h,t),(t,h)}, \;\;\;\; \Omega = \set{(h,h),(h,t),(t,h),(t,t)}.
+\]
+Since each outcome is equally likely, and $|\Omega| = 4$, we have
+\[
+P(A) = \frac{|A|}{4} = \frac{1}{2}, \qquad P(B) = \frac{|B|}{4} = \frac{1}{2}, \qquad P(C) = \frac{|C|}{4} = \frac{1}{2}.
+\]
+To use the definition of independence we also require $P(A \cap B), P(A \cap C),$ and $P(B \cap C)$. The events we need are
+\[
+A \cap B = \set{(h,h)}, \qquad A \cap C = \set{(h,t)}, \qquad B \cap C = \set{(t,h)}.
+\] 
+Again, since the outcomes are all equally likely, the associated probabilities are
+\[
+A \cap B = \frac{|A \cap B|}{4} = \frac{1}{4}, \qquad A \cap C = \frac{|A \cap C|}{4} = \frac{1}{4}, \qquad B \cap C = \frac{|B \cap C|}{4} = \frac{1}{4}.
+\]
+Now we can check if the definition of independence is satisfied. We have,
+\begin{align*}
+P(A \cap B) & = \frac{1}{4} = P(A)P(B) \\
+P(A \cap C) & = \frac{1}{4} = P(A)P(C) \\
+P(B \cap C) & = \frac{1}{4} = P(B)P(C).
+\end{align*}
+Hence (maybe surprisingly) the three events are pairwise independent. But are they mutually independent? Well, first we need to find the intersect of all three events. We have,
+\[
+A \cap B \cap C = \varnothing.
+\]
+Hence,
+\[
+P(A \cap B \cap C) = P(\varnothing) = 0. \tag{Consequence 3, p.measure axioms}
+\]
+However, using our results from earlier,
+\[
+P(A)P(B)P(C) = \frac{1}{2}\times\frac{1}{2}\times\frac{1}{2} = \frac{1}{8} \neq 0.
+\]
+So $P(A \cap B \cap C) \neq P(A)P(B)P(C)$. Hence $A,B,C$ are not mutually independent. Therefore,~$A,B,C$ are pairwise independent but not mutually independent. This is the counterexample we required. It follows that pairwise independence does not imply mutual independence.
+
+\subsection{Definition of mutual independence}
+In section \ref{mutual independence} we introduced the idea of mutual independence. In that section we logically derived the formal definition of mutual independence for three events. Here, we will just present the formal definition for any finite number of events. This is really just a logical extension of the definition for three events.  \\
+
+\noindent Suppose that we have a set $S$ containing $n$ events, i.e., $S = \set{A_1,A_2,A_3,\ldots,A_n}.$ The elements of S are called mutually independent if, for \textbf{any} set $\set{A_{i_1},A_{i_2},A_{i_3},\ldots,A_{i_m}}$ that is a subset of~$S$, i.e, that consists of some number, $m$, of events from $S$, we have
+
+\bigskip
+\hfil\fbox{
+\begin{minipage}{0.75\columnwidth}{
+
+\vskip 0.02cm
+\begin{center}
+$P(A_{i_1} \cap A_{i_2} \cap A_{i_3} \cap \ldots \cap A_{i_m}) = P(A_{i_1})P(A_{i_2})P(A_{i_3})\ldots P(A_{i_m}).$
+\end{center}
+}
+\end{minipage}}
+\bigskip
+
+Do not get the term \textit{mutually independent} confused for the term \textit{mutually exclusive}. The term \textit{mutually exclusive}, introduced in section \ref{mutually exclusive}, means that events are disjoint. It turns out that mutually exclusive events that have non-zero probability are \textbf{never} independent. The proof is given in the next example.
+
+\subsection{Example}
+In this example we prove that mutually exclusive events that have non-zero probability are never independent. Let $A$ and $B$ be a pair of mutually exclusive events with non-zero probabilities, i.e., let $P(A) > 0, P(B) > 0,$ and $A \cap B = \varnothing$. Then,
+\[
+\squac{P(A) > 0 \;\; \text{and} \;\; P(B) > 0} \;\;\; \text{implies} \;\;\; P(A)P(B) > 0.
+\]
+However,
+\[
+A \cap B = \varnothing \;\;\; \text{implies} \;\;\; P(A \cap B) = P(\varnothing) = 0. \tag{consequence 3, p.measure axioms}
+\]
+So $P(A \cap B) = 0$, which is not greater than 0, i.e., $P(A \cap B) \neq P(A)P(B).$ \\
+
+\noindent Hence, if two events have non-zero probability and are mutually exclusive then they are not independent. \\
+
+\noindent For an intuitive understanding, consider what we do with a Venn diagram when we consider the probability of an event, $A$, given that an event, $B$, has happened (see the diagrams in section~\ref{sec507} on page \pageref{sec507}): \\
+
+\noindent Assume that $P(A) > 0$. When we know that event $B$ has happened, we ignore the rest of the Venn diagram that contains all of the outcomes outside of $B$, that is, we only consider other events if they have intersections with $B$. So, assuming that $A$ does not intersect $B$ (i.e., that $A$ is mutually exclusive from $B$) then the probability of $A$, given $B$, must be zero (as there is no part of $A$ on the new Venn diagram). Thus, the occurrence of $B$ has changed the probability of $A$ (since now $P(A)$ will be zero). That is, $P(A \! \mid \! B) = 0 \neq P(A)$, as $P(A) > 0$. \\
+
+\noindent Notice that we can't depict independence, which is a property of the probabilities assigned to events, on a Venn diagram (as Venn diagrams depict events, not probabilities).
+
+
+\subsection{Addition Law revisited} \label{secadlaw}
+In light of our knowledge of the meaning of independence, lets have another look at the addition law. \\
+
+\noindent For \textit{any} events, $A,B$:
+\[
+P(A \cup B) = P(A) + P(B) - P(A \cap B)
+\]
+For \textit{disjoint} events, $A,B$:
+\[
+P(A \cup B) = P(A) + P(B) \tag{since $P(A \cap B) = 0$}
+\]
+For \textit{independent} events $A,B$:
+\[
+P(A \cup B) = P(A) + P(B) - P(A)P(B) \tag{since $P(A \cap B) = P(A)P(B)$}
+\]
+
+
+\subsection{Example} \label{series system} \label{parallel system}
+Suppose we have two electronic devices, Unit 1 and Unit 2, connected in the following fashion:
+\begin{center}
+\begin{tikzpicture}
+\draw (0,0) -- (10,0);
+\draw [fill = white] (2,-0.8) -- (4,-0.8) -- (4,0.8) -- (2,0.8) -- cycle; 
+\draw [fill = white] (2 + 4,-0.8) -- (4 + 4,-0.8) -- (4 + 4,0.8) -- (2 + 4,0.8) -- cycle;
+\draw (3,0) node {Unit 1};
+\draw (3+4,0) node {Unit 2};
+\end{tikzpicture}
+\end{center}
+This is referred to as a \textbf{series system}; if one unit fails then the whole system fails.
+Let $A_1$ be the event that Unit 1 does not fail, and let $A_2$ be the event that Unit 2 does not fail. Suppose they fail independently with the same probability $p$, where $p < 1$. That is, suppose $P(A_1^c)~=~P(A_2^c) = p$; then it follows that $P(A_1) = P(A_2) = 1-p$ (by consequence 2 of the probability measure axioms). \\
+
+\noindent \textbf{Question 1:} What is the probability that the series system does not fail? \\
+
+\noindent \textit{Solution:} \\
+The event that the series system does not fail is the set
+\[
+\set{\text{Unit 1 does not fail \textit{and} Unit 2 does not fail}}~=~A_1~\cap~A_2.
+\] 
+It was stated that they fail \textit{independently;} this means that $A_1^c$ and $A_2^c$ are independent events. In example \ref{exacbc} we proved that this implies $A_1$ and $A_2$ are also independent events. Hence,
+\[
+P(A_1 \cap A_2) = P(A_1)P(A_2) = (1-p)(1-p) = (1-p)^2.
+\]
+So the probability that the series system does not fail is $(1-p)^2.$
+\vspace{1cm}
+
+\noindent Now, consider a similar system, connected as follows:
+
+\begin{center}
+\begin{tikzpicture}
+\draw (0,0) -- (10,0);
+\draw [fill = white] (2,-1) -- (4+4,-1) -- (4+4,1) -- (2,1) -- cycle; 
+\draw [fill = white] (4,1-0.3) -- (6,1-0.3) -- (6,1+0.3) -- (4,1+0.3) -- cycle;
+\draw [fill = white] (4,-1-0.3) -- (6,-1-0.3) -- (6,-1+0.3) -- (4,-1+0.3) -- cycle;
+\draw (5,1) node {Unit 1};
+\draw (5,-1) node {Unit 2};
+\end{tikzpicture}
+\end{center}
+
+\noindent This is referred to as a \textbf{parallel system}; the system fails only if both units fail. Define the events $A_1$ and $A_2$ as before, again with $P(A_1) = P(A_2) = 1-p$. \\
+
+\noindent \textbf{Question 2:} What is the probability that the parallel system does not fail? \\
+
+\noindent \textit{Solution:}
+The event that the parallel system does not fail is the set
+\[
+\set{\text{Unit 1 does not fail \textit{or} Unit 2 does not fail}} = A_1 \cup A_2.
+\]
+Since, as before, $A_1$ and $A_2$ are independent, the addition law gives
+\begin{align*}
+P(A_1 \cup A_2) & = P(A_1) + P(A_2) - P(A_1)P(A_2) \tag{see section \ref{secadlaw}} \\
+			& = (1-p) + (1-p)  - (1-p)(1-p) \\
+			& = 2(1-p) - (1-p)^2 \\
+			& = (1-p)(2 - (1-p)) \tag{factoring out $(1-p)$} \\
+			& = (1-p)(2 - 1 + p) \tag{expanding brackets} \\
+			& = (1-p)(1 + p)
+\end{align*}
+So the probability that the parallel system does not fail is $(1-p)(1+p).$ \\
+
+\noindent \textbf{Question 3:} Which system is less likely to fail, the series system or the parallel system? \\
+
+\noindent \textit{Solution:} \\
+We suspect that the parallel system is less likely to fail. To prove this, we need to show that $P(\text{parallel system doesn't fail}) > P(\text{series system doesn't fail})$. In other words, we need to show that
+\[
+(1-p)(1+p) > (1-p)^2. \tag{using results from questions 1 and 2}
+\]
+We were told at the beginning of this example that $p < 1$. Subtracting $p$ from both sides of the expression, $p < 1$, gives $0 < 1 - p$. Hence $(1-p)$ is greater than zero, i.e., is positive, so we can divide by $(1-p)$ without changing the direction of the inequality (see rules for rearranging inequalities, section \ref{secinecrule} on page \pageref{secinecrule}). This gives
+\[
+\frac{(1-p)(1+p)}{1-p} > \frac{(1-p)^2}{1-p}.
+\]
+Cancelling common factors of $(1-p)$ gives
+\[
+(1+p) > (1-p).
+\]
+Subtracting 1 from both sides gives
+\[
+p > -p.
+\]
+Adding $p$ to both sides gives
+\[
+2p > 0.
+\]
+Dividing both sides by 2 gives
+\[
+p > 0.
+\]
+So, since we can do all of these steps in reverse (in each step we only used the rules for rearranging inequalities), it follows that the parallel system is less likely to fail as long as $p > 0$. Since $p > 0$ was given to us at the beginning, we conclude that the parallel system is less likely to fail.

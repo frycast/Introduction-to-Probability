@@ -1,0 +1,638 @@
+
+
+\documentclass[12pt,a4paper,reqno,openany,twoside]{book}
+\usepackage[paper=a4paper,left=3cm,right=2.5cm,top=3.5cm,bottom=2.5cm,headsep=1cm,footskip=1cm,headheight=15pt]{geometry}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{xcolor,colortbl} 
+\usepackage{chngcntr} 
+\usepackage{graphicx,epsf,epstopdf}
+\usepackage{floatrow} 
+\usepackage{caption}
+\usepackage{wasysym}
+\usepackage{stmaryrd}
+\usepackage{empheq}
+\usepackage{fancybox,xcolor}
+\usepackage{enumerate}
+\usepackage{multicol}
+\usepackage{multirow}
+
+\usepackage{fancyhdr}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usetikzlibrary{arrows}
+
+
+%\usepackage{hyperref} %hyperlinks
+%\usepackage[xindy,toc]{glossaries} %gloassary of terms
+%\makeglossaries
+
+%\usepackage{makeidx}
+%\makeindex
+
+\setlength{\hfuzz}{2pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Formatting
+
+%for tables
+\renewcommand{\arraystretch}{1.5}
+
+% line spacing
+\renewcommand{\baselinestretch}{1.0}
+
+% for multicolumn lists
+\setlength{\multicolbaselineskip}{0pt}
+\raggedcolumns
+
+% headers and footers
+\fancyhf{}
+\fancyhead[EL,OR]{\itshape \thepage}
+\fancyhead[OL]{\rightmark}
+\fancyhead[ER]{\leftmark}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{\fancyhf{}}
+\pagestyle{fancy}
+\renewcommand{\chaptermark}[1]{\markboth{\itshape \thechapter.\ #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\itshape \thesection.\ #1}}
+
+% numbering
+%\renewcommand{\theenumi}{\alph{enumi}}
+\renewcommand{\theenumii}{\roman{enumii}}
+\renewcommand{\labelenumi}{(\theenumi)}
+\numberwithin{equation}{chapter}
+
+%proclamations
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem*{theorem:unnumbered}{Theorem}
+\newtheorem*{lemma:unnumbered}{Lemma}
+\newtheorem*{theorem:equiv}{Equivalence of Solutions Theorem}
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}[chapter]
+\newtheorem{exercisea}{Exercise}[section]
+\newtheorem{example}{Example}[section]
+\newtheorem{remark}[example]{Remark}
+\newtheorem{definition}{Definition}[section]
+
+% examples
+\newcommand{\done}{\null\hfill\ensuremath{\color{gray}\CIRCLE}}
+\newcommand{\solution}[1][\!\!]{\noindent \textit{Solution #1:} \\}
+
+% proofs
+\renewcommand{\qedsymbol}{\ensuremath{\color{gray}\blacksquare}}
+
+% spacing
+\newcommand{\nin}{\noindent}
+\newcommand{\ssk}{\\[\smallskipamount]}
+\newcommand{\bsk}{\\[\bigskipamount]}
+
+% fonts
+\newcommand{\bfss}{\bfseries}% {\bfseries\sffamily} Used for definitions in Linear Algebra only
+\newcommand{\bfsl}{\bfseries\slshape}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Mathematics
+
+\renewcommand{\d}{\displaystyle}
+
+\newcommand{\dom}{\operatorname{dom}}% DOMAIN OF A FUNCTION
+\newcommand{\codom}{\operatorname{codom}}% CODOMAIN OF A FUNCTION
+\newcommand{\ran}{\operatorname{ran}}% RANGE OF A FUNCTION
+\newcommand{\id}{\operatorname{id}} % USED FOR IDENTITY FUNCTION
+\newcommand{\trace}{\operatorname{trace}} % USED FOR TRACE OF MATRIX
+
+\newcommand{\ud}{\, \mathrm{d}} %for the integral dx symbol
+                                                                                                                   %\newcommand{\vect}[1]{\ensuremath{\smash[b]{\underset{^\sim}{#1}}}}% old vector tilde
+\newcommand{\vect}[1]{\ensuremath{\smash{\underset{\raise0.65ex\hbox{$\smash{\scriptscriptstyle\sim}$}}{#1}}\vphantom{\underline{#1}}}}% new vector tilde
+\newcommand{\pop}[1]{\overrightarrow{#1}}% "pairs of points" notation
+
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\geq}{\geqslant}
+
+\newcommand{\set}[1]{\left\{#1\right\}}
+\newcommand{\brac}[1]{\left(#1\right)}
+\newcommand{\squac}[1]{\left[#1\right]}
+\newcommand{\bfrac}[2]{\left(\frac{#1}{#2}\right)}
+\newcommand{\abs}[1]{\displaystyle{\left|#1\right|}}
+
+\newcommand{\e}{\mathrm{e}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+
+\newcommand{\scases}[5]{#1 = \left\{
+  \begin{array}{ll}
+    #2, & #3 \smallskip \\
+    #4, & #5
+  \end{array}
+\right.}
+
+\newcommand{\Var}{\text{Var}}
+\newcommand{\Cov}{\text{Cov}}
+
+%PLOTTING WITH TIKZ
+\newcommand{\axesmacro}[6]{
+\draw [->, gray] (#1,0) -- (#2,0) node [below right] {$#5$};
+\draw [->, gray] (0,#3) -- (0,#4) node [above left] {$#6$};
+}
+\newcommand{\labeltheaxes}[2]{
+	\foreach \x in {#1}{
+	\draw [gray] (\x,0) node {\tiny$|$} node [below = 1mm] {\x};
+	}
+	\foreach \y in {#2}{
+	\draw[gray] (0,\y) node [rotate = 90] {\tiny$|$} node [left = 1mm] {\y};
+	}
+}
+
+\newcommand{\plotmacro}[4]{
+\draw [very thick,#4,samples=200,smooth,domain=#1:#2] plot (\x,{#3});
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Bracketed aside
+
+\newenvironment{aside}
+  {\begin{Sbox}\begin{minipage}[t]{0.95\linewidth}% put content in a minipage
+    \setlength{\parindent}{1.5em}\vskip0pt\noindent\ignorespaces}
+  {\end{minipage}\end{Sbox}
+     \begin{center}\medskip% create framed box
+     \begin{minipage}{\linewidth}
+       \rule[0.15em]{4em}{0.04em}\hskip-4em\hskip0.15em\rule{3.85em}{0.04em}\hskip-4em\relax% two horizontal rules
+       \smash{\rule[-1.85em]{0.04em}{2em}\hskip0.12em\rule[-1.85em]{0.04em}{1.85em}}\relax% two vertical rules
+       \par\vskip-0.5\baselineskip
+     \centering{\mbox{\TheSbox}}\par\vskip0.25\baselineskip\hfill
+       \rlap{\hskip-4em\rule[0.15em]{3.85em}{0.04em}\hskip-3.85em\rule{4em}{0.04em}\relax% two horizontal rules
+       \smash{\hskip-0.15em\rule[0.15em]{0.04em}{1.85em}\hskip0.12em\rule{0.04em}{2em}}}\relax% two vertical rules
+     \end{minipage}\medskip\end{center}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Boxes
+
+% small box
+\renewcommand{\boxed}[1]{{\fboxrule=0.5pt\fboxsep=3pt\fcolorbox{gray}{white}{#1}}}
+
+% display box
+\newdimen{\ibsep}
+\newenvironment{boxaround}[1][0.8\linewidth]%
+ {\ibsep=#1 \advance\ibsep by -20pt \begin{Sbox}\begin{minipage}{\ibsep}}%
+ {\end{minipage}\end{Sbox}\begin{center}\fboxrule=1pt\fboxsep=9pt\fcolorbox{gray}{white}{\TheSbox}\end{center}}
+
+% equation box
+\newcommand*\greybox[1]{{\fboxrule=0.5pt\fboxsep=5pt\fcolorbox{gray}{gray!10}{\hspace{1em}#1\hspace{1em}}}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+%\graphicspath{{pictures/}}
+
+\counterwithin{subsection}{chapter}
+\counterwithin{subsection}{section}
+
+\pagestyle{empty}
+\raggedbottom
+
+% title page with copyright on reverse
+%\include{NLA_LA_copyright}
+\tableofcontents
+
+\frontmatter
+%\include{NLA_LA_preface}
+
+\mainmatter
+\pagestyle{fancy}
+
+% "Hack" to help the table of contents fit over two pages:
+\addtocontents{toc}{\protect\enlargethispage{\baselineskip}}
+
+\include{chapters/Lecture1}
+\include{chapters/Lecture2}
+\include{chapters/Lecture3}
+\include{chapters/Lecture4}
+\include{chapters/Lecture5}
+\include{chapters/Lecture6}
+\include{chapters/Lecture7}
+\include{chapters/Lecture8}
+\include{chapters/Lecture9}
+\include{chapters/Lecture10}
+\include{chapters/Lecture11}
+\include{chapters/Lecture12}
+\include{chapters/Lecture13}
+\include{chapters/Lecture14}
+\include{chapters/Lecture15}
+\include{chapters/Lecture16}
+\include{chapters/Lecture17}
+\include{chapters/Lecture18}
+\include{chapters/Lecture19}
+\include{chapters/Lecture20}
+\include{chapters/Lecture21}
+\include{chapters/Lecture22}
+\include{chapters/Lecture23}
+\include{chapters/Lecture24}
+\include{chapters/Lecture25}
+\include{chapters/Lecture26}
+\include{chapters/Lecture27}
+\include{chapters/Lecture28}
+\include{chapters/Lecture29}
+\include{chapters/Lecture30}
+%\printglossaries
+
+\appendix
+\include{appendices/AppendixA}
+\include{appendices/AppendixB}
+\include{appendices/AppendixD}
+\include{appendices/AppendixE}
+
+
+
+%GLOSSARY OF TERMS
+% Page 1
+% set, element, natural number, integer, rational number, axioms
+% Page 2
+% subset, empty set
+% Page 3
+% Omega (universal set), complement, union, intersection
+% Page 4
+% disjoint sets, mutually exclusive sets 
+%Page 5
+%Inclusion-exclusion principle, De-Morgans Laws, Distributive Law, Commutative Law, Associative Law, 
+%Page 7
+%equality, inequality, order, real numbers, irrational numbers
+%Page 8
+%intervals, number line, absolute value, distance
+%Page 9
+%unfair (i.e, coin or dice), balanced, function, experiment, sample space, outcome, outcome space, event
+%page 10
+%probability measure,domain, codomain, range, mapping {mapping} (map)
+%page 11, 12, 13
+%mutually disjoint, absolute value, axiom, addition law
+%page 15
+%combinatorics, order2, replacement
+%page 16
+%combination, permutation
+%page 17
+%page 19
+%ordered sampling 
+%multiplication rule, factorial, sampling with/without order and with/without replacement \ref{sampling} 
+%page 22
+%sequence, index set
+%page 23
+%binomial expansion/binomial coefficients \ref{binomial coefficients}, pascals triangle. 
+%page 24
+%limit (sequence) \ref{limit sequence}, convergent, divergent
+%page 27
+%exponential function
+%page 29
+%sigma notation, dummy variable, index(sum)
+%page 31
+%infinite series, infinite series convergence
+%page 32
+%geometric series, common ratio
+%page 33
+%linearity
+%page 34
+%power series
+%page 36
+%conditional probability, condition
+%page 37
+%the multiplication law
+%page 38
+%exhaustive
+%page 40
+%bayes' rule
+%page 43
+%independence, independent trials, independent events, independent \ref
+                                  %later on: discrete random variable independence \ref{indep(discreterand)}
+%page 47
+%pairwise independent, mutual independence
+%page 50
+%series system, parallel system
+%51
+%base, index, exponent
+%page 54
+%cartesian coordinate system, origin, graph
+%page 55
+%functions: powers (natural number and non-integer), polynomials, rational functions, exponentials
+%continuous functions, discontinuous functions.
+%y-intercept
+%page 72
+%mirrored, symmetric function
+%inverse operation
+%page 76
+%exponential function 2
+%77
+%inverse operations, inverse functions (first?), natural logarithm {symbln}
+%page 83
+%gaussian curve, bell curve
+%page 84
+%random variable
+%page 86
+%discrete random variable, (continuous random variable 1) - ref both cont.
+%page 87
+%pmf (probability mass function, probability frequency function), cdf (cumulative distribution function).
+%page 90
+%interval notation {interval notation 1} (lecture 1) and {interval notation}.
+%page 100
+%one-to-one, inverse functions {inverse functions 3}
+%square root function \ref{square root}
+%bernoulli random variable, bernoulli distribution, bernoulli trials? - make sure bernoulli trials is good.
+%parameter
+%tree diagram
+%binomial distribution
+%Remember to put a link to the ``addition law revisited''
+%binomial theorem {secbinom} from lecture 3.
+%hypergeometric distribution, dichotomous
+%increasing 2 {increasing decreasing 2}
+% slope {slope}
+%rise and run {rise over run}
+%{rate of change}
+%{instantaneous roc}
+%{average roc}
+%{derivative}
+%{linearity (differentiation)}
+%{differentiation}
+%{linear operator}
+%{local/global max/min}
+%{concave up/down} 
+%{point of inflection} 
+%{stationary point}
+%{turning points}?? weird word for stationary point
+%{integral} (definite/indefinite integral, )
+%{integration}
+%{indefinite integral}
+%{constant of integration}
+%{terminals}
+%{Geometric distribution}
+%{finite geometric series}
+%{geom cdf}
+%{mode1(notreally)} - this should be done in detail later in book
+%{poi(lambda)} - poisson distribution
+%{negbin(r,p)} - negative binomial
+%{pdf} - probability density function.
+%{cdf(continuous)}
+%{improper integral}
+% \label{U(a,b)} - uniform distribution
+%{median}
+%{composition (of functions)}
+%{product rule}
+%{chain rule}
+%{quotient rule} - quotient functions, rational functions, quotient rule
+%{mode definition}
+%{translation(sort of)} - lecture 16
+%{exponential distribution}
+%{gamma(alpha,lambda)} - gamma distribution
+%{rate (exponential)} - ``rate'' parameter. a name for lambda the parameter
+% {rate (exponential)} - ``scale'' parameter beta = 1/lambda - scale described later (below)
+%INCLUDE REFERENCE TO FTC.
+%{memoryless property}
+%{gamma function}
+%{gamma distribution1}
+%{inverse scale gamma} {rate gamma} -  names for lambda as with exponential
+%{shape gamma} - name for alpha parameter
+%{integration by parts}
+%{integration by substitution 1}
+%{simplest chain} - simple chain.
+%{right-to-left substitution} - and left to right.
+%{transformation, functions}
+%{dilation/compression, functions}
+%{translation, functions}
+%{even and odd symmetry, functions}
+%{scale - actual description}, {rate/scale gamma}
+%{multiplicative inverses}
+%{symmetric interval}
+%{normal distribution}
+%{standard normal distribution}
+%{leibniz's rule}
+%{measures of location} 
+%{expected value} - also known as `mean'
+%{expected value} - this tag refers to `average'
+%{expected value} - this tag refers to `arithmetic mean' another word for average
+%{markovs ineq}
+%{variance}
+%{stdev}
+%{chebyshevs ineq}
+%{measure of dispersion}
+%{distance}
+% {multiple summation} - i.e., summation with two labels. 
+%{Interchanging the order of summation}
+%{decouple} - integrals
+%{product structure}
+%{double integral}
+%{double integral} - multiple integral (mention that its same as double)
+%{multi-variate distribution}
+%{joint distribution}
+%{bi-variate}
+%{law of total probability}
+%{marginal probabilities}
+%{multinomial distribution}
+%{multinomial coefficients}
+%{Multi-variate hypergeometric distribution}
+%{jointly continuous}
+%{joint cumulative distribution function}
+%{joint probability density function} 
+%{marginal probability density function 2}
+%{conditional expected value}
+%{counterexample}
+%{joint cdf}
+%{joint pmf}
+%{product structure again}
+% {covariance} - also `vary together' and `vary oppositely'
+%{measure of association}
+%{correlation}
+
+
+% THERE IS AN UNFINISHED PROOFS IN LECTURE 11, HYPERGEOM APPROACHES BINOM IN LIMIT AS N APPROACHES INFINITY \ref{unfinished1}. AND EXAMPLE {unfinished2} TOWARDS THE END INVOLVING ANIMAL TAGGING.
+
+% THE PROOF THAT BINOM BECOMES POISSON WAS OMITTED FROM LECT 14.
+
+% WHEN DOING TAYLOR SERIES MENTION THAT THE GAMMA AND NORMAL DIST PROBABILITY INTEGRALS CAN BE APPROXIMATED USING IT.
+
+
+
+
+
+%NOTATION INDEX
+%First 5 pages:
+%{} \ref{symbset}, : \ref{symbcolon}, | \ref{symbmid}, \N \ref{symbN}, \Z \ref{symbZ}, \Q \ref{symbQ}, \neq \ref{symbneq}, \in \ref{symbin}, \notin \ref{symbnotin}, \subseteq \ref{symbsubseteq}, \not\subseteq \ref{symbnotsubseteq}, \varnothing \ref{symbvarnothing}, A^c \ref{symbcomplement}, A` \ref{symbcomplement}, \Omega \ref{symbOmega}, 
+%union \ref{symbcup}, intersection \ref{symbcap}
+%Page 7
+%\leq, >, <,  \geq \ref{symbinequalities}, \R \ref{symbR}
+%page 8
+%(, ), [, ] (also {interval notation} later), \iff (not explained), (a,b), [a,b], (a,b], [a,b) \ref{symbinterval}
+%page 9
+%\omega \ref{symbomega}, S \ref{symbS},
+%page 10,11
+%P() \ref{symbP()}
+%page 11
+%\abs and |A| \label{symb||}
+%page 12
+%page 17
+% ! \ref{1}
+%page 18
+%nPr (and other forms) \ref{nPr}
+%page 19
+%nCr (and binom form) \ref{nCr}
+%page 23
+%s(k) (in sequences) \ref{s(k)}
+%page 24
+%\infty \ref{symbinfty}, \rightarrow (limits) \ref{symbrightarrow},
+%page 27
+% e and e^x \ref{ex}
+%page 29
+%\Sigma \ref{symbSigma} 
+%page 30
+%\sum_xp(x) \ref{symbsumxp(x)}
+%\sum_{k=1}^\inftyp(k) \ref{symbolsuminfty}
+%page 35
+%\approx \ref{symbapprox}
+%page 36
+%P(A \! \mid \! B) \ref{symbconditional}
+%page 76
+%{symbexp(x)} exp(x)
+%page 77
+%\iff {symbiff}, \log {symblog}, \ln {symbln}
+%page 86
+%{Z = z} {symbZ=z} (and P(Z = z), and P(a \leq Z \leq b))
+%page 87
+%p(x) {symbp(x)}, F(x) {symbF(x)}
+%interval notation {interval notation}
+%page 100
+%one to one, inverse functions {inverse functions 3}
+%bin(n,p)
+% {pp(k)P(X=k)f(k)F(K)} - they get their own section.
+%Hypergeom(N,M,n) {hypergeometric distribution}
+%d/dx and k'(x) {derivative}
+%\int_a^bf(x)dx {symbintegral}
+% \int {symbindefiniteintegral}
+% \label{A(x)} accumulation function
+%Geom(p) - \ref{Geometric distribution}
+%{lambda poisson}
+%{poi(lambda)}
+%{negbin(r,p)}
+%{f(pdf)} - f used to represent a pdf rather than arbitrary function.
+%{U(a,b)}
+%{exponential pdf} - exponential(lambda)
+%{gamma(alpha,lambda)}
+%{N(mu,sigma^2)}
+%{standard normal distribution} - \phi and \Phi.
+%{f_X,F_X}
+%{U}
+%{E(X)}
+%{def E(g(X))}
+%{def Y = g(X)}
+% \label{multiple summation} - the symbol \sum_i\sum_j f(i,j) etc.
+%{r(i,j)}
+%{doublt integral} \int\int (definite integral)
+%{p(x_i,y_j)=P(X=x_i,Y=y_j)}
+%{f(x,y) symbol}
+%{F(x,y) symbol}
+%{f_X(x) symbol}
+%{p_{XY}(x,y),p_{X|Y}(x|y),p_X(x)} - make a note that p(x,y) is same as with subscript XY
+%{f_{XY}(x,y),f_{X|Y}(x|y),f_X(x)} - make a note that f(x,y) is same as with subscript XY
+%{E(X|Y = y)}
+%{cov(X,Y)}
+%{def E(g(X,Y))}
+
+
+%INCLUDE APPENDIX WITH FORMULA SHEET STUFF AND EXPONENT PROPERTIES.
+
+
+%DISTRIBUTIONS
+%Bernoulli distribution (lecture 10)
+%PMF: {bernoulli distribution}
+%example: {parallel system}
+%CDF: {bernoulli cdf}
+%abbr: none?
+
+%Binomial (lecture 10) {binomial distribution}
+%PMF: {binom pmf}
+%abbr {bin(n,p)}
+
+%Hypergeometric {hypergeometric distribution}
+%PMF {hypergeometric distribution}
+%abbr Hypergeom(N,M,n) {hypergeometric distribution}
+
+%{Geometric distribution} (lecture 14)
+%Geom(p)
+%{geom cdf}
+
+%Poisson (lect 14)
+%Poi(lambda)
+
+%Negative binomial (lect 14)
+%{negbin(r,p)}
+
+%CONTINUOUS
+
+%Uniform
+%{U(a,b)}
+%cdf: 
+%
+
+%Exponential {exponential distribution}
+%{exponential pdf} - exp(lambda)
+%{exponential cdf 1}
+%{rate (exponential)} - lambda, or 1/beta (where beta is scale).
+
+%Gamma distribution
+%{gamma(alpha,lambda)}
+%alpha {inverse scale gamma} 1/beta
+%lambda {shape gamma}
+
+%Normal distribution
+%{N(mu,sigma^2)}
+%mu - translation
+%sigma - scale/dilation.
+
+
+
+
+
+
+
+%             PARAMETERS,             MEAN,                VARIANCE
+%Bernoulli   p                                    p                          p(1-p) 		{meanvarBernoulli} lec23
+%Binomial   n,p                               np                         np(1-p)             {meanvarBinom}
+%Poisson      lambda                       lambda					{meanPoisson} lec22
+%Geometric  p 				   (1-p)/p						{meanGeom}
+%NegBin       
+%Hypergeom 
+%
+%Uniform       c,d                               (c+d)/2		(d-c)^2/12		{meanvarUniform} lec23
+%Normal        mu, sigma^2                mu  						{meanNormal} lec22 (var prac 9)
+%Gamma      alpha, lambda             alpha/lambda 				{meanGamma} lec22
+%Exponential   lambda                      1/lambda					{meanGamma} lec22
+%
+%Y = aX + b 					amu + b       a^2Var(X)		
+
+
+
+
+
+%LOCATIONS OF TABLES
+%{derivativetable1} %lecture 13
+%{derivativetable1} (same) %lecture 13
+
+
+
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

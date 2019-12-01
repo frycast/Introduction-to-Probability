@@ -1,0 +1,351 @@
+\chapter{Lecture 28: Independence of two random variables}
+In section \ref{definition of independence} we defined two events, $A$ and $B$, to be independent when
+\[
+P(A \cap B) = P(A)P(B)
+\]
+Which is equivalent to $P(A|B) = P(A)$, since
+\[
+P(A|B) = \frac{P(A \cap B)}{P(B)} = \frac{P(A)P(B)}{P(B)} = P(A).
+\]
+In other words, $A$ and $B$ are independent when knowing that $B$ has already happened does not change the probability of $A$. In this lecture we will apply this definition to random variables.
+
+\section{Independent discrete random variables}
+Let $X$ and $Y$ be discrete random variables. Taking $A = \set{X = x}$ and $B = \set{Y = y}$ in the above definition for independence of $A$ and $B$, we get
+\[
+P(\set{X=x} \cap \set{Y = y}) = P(\set{X = x})P(\set{Y = y})
+\]
+Which can be written more compactly as
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.5\columnwidth}{
+	
+	\vskip 0.04cm
+	\begin{center}
+	$\displaystyle{P(X = x,Y = y) = P(X = x)P(Y = y)}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+	\bigskip
+
+\noindent When the above condition holds for \textit{every possible value of $X$ and $Y$}, we say that $X$ and $Y$ are independent. \\
+
+\noindent Using the notation for joint and marginal probability mass functions that we introduced in section \ref{discrete conditional probability}, we can rewrite the above as
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.35\columnwidth}{
+	
+	\vskip 0.04cm
+	\begin{center}
+	$\displaystyle{p_{XY}(x,y) = p_X(x)p_Y(y)}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+	\bigskip
+
+\noindent To show that two discrete random variables are \textit{not} independent, we only need to find \textit{one value of $X$ and one value of $Y$} for which this condition fails (i.e., we only need to find one \textbf{counterexample}). \label{counterexample}
+
+\subsection{Example}
+In section \ref{ex27.4} we found $p_{XY}(1,2) = \frac{2}{8}$, for the coin toss example (which involved an array of probabilities). We also had (from the array in that example) that $p_X(1) = \frac{1}{2}$ and $p_Y(2) = \frac{3}{8}$. So this means that
+\[
+p_X(1)p_Y(2) = \frac{1}{2}\times\frac{3}{8} = \frac{3}{16}.
+\]
+So putting this together, we have
+\[
+p_{XY}(1,2) = \frac{2}{8} \;\; \neq \;\;  p_X(1)p_Y(2) = \frac{3}{16}.
+\] 
+Since we have found \textit{one value for $X$ and one value for $Y$} (namely, $X = 1$ and $Y = 2$) for which $p_{XY}(x,y) \neq p_X(x)p_Y(y)$, we conclude that $X$ and $Y$ are \textit{not} independent.
+
+
+\subsection{Example}
+We do not always need to formally check that two random variables satisfy the definition of independence; when it is absolutely clear that random variables arise from \textbf{independent physical causes}, they will be independent. \\
+
+\noindent In the previous example, we could not expect independence without checking. \\
+
+\noindent However, suppose that a fair coin is tossed twice. Let $X$ count the number of heads on the first toss and let $Z$ count the number of tails on the second toss. Are $X$ and $Z$ independent random variables? We could confirm that they are independent by making an array of the associated probabilities and checking that $P(X = x,Z=z) = P(X = x)P(Z = z)$ for each pair of $x$ and $z$, but we do not need to do so in this case, because it is obvious that $X$ and $Z$ are independent.
+
+
+\section{Independent continuous random variables}
+Let $X$ and $Y$ be jointly continuous random variables. Letting $A = \set{a \leq X \leq b}$ and $B = \set{c \leq Y \leq d}$ in the general definition of independence for two events, $A$ and $B$, we get
+\[
+P(\set{a \leq X \leq b} \cap \set{c \leq Y \leq d}) = P(\set{a \leq X \leq b})P(\set{c \leq Y \leq d}).
+\]
+This can be written more compactly as
+\[
+P(a \leq X \leq b, c \leq Y \leq d) = P(a \leq X \leq b)P(c \leq Y \leq d).
+\]
+It turns out that the above is equivalent to
+\[
+P(X \leq b, Y \leq d) = P(X \leq b)P(Y \leq d)
+\]
+We introduced the joint cdf, $F(x,y)$, for continuous random variables, in section \ref{jointly continuous}. We also gave the general definition for a joint cdf in section \ref{joint cdf}, which was $F(x,y) = P(X \leq x, Y \leq y).$ We can thus rewrite the previous expression, in terms of the joint and marginal cdfs, as:
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.35\columnwidth}{
+	
+	\vskip 0.04cm
+	\begin{center}
+	$\displaystyle{F(x,y) = F_X(x)F_Y(y)}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+	\bigskip
+	
+\noindent We will take the above to be the \textbf{definition of independence} for two jointly continuous random variables, $X$ and $Y$. \\
+
+\noindent Using \textit{partial derivatives} (which are outside the scope of this course, but basically just allow us to differentiate functions of more than one variable) we can show that if the above is true then
+\[
+f(x,y) = f_X(x)f_Y(y)
+\]
+\noindent When the joint probability density function $f(x,y)$ can be expressed as the product $f_X(x)f_Y(y)$, as above, then we say that the joint pdf has the \textbf{product structure}. It turns out that when the joint pdf has the product structure, we can do the following (we discussed in section \ref{product structure} that double integrals can decouple when the function being integrated has the product  structure): \label{product structure again}
+\begin{align*}
+F(x,y) & = \int_{-\infty}^x \int_{-\infty}^y f(s,t) \; dtds \\
+	& = \int_{-\infty}^x \int_{-\infty}^y f_X(s)f_Y(t) \; dtds \tag{since the joint pdf has product structure} \\
+	& =   \int_{-\infty}^x f_X(s)  \; dt  \int_{-\infty}^y f_Y(t) \; dt  \tag{decoupling, see section \ref{product structure}} \\
+	& = F_X(x)F_Y(y) \tag{definition of a cdf}
+\end{align*}
+So we conclude that
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.85\columnwidth}{
+	
+	\vskip 0.04cm
+	\begin{center}
+	$\displaystyle{f(x,y) = f_X(x)f_Y(y) \;\;\;\; \text{is equivalent to} \;\;\;\; F(x,y) = F_X(x)F_Y(y)}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+	\bigskip
+
+\noindent By `equivalent' we mean that one being true always implies that the other is true. In other words, either equation can be taken as the definition of independence for jointly continuous random variables.
+
+\subsection{Example}
+In example \ref{ex27.3} we looked at the joint pdf, $f(x,y) = 4xy$ when $x,y \in [0,1]$ and $f(x,y) = 0$ elsewhere. We found that the marginal probability density functions are
+\[
+f_X(x) = 2x, \;\;\; x \in [0,1] \qquad \text{and} \qquad f_Y(y) = 2y, \;\;\; y \in [0,1]
+\]
+We can see that $f_X(x)f_Y(y) = 2x2y = 4xy = f(x,y)$. So
+\[
+f(x,y) = f_X(x)f_Y(y)
+\]
+It follows that $X$ and $Y$ are independent.
+
+\subsection{Example}
+The function
+\[
+f(x,y) = \left\{ \begin{array}{ll}
+\frac{1}{16}(x + 3y) & \; \text{if} \;\; 0 \leq x \leq 2, 0 \leq y \leq 2 \smallskip \\
+0 & \; \text{otherwise}
+\end{array}
+\right.
+\]
+is a joint pdf for joint random variables $X$ and $Y$. We can immediately see that $X$ and $Y$ are \textit{not} independent since this function does not have the product structure (it cannot be expressed as a product of some function of $x$ and some function of $y$). \\
+
+\noindent We can prove this by calculating the marginal pdfs, $f_X(x)$ and $f_Y(y)$, using the (integral) definition from section \ref{f_X(x) symbol}. You are encouraged to do so for practice.
+
+\section{Expected value of joint random variables} \label{def E(g(X,Y))}
+In section \ref{def E(g(X))} we gave a definition for $E(g(X))$ for any transformation $g$ (technically not a definition, but a consequence of the Law of the Unconscious Statistician, which we do not cover here). There is a corresponding `definition' for the expected value of a function of multiple random variables, $g(X,Y)$: \\
+
+\noindent When $X$ and $Y$ are discrete,
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.55\columnwidth}{
+	
+	\vskip 0.04cm
+	\begin{center}
+	$\displaystyle{E(g(X,Y)) = \sum_x\sum_y g(x,y)P(X = x,Y = y)}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+	\bigskip
+
+\noindent And for jointly continuous $X$ and $Y$,
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.55\columnwidth}{
+	
+	\vskip 0.04cm
+	\begin{center}
+	$\displaystyle{E(g(X,Y)) = \int_{-\infty}^\infty\int_{-\infty}^\infty g(x,y)f(x,y) \; dydx}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+	\bigskip
+
+	
+\subsection{Expected value and variance of independent random variables} \label{independent exp and var}
+In this section we will develop some useful formulas for expected value and variance, when $X$ and $Y$ are independent random variables. The formulas we develop are summarised in a box at the end of this section. \\
+
+\noindent $\boldsymbol{E(XY) = E(X)E(Y)}$ \\
+\noindent Let $X$ and $Y$ be jointly continuous random variables that are independent (so $f(x,y) = f_X(x)f_Y(y)$). Then using the above definition of $E(g(X,Y))$, with $g(X,Y) = XY$, we get
+\begin{align*}
+E(XY) & = \int_{-\infty}^\infty \int_{-\infty}^\infty xyf(x,y) \; dydx \\
+	 & =  \int_{-\infty}^\infty \int_{-\infty}^\infty xyf_X(x)f_Y(y) \; dydx \tag{since $f(x,y) = f_X(x)f_Y(y)$} \\
+	 & = \int_{-\infty}^\infty xf_X(x) \; dx \int_{-\infty}^\infty y f_Y(y) \; dy \tag{the integrals decouple, see \ref{product structure}} \\
+	 & = E(X)E(Y).
+\end{align*}
+
+\noindent So $E(XY) = E(X)E(Y)$ when $X$ and $Y$ are independent (this holds for discrete random variables too, and the proof is very similar so it is left as an exercise). \\
+
+\noindent $\boldsymbol{E(X + Y) = E(X) + E(Y)}$ \\
+\noindent To derive this formula, we use the definition of $E(g(X,Y))$ with $g(X,Y) = X + Y$. This gives
+\begin{align*}
+E(X + Y)    & = \int_{-\infty}^\infty \int_{-\infty}^\infty (x+y)f(x,y) \; dydx \\
+		& =  \int_{-\infty}^\infty \int_{-\infty}^\infty (x+y)f_X(x)f_Y(y) \; dydx \tag{since $f(x,y) = f_X(x)f_Y(y)$} \\
+		& = \int_{-\infty}^\infty \int_{-\infty}^\infty xf_X(x)f_Y(y) + yf_X(x)f_Y(y) \; dydx \\
+		& = \int_{-\infty}^\infty \int_{-\infty}^\infty xf_X(x)f_Y(y) \; dydx + \int_{-\infty}^\infty \int_{-\infty}^\infty yf_X(x)f_Y(y) \; dydx \tag{linearity} \\
+		& = \int_{-\infty}^\infty \!\! xf_X(x) \; dx \int_{-\infty}^\infty \!\! f_Y(y) \; dy+\int_{-\infty}^\infty \!\! yf_Y(y) \; dy \int_{-\infty}^\infty \!\! f_X(x) \; dx \tag{decouple}  \\
+		& = \int_{-\infty}^\infty xf_X(x) \; dx \times 1 + \int_{-\infty}^\infty yf_Y(y) \; dy \times 1 \tag{since $P(\Omega) = 1$} \\
+		& = E(X) + E(Y). \tag{definition of expected value}
+\end{align*}
+
+\noindent So $E(X + Y) = E(X) + E(Y)$ when $X$ and $Y$ are independent (this holds for discrete random variables too, and the proof is very similar so it is left as an exercise). \\ 
+
+\noindent $\boldsymbol{E\!\squac{(X - \mu_X)(Y - \mu_Y)} = 0}$ \\
+It may seem like we have no motivation to introduce this formula, but we will be using it in our derivation of the next formula, so we have to prove it here. Let $X$ and $Y$ be independent random variables with $\mu_X$ and $\mu_Y$ the means (i.e., expected values) of $X$ and $Y$ respectively. \\
+
+\noindent Recall from section \ref{sec22.01} that for any real numbers $k,a$ we have $E(kX + a) = kE(X) + a$ (we will call this, `FACT 1'). Now,
+\begin{align*}
+E\squac{(X - \mu_X)(Y - \mu_Y)} & = E\squac{XY - X\mu_y - Y\mu_X + \mu_X\mu_Y} \tag{expanding brackets} \\
+	& = E(XY) - \mu_YE(X) - \mu_XE(Y) + \mu_X\mu_Y \tag{by FACT 1} \\
+	& = E(XY) - \mu_Y\mu_X - \mu_X\mu_Y + \mu_X\mu_Y \tag{defntn of $\mu_X$ and $\mu_Y$} \\
+	& = E(XY) - \mu_Y\mu_X \\
+	& = 0 \tag{as $E(XY) = E(X)E(Y) = \mu_X\mu_Y$}
+\end{align*}
+In the final step we used $E(XY) = E(X)E(Y)$, which only holds when $X$ and $Y$ are independent. Hence $E\!\squac{(X - \mu_X)(Y - \mu_Y)} = 0$, when $X$ and $Y$ are independent (discrete or continuous) random variables. We will use this fact in the proof of the formula below. \\
+
+\noindent \textbf{$\boldsymbol{\Var(aX + bY) = a^2\Var(X) + b^2\Var(Y)}$} \\
+In section \ref{var(aX+b)} we showed that $\Var(aX+b) = a^2\Var(X)$. Now we can generalise this result to two (independent) random variables, $X$ and $Y$. Note that $a$ and $b$ can be any real numbers. Using the definition of variance, $\Var(Z) = E\!\squac{(Z - E(Z))^2}$, from section \ref{variance}, and letting $Z = aX + bY$, we have
+\begin{align*}
+\Var(aX+bY) & = E\!\squac{(aX+bY - E(aX+bY))^2} \\
+	& =  E\!\squac{(aX+bY - (aE(X)+bE(Y)))^2} \tag{linearity of expected value} \\
+	& = E\!\squac{(aX+bY - (a\mu_X+b\mu_Y))^2} \\
+	& = E\!\squac{(a(X - \mu_X) + b(Y - \mu_Y))^2} \tag{rearranging and factorising} \\
+	& = E\!\squac{a^2(X - \mu_X)^2 + 2ab(X - \mu_X)(Y-\mu_Y) + b^2(Y - \mu_Y)^2} \\
+	& = a^2\!E\!\squac{(X\! -\! \mu_X\!)^2}\!\! +\! 2abE\!\squac{(X\! -\! \mu_X\!)(Y\! - \!\mu_Y\!)} \!+\! b^2\!E\!\squac{(Y \!-\! \mu_Y\!)^2} \tag{linearity} \\
+	& = a^2E\!\squac{(X - \mu_X)^2} + b^2E\!\squac{(Y - \mu_Y)^2} \tag{since \!\!\! $E\!\squac{(X\! -\! \mu_X\!)(Y\! - \!\mu_Y\!)} = 0$} \\
+	& = a^2\Var(X) + b^2\Var(Y). \tag{definition of variance}
+\end{align*}
+In the second last step we used $E\!\squac{(X\! -\! \mu_X\!)(Y\! - \!\mu_Y\!)} = 0$, which holds only when $X$ and $Y$ are independent. Hence $\Var(aX+bY) = a^2\Var(X) + b^2\Var(Y)$ when $X$ and $Y$ are independent random variables. \\
+
+\noindent \textbf{Summary} \\
+To summarise, in this section we have proved the following formulas for (discrete or continuous) independent random variables:
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.55\columnwidth}{
+	
+	\vskip 0.04cm
+	\begin{itemize}
+	\item $E(XY) = E(X)E(Y)$
+	\item $E(X + Y) = E(X) + E(Y)$
+	\item $E\squac{(X - \mu_X)(Y - \mu_Y)} = 0$
+	\item $\Var(aX + bY) = a^2\Var(X) + b^2\Var(Y)$ \\
+	\phantom{|}
+	\end{itemize}
+	}
+	\end{minipage}}
+	\bigskip
+	\bigskip
+	\bigskip
+	\bigskip
+	
+\noindent Also, whilst proving that $E\squac{(X - \mu_X)(Y - \mu_Y)} = 0$, we came accross the fact that for non-independent random variables $X$ and $Y$:
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.55\columnwidth}{
+	
+	\vskip 0.04cm
+	\begin{center}
+	$\displaystyle{E\squac{(X - \mu_X)(Y - \mu_Y)} = E(XY) - \mu_X\mu_Y}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+	\bigskip
+	
+\noindent We will use this fact in the next lecture. \\
+
+\noindent These results can all be extended in the obvious way to sets of $n$ independent random variables, $X_1.X_2,\ldots,X_n$. So, for example,
+\[
+E(X_1 + X_2 + \ldots + X_n) = E(X_1) + E(X_2) + \ldots + E(X_n)
+\]
+And
+\[
+\Var(a_1X_1 + a_2X_2 + \ldots + a_nX_n) = a_1^2\Var(X_1) + a_2^2\Var(X_2) + \ldots + a_n^2\Var(X_n)
+\]
+We will use these two results in the next section.
+
+\section{Mean and variance of binomial distribution} \label{meanvarBinom}
+Let $X_1,X_2,\ldots,X_n$ be independent discrete random variables, with $X_i \in \set{0,1}$, so that $P(X_i = 1) = p$ and $P(X_i = 0) = 1-p$. In other words, they are a set of $n$ independent Bernoulli random variables, each having success probability $p$. \\
+
+\noindent Suppose that we conduct $n$ trials and we use $X_i$ to count success, $X_i = 1$, or failure, $X_i = 0$, on the $i^\text{th}$ trial. Now consider the event, $A$, that, after the $n$ trials, some particular subset of $k$ of these random variables count success, and the remaining $n-k$ count failure. Since they are all mutually independent we have
+\[
+P(A) = p^k(1-p)^{n-k}
+\]
+Now we define a new random variable, $X$, in terms of these Bernoulli random variables, so that
+\[
+X = X_1 + X_2 + \ldots + X_n.
+\]
+Then there are $\binom{n}{k}$ ways that we can get $X = k$. Hence
+\[
+P(X = k) = \binom{n}{k}p^k(1-p)^{n-k}.
+\]
+Which is the pmf of the binomial distribution, i.e., $X \sim$ Bin($n,p$). \\
+
+\noindent We have just shown that a binomially distributed random variable, $X \sim$ Bin($n,p$), is really just the sum of $n$ independent Bernoulli random variables, $X_i \sim$ Bernoulli($p$). In section \ref{meanvarBernoulli} we found the expected value of a Bernoulli random variable:
+\[
+E(X_i) = p
+\]
+Now, we wish to find the expected value of $X = X_1 + X_2 + \ldots + X_n$. Using the result from the end of the previous section we have
+\[
+E(X) = E(X_1 + X_2 + \ldots + X_n) = E(X_1) + E(X_2) + \ldots + E(X_n) = \underbrace{p + p + \ldots + p}_{\text{$n$ times}} = np.
+\]
+\noindent So for $X \sim$ Bin($n,p$) we have $E(X) = np$.  \\
+
+\noindent In section \ref{meanvarBernoulli} we also found the variance of a Bernoulli random variable:
+\[
+\Var(X_i) = p(1-p)
+\]
+Thus, using the other result from the end of the previous section (with $a_i = 1$) we have
+\begin{align*}
+\Var(X) = \Var(X_1 + X_2 + \ldots + X_n)  & = \Var(X_1) + \Var(X_2) + \ldots + \Var(X_n) \\
+	& = \underbrace{p(1-p) + p(1-p) + \ldots + p(1-p)}_{\text{$n$ times}} \\
+	& = np(1-p).
+\end{align*}
+\noindent So for $X \sim$ Bin($n,p$) we have $\Var(X) = np(1-p)$.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

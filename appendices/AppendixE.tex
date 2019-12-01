@@ -1,0 +1,48 @@
+\section{Appendix} \label{appendixE}
+\textbf{Proof of case where Bin($\boldsymbol{n,p}$) approaches Poi($\boldsymbol{\lambda}$)}\bigskip \\
+
+\noindent We wish to show that if $n \rightarrow \infty$, $p \rightarrow 0$, and $\lambda = np$ remains constant, then in this limit Bin($n,p$) is equal to Poi($\lambda$).
+
+\noindent Let $X \sim $ Bin($n,p$). Since $\lambda = np$, we rearrange to get $p = \frac{\lambda}{n}$. Now,
+\begin{align*}
+P(X = k) & = \binom{n}{k}p^k(1-p)^{n-k} \tag{this is the pmf of Bin($n,p$)} \\
+	& = \frac{n!}{k!(n-k)!}p^k(1-p)^{n-k} \tag{expanding the binomial coefficient} \\
+	& = \frac{n!}{\boldsymbol{k!}(n-k)!}\brac{\frac{\boldsymbol{\lambda}}{n}}^{\boldsymbol{k}} \brac{1-\frac{\lambda}{n}}^{n-k} \tag{since $p = \frac{\lambda}{n}$} \\
+	& = \boldsymbol{\frac{\lambda^k}{k!}} \frac{n!}{(n-k)!n^k} \brac{1-\frac{\lambda}{n}}^{n-k} \tag{the $k!$ and $\lambda^k$ (in bold) were moved} \\
+	& =  \boldsymbol{\frac{\lambda^k}{k!}} \frac{n!}{(n-k)!n^k}\brac{1-\frac{\lambda}{n}}^{n}\brac{1-\frac{\lambda}{n}}^{-k}
+%	& =  \boldsymbol{\frac{\lambda^k}{k!}} \frac{n(n-1)(n-2)\ldots(n-k+1)}{n^k}\brac{1-\frac{\lambda}{n}}^{n}\brac{1-\frac{\lambda}{n}}^{-k} \\
+%	& =  \boldsymbol{\frac{\lambda^k}{k!}}\brac{ \frac{n}{n}\frac{n-1}{n}\frac{n-2}{n}\times\ldots\times\frac{n-k+1}{n} }\brac{1-\frac{\lambda}{n}}^{n}\brac{1-\frac{\lambda}{n}}^{-k} \\
+%	& =  \boldsymbol{\frac{\lambda^k}{k!}}\brac{ 1\brac{1-\frac{1}{n}}\brac{1-\frac{2}{n}}\times\ldots\times\brac{1-\frac{k+1}{n}}}\brac{1-\frac{\lambda}{n}}^{n}\brac{1-\frac{\lambda}{n}}^{-k}
+\end{align*}
+So far we have just expressed the pmf for Bin($n,p$) in a different way. Now we need to take the limit as $n \rightarrow \infty$ of this expression. Note that $\frac{\lambda^k}{k!}$ is a constant, so we can pull it outside the limit (since limits are linear). Hence
+\begin{align*}
+\lim_{n \rightarrow \infty}\brac{P(X = k)} & = \frac{\lambda^k}{k!}\lim_{n \rightarrow \infty}\brac{\frac{n!}{(n-k)!n^k}\brac{1-\frac{\lambda}{n}}^{n}\brac{1-\frac{\lambda}{n}}^{-k}}
+\end{align*}
+The right hand side is a product of three functions; a useful result (the \textit{product rule} for limits) tells us that the limit of a product is equal to the product of the limits (see section \ref{limitfacts}). Hence, we can separately find the limit of each of the terms in the product, then multiply the results together. \\
+\textbf{First of all}
+\begin{align*}
+\frac{n!}{(n-k)!n^k} & =  \frac{n(n-1)(n-2)\ldots(n-k+1)}{n^k} \\
+	& = \frac{n}{n}\frac{n-1}{n}\frac{n-2}{n}\times\ldots\times\frac{n-k+1}{n} \\
+	& = 1\brac{1-\frac{1}{n}}\brac{1-\frac{2}{n}}\times\ldots\times\brac{1-\frac{k+1}{n}}.
+\end{align*}
+As $n \rightarrow \infty$ we get $\frac{1}{n} \rightarrow 0, \frac{2}{n} \rightarrow 0, \ldots, \frac{k+1}{n} \rightarrow 0$. So (using the product rule for limits again)
+\[
+\lim_{n \rightarrow \infty}\brac{\frac{n!}{(n-k)!n^k}} = 1\times1\times1\times \ldots\times 1 = 1.
+\]
+\textbf{Secondly we have}
+\[
+\lim_{n\rightarrow \infty}\brac{1-\frac{\lambda}{n}}^n = \e^{-\lambda} \tag{limit definition of $\e^x$ (see section \ref{sec4012})}
+\]
+\textbf{Thirdly we have}
+\begin{align*}
+\lim_{n \rightarrow \infty}\brac{1-\frac{\lambda}{n}}^{-k} & = \brac{\lim_{n \rightarrow \infty}\brac{1-\frac{\lambda}{n}}}^{-k} \tag{since the power, $-k$, is constant} \\
+& = 1. \tag{Since $\frac{\lambda}{n} \rightarrow 0$}
+\end{align*}
+In the previous step we used the product rule for limits yet again (which allowed us to take $-k$ outside the limit).
+Multiplying all the results together we get
+\begin{align*}
+\lim_{n \rightarrow \infty}\brac{P(X = k)} & = \frac{\lambda^k}{k!} \times \lim_{n \rightarrow \infty}\brac{\frac{n!}{(n-k)!n^k}} \times \lim_{n \rightarrow \infty}\brac{1-\frac{\lambda}{n}}^n \times \lim_{n \rightarrow \infty}\brac{1-\frac{\lambda}{n}}^{-k} \\
+	& = \frac{\lambda^k}{k!} \times 1 \times \e^{-\lambda} \times 1 \tag{using our results} \\
+	& =  \frac{\lambda^k}{k!} \e^{-\lambda}.
+\end{align*}
+Which is the pmf of the poisson distribution, as required.

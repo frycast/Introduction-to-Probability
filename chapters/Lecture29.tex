@@ -1,0 +1,241 @@
+\chapter{Lecture 29: Covariance} \label{cov(X,Y)} \label{covariance} \label{measure of association}
+In section \ref{measure of dispersion} we learned that the variance and standard deviation of a random variable are both \textit{measures of dispersion} (i.e., spread). Previous to that, we learned about the mean, median, and mode, which are all \textit{measures of location}.  \\
+
+\noindent In this lecture we will define covariance, which is known as a \textbf{measure of association} (it gives us information about how two particular random variables behave together). \\
+
+\noindent In section \ref{variance} we defined the variance of a random variable, $X$, to be $\Var(X) = E\squac{(X - E(X))^2}$. We mentioned that $|X - E(X)|$ can be interpreted as the \textit{distance} of $X$ from the mean, $E(X)$. Recall that distances are always positive. \\
+
+\noindent When dealing with two random variables, $X$ and $Y$, it is often useful to ask how they `vary together?' When $X$ is above/below the mean, is $Y$ also generally above/below the mean? The \textbf{covariance}, $\Cov(X,Y)$, of $X$ and $Y$, is defined as
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.55\columnwidth}{
+	
+	\vskip 0.04cm
+	\begin{center}
+	$\displaystyle{\Cov(X,Y) = E\squac{(X - E(X))(Y- E(Y))}}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+	\bigskip
+
+\noindent Unlike $|X - E(X)|$, which uses the absolute value function, the expression $X - E(X)$ is not a distance, since it is not always positive. When $X$ is below (i.e., less than) the mean, $X - E(X)$ will be negative. When $X$ is above (i.e., greater than) the mean, $X - E(X)$ will be positive. The same goes for $Y - E(Y)$. \\
+
+\noindent \textbf{When $\boldsymbol{X}$ and $\boldsymbol{Y}$ `vary together.'} \\
+\noindent Suppose that $X$ and $Y$ tend to `vary together.' Then, generally, when $X$ is above the mean, $Y$ will be above the mean (thus $X - E(X)$, and $Y - E(Y)$, will both be positive); and, generally, when $X$ is below the mean, $Y$ will be below the mean (so $X - E(X)$, and $Y - E(Y)$ will both be negative). In both cases, the product $(X - E(X))(Y - E(Y))$ will be positive (since the product of two negative numbers is always positive). Hence, when $X$ and $Y$ tend to `vary together,' the expected value of $(X - E(X))(Y - E(Y))$ will be positive (recall that the expected value tells us what the average value of an experiment will likely be if we repeat the experiment many times). \\
+
+\noindent Notice that $\Cov(X,X) = E\squac{(X - E(X))^2} = \Var(X)$. So, the variance of $X$ is equal to the covariance of $X$ with itself. This will always be positive (since $(X - E(X))^2$ is a square and hence always positive). We have just seen that variables which `vary together' have positive covariance, and of course $X$ `varies together' with itself, so it makes sense that $\Cov(X,X)$ is positive. \\
+
+\noindent \textbf{When $\boldsymbol{X}$ and $\boldsymbol{Y}$ `vary oppositely.'} \\
+\noindent On the other hand, suppose that $X$ and $Y$ tend to `vary in opposite directions.' Then, generally, when $X$ is above the mean, $Y$ will be below the mean, and when $X$ is below the mean, $Y$ will be above the mean. So when $X - E(X)$ is positive, $Y - E(Y)$ will be negative, and vice versa. It follows that $\Cov(X,Y)$ will be negative when $X$ and $Y$ tend to `vary in opposite directions.' \\
+
+\noindent  \textbf{When $\boldsymbol{X}$ and $\boldsymbol{Y}$ are independent.} \\
+When $X$ and $Y$ are independent, there is no general tendency for them to vary together or vary oppositely, and the fluctuations will cancel exactly, giving $\Cov(X,Y) = 0$. We actually proved this already in section \ref{independent exp and var} using the definition of independence, when we showed that $E\squac{(X - E(X))(Y - E(Y))} = 0$. \\
+
+\textbf{WARNING!} \\
+\textbf{If $\boldsymbol{X}$ and $\boldsymbol{Y}$ are independent, then $\boldsymbol{\Cov(X,Y) = 0}$ (we have proved this),} \\
+\textbf{BUT, if $\boldsymbol{\Cov(X,Y) = 0}$, then $\boldsymbol{X}$ and $\boldsymbol{Y}$ are \textit{not necessarily} independent.} \\
+
+\noindent As statistics and science students we may often hear the phrase, `correlation does not imply causation.' Now, we need to add a new phrase to our vocabulary: `Zero covariance does not imply independence.' We will prove this below using a counterexample (we will find an example of two variables which have zero covariance but are not independent). First, we need to recall the following very useful fact, which we inadvertently proved in section \ref{independent exp and var} (it appears on its own in the final box at the end of that section): \label{covariance formula 2}
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.45\columnwidth}{
+	
+	\vskip 0.04cm
+	\begin{center}
+	$\displaystyle{\Cov(X,Y) = E(XY) - E(X)E(Y)}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+
+\noindent Let $X \sim$ U$(-1,1)$. Then the pdf of $X$ is symmetrical about the origin, so $E(X) = 0$ (you can prove this using the pdf for $U(-1,1)$ and the definition of expected value). Now, let $Y = X^2$, then $Y$ is clearly dependent on $X$ since it is defined in terms of $X$ (you can check this using the definition of independence if you feel the need). Now,
+\begin{align*}
+\Cov(X,Y) & = E(XY) - E(X)E(Y) \\
+	& = E(XY) \tag{since $E(X) = 0$}  \\
+	& = E(X^3) \tag{since $Y = X^2$} \\
+	& = 0.
+\end{align*}
+In the final step we had $E(X^3) = 0$. This is not really trivial, we cannot just assume that the pdf of $X^3$ is symmetrical about the origin. However, using the `definition' of $E(g(X))$ from section \ref{def E(g(X))}, and the pdf of $X$, you can show that $E(X^3) = 0$ (this is left as an exercise). In conclusion, $X$ and $Y$ have zero covariance, but they are NOT independent. Hence zero covariance does not imply independence, as required.
+
+
+\subsection{Example}
+Below is the array of probabilities for the coin toss example last looked at in section \ref{ex27.4}, for which $\mu_X = \frac{1}{2}$ and $\mu_Y = \frac{3}{2}.$
+\[
+\begin{array}{cc|cccc|c} 
+%top label
+&& \multicolumn{3}{c}{\boldsymbol{y}} & \\
+%second label
+&& \multicolumn{1}{c}{0} &  \multicolumn{1}{c}{1} &  \multicolumn{1}{c}{2} &  3 & p_X(x_i) \\ \hline
+%row 1
+$$\boldsymbol{x}$$ \multirow{3}{*}{$$} &0& \frac{1}{8} & \frac{2}{8} & \frac{1}{8} & 0 &\boldsymbol{\frac{1}{2}}  \\ 
+%row 2
+&1&  0                 & \frac{1}{8} & \frac{2}{8} & \frac{1}{8} & \boldsymbol{\frac{1}{2}} \\ \hline
+%row 3           
+\multicolumn{1}{c}{p_Y(y_j)} &&\boldsymbol{\frac{1}{8}}&\boldsymbol{\frac{3}{8}}&\boldsymbol{\frac{3}{8}}&\boldsymbol{\frac{1}{8}}
+\end{array}
+\]
+Calculate $\Cov(X,Y)$. \\
+
+\solution
+Using the definition of covariance and the possible values of $x$ and $y$,
+\begin{align*}
+\Cov(X,Y) & = E\squac{(X - E(X)(Y - E(Y))} \\
+	& = \sum_x\!\sum_y\!(x\! -\! \mu_X)(y\! -\! \mu_Y)p(x,y) \tag{definition of $E(g(X,Y))$, section \ref{def E(g(X,Y))}} \\
+	& =\! -\! \sum_y\! \mu_X(y\! -\! \mu_Y)p(0,y)\!\! +\!\! \boldsymbol{\sum_y\! (1\! -\! \mu_X)(y\! -\! \mu_Y)p(1,y)} \tag{since $x \in \set{0,1}$} \\
+	& =\! - \mu_X(0 -\! \mu_Y)p(0,0) \! -\! \mu_X(1 -\! \mu_Y)p(0,1) \! -\! \mu_X(2 -\! \mu_Y)p(0,2) \! -\! \mu_X(3 -\! \mu_Y)p(0,3) \\
+	& \boldsymbol{+ (1 \! - \! \mu_X)(0 \! - \! \mu_Y)p(1,0) \! + \! (1 \! - \! \mu_X)(1 \! -\! \mu_Y)p(1,1) \! + \! (1 \! - \! \mu_X)(2 \! -\! \mu_Y)p(1,2) \!} \\
+	 & \boldsymbol{ +(1 \! - \! \mu_X)(3\! -\! \mu_Y)p(1,3)} \tag{since $y \in \set{0,1,2,3}$}
+\end{align*}
+Substituting the probabilities from the table, as well as $\mu_X = \frac{1}{2}$ and $\mu_Y = \frac{3}{2}$ into this expression gives
+\begin{align*}
+\Cov(X,Y) & = -\frac{1}{2}\brac{-\frac{3}{2}}\frac{1}{8} - \frac{1}{2}\brac{1-\frac{3}{2}}\frac{2}{8} - \frac{1}{2}\brac{2-\frac{3}{2}}\frac{1}{8} - \frac{1}{2}\brac{3 - \frac{3}{2}}\times 0 \\
+	& + \brac{1-\frac{1}{2}}\brac{-\frac{3}{2}}\times 0 + \brac{1 - \frac{1}{2}}\brac{1 - \frac{3}{2}}\frac{1}{8} + \brac{1 - \frac{1}{2}}\brac{2 - \frac{3}{2}}\frac{2}{8} \\
+	& + \brac{1 - \frac{1}{2}}\brac{3 - \frac{3}{2}}\frac{1}{8} \\
+	& = \frac{1}{4}.
+\end{align*}
+
+\subsection{Example (also, a new kind of symmetry)}
+For the joint probability density function
+\[
+f(x,y) = 2 - 2x - 2y + 4xy \qquad x \in [0,1], y \in [0,1] \tag{$f(x,y) = 0$ otherwise}
+\]
+\begin{enumerate}
+\item Find the marginal probabilities
+\item Find the mean of $X$ and $Y$
+\item Find the variance of $X$ and $Y$
+\item Determine whether $X$ and $Y$ are independent
+\item Find the covariance
+\end{enumerate}
+Notice that $f(x,y)$ has a kind of symmetry that we have not specifically discussed yet. If we were to switch the variables, $x$ and $y$, we would get $f(x,y) = 2 - 2y - 2x + 4yx, \;\;\; y \in [0,1], x \in [0,1]$. Which is exactly the same function. This was also the case with the pdf from example \ref{ex27.3} (which was $f(x,y) = 4xy$). When this happens, we can obtain the results for $Y$ from those for $X$, using symmetry. Pay attention to how we do this in the following calculations.  \\
+
+\solution[to (1)]
+\begin{align*}
+f_X(x) & = \int_{-\infty}^\infty f(x,y) \; dy \tag{definition of marginal pdf} \\
+	  & = \int_0^1 2 - 2x - 2y + 4xy \; dy \tag{$f(x,y) = 0$ elsewhere} \\
+	  & = \squac{2y - 2xy - y^2 + 2xy^2}_0^1 \tag{integrating with respect to $y$} \\
+	  & = 1.
+\end{align*}
+Now, $f_X(x) = 1$ is the pdf of U($0,1)$, so $X \sim$ U($0,1$). Also, by symmetry we get $f_Y(y) = 1$, so $Y \sim$ U($0,1$) (if you are not convinced then manually do the calculations to find $f_Y(y)$, and compare them to our calculations for $f_X(x)$; this should give you a better idea of what the `symmetry' is). \\
+
+\solution[to (2) and (3)]
+Since $X \sim$ U($0,1$) it has mean $\mu_X = \frac{0+1}{2} = \frac{1}{2}$, and it has variance $\Var(X) = \frac{(1-0)^2}{12} = \frac{1}{12}$ (using the formulas we developed for mean and variance of a uniform distribution, in section \ref{variance of U(0,1)}). By symmetry, the mean of $Y$ is $\mu_Y = \frac{1}{2},$ and the variance is $\Var(Y) = \frac{1}{12}$. \\
+
+\solution[to (4)]
+From the solution to (1) we have $f_X(x)f_Y(y) = 1\times 1 = 1$. So  $f(x,y) \neq f_X(x)f_Y(y)$ (the pdf does not have the product structure). Hence $X$ and $Y$ are not independent.
+
+\solution[to (5)]
+Using our formula for covariance from page \pageref{covariance formula 2}, we have
+\begin{align*}
+\Cov(X,Y) & = E(XY) - E(X)E(Y) \\
+	& = \int_{-\infty}^\infty \int_{-\infty}^\infty xyf(x,y) \; dxdy - E(X)E(Y) \tag{definition of $E(g(X,Y))$} \\
+	& = \int_{0}^1 \int_{0}^1 xy(2-2x-2y+4xy) \; dxdy - \frac{1}{4} \tag{$E(X)E(Y) = \mu_X\mu_Y = \frac{1}{4}$} \\
+	& = \int_{0}^1 \squac{x^2y - \frac{2}{3}x^3y - y^2x^2 + \frac{4}{3}x^3y^2}_0^1 \; dy - \frac{1}{4} \tag{integrating $x$ first} \\
+	& =  \int_{0}^1 y - \frac{2}{3}y - y^2 + \frac{4}{3}y^2 \; dy - \frac{1}{4} \\
+	& = \squac{\frac{y^2}{6} + \frac{y^3}{9}}_0^1 - \frac{1}{4} \\
+	& = \frac{1}{36}.
+\end{align*}
+
+\section{Properties of covariance} \label{properties of covariance sec}
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.58\columnwidth}{
+	
+	\vskip 0.08cm
+\begin{enumerate}
+\item $\Cov(X,X) = \Var(X).$
+\item $\Cov(Y,X) = \Cov(X,Y).$
+\item $\Cov(a,X) = 0.$
+\item $\Cov(X + Y, Z) = \Cov(X,Z) + \Cov(Y,Z).$
+\item $\Cov(aX,bY) = ab\Cov(X,Y).$ \\
+\phantom{|}
+\end{enumerate}
+	}
+	\end{minipage}}
+	\bigskip
+
+\noindent \textbf{Proof of (1):} \\
+$\Cov(X,X) = E\squac{(X - E(X))(X - E(X))} = E\squac{(X - E(X))^2)} = \Var(X).$ \\
+\noindent \textbf{Proof of (2):} \\
+$\Cov(Y,X) = E\squac{(Y - E(Y))(X - E(X))} E\squac{(X - E(X))(Y - E(Y))} = \Cov(X,Y).$ \\
+\noindent \textbf{Proof of \! (3):} \\
+$\Cov(a,X) = E\squac{(a - E(a))(X - E(X))} = E\squac{(a - a)(X - E(X))} = \squac{0\times(X - E(X))} = E(0) = 0.$ \\
+\noindent \textbf{Proof of (4):}
+\begin{align*}
+\Cov(X + Y,Z) & = E\!\squac{\boldsymbol{\big{(}}X + Y - E(X + Y)\boldsymbol{\big{)}}(Z - E(Z))} \tag{definition of covariance} \\
+	& = E\!\squac{\boldsymbol{\big{(}}X + Y - E(X) - E(Y)\boldsymbol{\big{)}}(Z - E(Z))} \tag{linearity} \\
+	& = E\!\squac{\boldsymbol{\big{(}}X - E(X) + Y - E(Y)\boldsymbol{\big{)}}(Z - E(Z))} \tag{rearranging} \\
+	& = E\!\squac{(X - E(X))(Z - E(Z)) + (Y - E(Y))(Z - E(Z))} \\
+	& =  E\!\squac{(X - E(X))(Z - E(Z))} + E\!\squac{(Y - E(Y))(Z - E(Z))} \\
+	& = \Cov(X,Z) + \Cov(Y,Z). \tag{definition of covariance}
+\end{align*}
+\noindent\textbf{Proof of (5):} \\
+$\Cov(aX,bY) =  E\!\squac{(aX - E(aX))(bY - E(bY))} =  E\!\squac{(aX - aE(X))(bY - bE(Y))} =  E\!\squac{a(X - E(X))b(Y - E(Y))} =  abE\!\squac{(X - E(X))(Y - E(Y))} = ab\Cov(X,Y).$
+
+\subsection{Example}
+Using the results above, find a formula for
+\[
+\Cov(aW + bX, cY + dZ).
+\]
+
+\solution
+Note that combining property (4) with property (2) gives $\Cov(Z,X + Y) = \Cov(Z,X) + \Cov(Z,Y)$; we use this in the second step below.
+\begin{align*}
+& \Cov(aW + bX, cY + dZ)  \\
+& = \Cov(aW,cY + dZ) + \Cov(bX,cY + dZ) \tag{using (4)}\\
+	& = \Cov(aW,cY) + \Cov(aW,dZ) + \Cov(bX,cY) + \Cov(bX,dZ) \tag{using (4) and (2)} \\
+	& = ac\Cov(W,Y) + ad\Cov(W,Z) + bc\Cov(X,Y) + bd\Cov(X,Z). \tag{using (5)}
+\end{align*}
+
+\subsection{Relationship between variance and covariance} \label{variance covariance formula}
+In section \ref{independent exp and var} we found a formula (in terms of individual variances) for $\Var(aX + bY)$, when $X$ and $Y$ are independent. Using the properties of covariance, we will now find a more general formula, which  applies regardless of $X$ and $Y$ being dependent or not.
+\begin{align*}
+	& \Var(aX + bY)\\ 
+	 & = \Cov(aX + bY, aX + bY) \tag{using (1)} \\
+	& = \Cov(aX,aX) + \Cov(aX,bY) + \Cov(aX,bY) + \Cov(bY,bY) \tag{using (4) and (2)} \\
+	& = a^2\Cov(X,X) + 2ab\Cov(X,Y) + b^2\Cov(Y,Y) \tag{using (5)} \\
+	& = a^2\Var(X) + 2ab\Cov(X,Y) + b^2\Var(Y) \tag{using (1)}
+\end{align*}
+So we have
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.69\columnwidth}{
+	
+	\vskip 0.04cm
+	\begin{center}
+	$\displaystyle{\Var(aX + bY) = a^2\Var(X) + b^2\Var(Y) + 2ab\Cov(X,Y)}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+	
+\noindent In particular, letting $a = b = 1$ we get
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.58\columnwidth}{
+	
+	\vskip 0.04cm
+	\begin{center}
+	$\displaystyle{\Var(X + Y) = \Var(X) + \Var(Y) + 2\Cov(X,Y)}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+	
+
+\noindent When $X$ and $Y$ are independendent, this agrees with our previous formula, since $\Cov(X,Y) = 0$ so we get $\Var(X + Y) = \Var(X) + \Var(Y)$ as before. \\
+
+\noindent Note that rearranging the above formula we can get an expression for covariance entirely in terms of variance
+\[
+\Cov(X,Y) = \frac{1}{2}\brac{\Var(X + Y) - \Var(X) - \Var(Y)}.
+\]

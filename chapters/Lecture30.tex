@@ -1,0 +1,107 @@
+\chapter{Lecture 30: Correlation, and more multinomial distribution} \label{correlation}
+In section \ref{covariance} we learned that the covariance (a measure of association), of two random variables $X$ and $Y$, gives us an indication of how much $X$ `varies together' with, or `varies oppositely' to, $Y$. \\
+
+\noindent Suppose that we have one random variable, $X$, which has some units (e.g., centimeters, or seconds, minutes, etc\ldots) associated with it (for example, $X$ might measure depth of water in a reservoir, in centimeters, after a period of rainfall). In section \ref{scale - actual description} we discussed how we can define a new variable, say $Z$, with $Z = cX$, for some real number $c$; then $Z$ will be a rescaled version of $X.$ So, $Z$ will have different units to $X$, provided that $c \neq 1$; e.g., if $c = \frac{1}{100}$ and $X$ is in centimeters, then $Z$ will be in meters (read section \ref{scale - actual description} again if this is not clear). Then, for some other random variable, $Y$, which has non-zero covariance with $X$, we get
+\[
+\Cov(Z,Y) = \Cov(cX,Y) = c\Cov(X,Y) \tag{property (5), section \ref{properties of covariance sec}}
+\]
+So
+\[
+\Cov(Z,Y) \neq \Cov(X,Y), \;\;\;\; \text{provided $c \neq 1.$}
+\]
+This shows that the covariance of $X$ and $Y$ can change, depending on the units of $X$. This property is often very undersirable; it makes it difficult to decide, for example, if a very large covariance should be attributed to $X$ and $Y$ `varying together' often (a large covariance could simply be a consequence of the choice of units for $X$ and $Y$). It would be preferable to have a measure of association between $X$ and $Y$ which is not affected by scale. \\
+
+\noindent \textbf{Correlation} is the solution to this problem; it gives us the same basic information as covariance, yet it is not affected by scale. We define the correlation, $\rho(X,Y)$, between $X$ and $Y$, so that
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.4\columnwidth}{
+	
+	\vskip 0.04cm
+	\begin{center}
+	$\displaystyle{\rho(X,Y) = \frac{\Cov(X,Y)}{\sqrt{\Var(X)\Var(Y)}}}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+	
+\noindent Now, taking $Z = cX$, we have
+\begin{align*}
+\rho(Z,Y) = \rho(cX,Y) & = \frac{\Cov(cX,Y)}{\sqrt{\Var(cX)\Var(Y)}} \tag{definition of $\rho$} \\
+& = \frac{c\Cov(X,Y)}{\sqrt{c^2\Var(X)\Var(Y)}} \tag{properties of variance and correlation} \\
+& = \frac{c\Cov(X,Y)}{c\sqrt{\Var(X)\Var(Y)}} \tag{index laws, and $\sqrt{c^2} = c$} \\
+& = \frac{\Cov(X,Y)}{\sqrt{\Var(X)\Var(Y)}} \\
+& = \rho(X,Y).
+\end{align*}
+So $\rho(Z,Y)  = \rho(X,Y)$, i.e., changing scale did not affect the correlation (by symmetry we get the same result if we change the scale of $Y$). In the next section we will show that \textbf{correlation is not affected by translations} either (this is important since, for example, the unit conversion from farenheit to celcius involves a scaling \textit{and} a translation).
+
+\subsection{Properties of correlation}
+Here we present two nice properties of correlation:
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.72\columnwidth}{
+	
+	\vskip 0.04cm
+\begin{enumerate}
+\item $-1 \leq \rho \leq 1$
+\item $\rho(X,Y) = \pm1$ if and only if $Y = aX + b$, where $a \neq 0$ \\
+\phantom{|}
+\end{enumerate}
+	}
+	\end{minipage}}
+	\bigskip
+
+\noindent The first property tells us that $1$ is the maximum magnitude of correlation between two random variables (magnitude is the same as absolute value, i.e., the magnitude of $-1$ is just~$1$). \\
+
+\noindent The second property tells us that any straight line transformation of $X$ will have the maximum magnitude of correlation with $X$. It also tells us that if two random variables have a correlation of $1$ or $-1$, then one is a straight line transformation of the other. This should make intuitive sense, given that correlation is not affected by scaling and translations (a straight line transformation is just a combination of a scaling and a translation). We provide proofs of (1) and (2) below. \\
+
+\noindent \textbf{Proof of (1):} \\
+We denote the standard deviations of $X$ and $Y$ by $\sigma_X$ and $\sigma_Y$ respectively. Recall that $\sigma_X = \sqrt{\Var(X)}$ by definition, so $\sigma_X^2 = \Var(X)$ (and similar for $\Var(Y)$). Also, we will need the following fact:
+\[
+\rho(X,Y) = \frac{\Cov(X,Y)}{\sqrt{\Var(X)\Var(Y)}} = \frac{\Cov(X,Y)}{\sqrt{\Var(X)}\sqrt{\Var(Y)}} = \frac{1}{\sigma_X\sigma_Y}\Cov(X,Y) = \Cov\brac{\frac{X}{\sigma_X},\frac{Y}{\sigma_Y}}
+\]
+
+\noindent Now, since variance is always positive we have
+\begin{align*}
+0 & \leq \Var\brac{\frac{X}{\sigma_X} + \frac{Y}{\sigma_Y}} \\
+	& =\frac{1}{\sigma_X^2} \Var\brac{X} + \frac{1}{\sigma_Y^2}\Var\brac{Y} + 2\Cov\brac{\frac{X}{\sigma_X},\frac{Y}{\sigma_Y}} \tag{result in section \ref{variance covariance formula}} \\ 
+	& = 1 + 1 + 2\rho(X,Y) \tag{since $\sigma^2 =$ variance, and $\Cov\brac{\frac{X}{\sigma_X},\frac{Y}{\sigma_Y}} = \rho(X,Y)$}
+\end{align*}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

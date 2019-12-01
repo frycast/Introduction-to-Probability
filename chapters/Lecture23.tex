@@ -1,0 +1,408 @@
+\chapter{Lecture 23: Markov's and Chebyshev's inequalities, variance, and standard deviation}
+
+\section{Markov's inequality} \label{markovs ineq}
+\textbf{Markov's inequality} is a very general and important result in probability. It gives us an upper bound for the probability that the value of a random variable lies above some choice of positive constant, $t$. \\
+
+\noindent If $X$ is a random variable which takes non-negative values only, and $E(X)$ exists, then for any positive real number, $t$, Markov's inequality states that
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.28\columnwidth}{
+	
+	\vskip 0.04cm
+	\begin{center}
+	$\displaystyle{P(X \geq t) \leq \frac{E(X)}{t}}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+	\bigskip
+	
+\noindent For example, $X$ might count the number of heads obtained when flipping a fair coin 200 times consecutively. If we want an upper bound on the probability that the coin will land heads at least 150 times, then we can use Markov's inequality, with $t = 150.$ \\
+
+\noindent Since the coin is fair, $E(X) = 100$ (given 200 flips, we expect 100 heads, as there is a 50\% chance of heads/tails). Using Markov's inequality we conclude that 
+\[
+P(X \geq 150) \leq \frac{100}{150} = \frac{2}{3}. 
+\]
+So there is at most a $\frac{2}{3}$ chance that $X$ is greater than 150. It is possible to come up with a much better upper bound than this, using other methods; this was just an easy example to illustrate the usage of Markov's inequality. \\
+
+\noindent \textbf{Proof of Markov's inequality (discrete case):} \\
+Let $X$ be a non-negative discrete random variable. Then
+\begin{align*}
+E(X)  & = \sum_x xp(x) \tag{definition of $E(X)$} \\
+	& = \sum_{x < t}xp(x) + \sum_{x \geq t}xp(x) \tag{just splitting the sum into two parts} \\
+	& \geq  \sum_{x \geq t}xp(x) \tag{since both sums are non-negative} \\
+	& \geq \sum_{x \geq t}tp(x) \tag{since $x \geq t$ so $xp(x) \geq tp(x)$} \\
+	& = tP(X \geq t) \tag{since $P(X \geq t) = \displaystyle{\sum_{x \geq t}}p(x)$, and using linearity}
+\end{align*}
+So we have $E(X) \geq tP(X \geq t)$. Solving for $P(X \geq t)$,
+\[
+P(X \geq t) \leq \frac{E(X)}{t}. \tag{since $t > 0$}
+\]
+Which is Markov's inequality, as required. The proof of the continuous case is very similar and is left as an exercise. \\
+
+\noindent Markov's inequality tells us that there is a very small probability that the value of $X$ is very much bigger than the mean. For example, if we let $t = kE(X)$ we get $\frac{E(X)}{t} = \frac{E(X)}{kE(X)} = \frac{1}{k}$, so we can rewrite it as
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.28\columnwidth}{
+	
+	\vskip 0.04cm
+	\begin{center}
+	$\displaystyle{P(X \geq kE(X)) \leq \frac{1}{k}}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+	\bigskip
+
+\section{Variance and standard deviation} \label{variance} \label{measure of dispersion} \label{distance}
+We mentioned in section \ref{measures of location} that the expected value (mean), the median, and the mode, are all known as \textit{measures of location}; they tell us about the location of a distribution, on the real number line, rather than telling us how `spread out' the distribution is. \\
+
+\noindent The kinds of values that tell us about how spread out a distribution is are collectively known as \textbf{measures of dispersion}. The measure of dispersion that we will learn about in this section is called the \textbf{variance}. \\
+
+\noindent The variance is a measure of how far, on average, the values in a distribution fall from the mean. The distance between two points, $a$ and $b$, in mathematics, has a formal definition; it is the absolute value of the difference between $a$ and $b$, that is
+\[
+|a - b| \;\; = \;\; \text{Distance from $a$ to $b$.}
+\]
+Now we know what a distance is, we can see that
+\[
+|X - E(X)| \;\; = \;\; \text{Distance from $X$ to the mean.}
+\]
+Distances need to be positive, which is why we need the absolute value. However, it is combersome and problematic to define functions which use the absolute value (in section \ref{not have derivatives}, under the heading `smoothness,' you can see, for example, that the derivative of $|x|$ does not exist at $x = 0$, which is problematic in some circumstances). So, instead of using $|X - E(X)|$ (the distance) we will use the distance squared:
+\[
+(X - E(X))^2
+\]
+Which is always positive, since squared numbers are always positive. \\
+
+\noindent Now, the variance is defined as the expected value of this squared distance. In other words, the variance is what the average of all the squared distances from the mean will (approximately) be, if we repeat the experiment many times. We use Var($X$) to represent the variance of $X$. So,
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.35\columnwidth}{
+	
+	\vskip 0.04cm
+	\begin{center}
+	$\displaystyle{\Var(X) = E\!\brac{\;(X - E(X))^2\;}}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+	\bigskip
+	
+\noindent Be aware that there does exist a different (though heavily related) definition for variance, which is used in a different context, when someone is interested in a sample of data (a set of observations), rather than a theoretical distribution; it is sometimes called the \textit{sample variance}. We will not define the sample variance here, since this course deals with models, rather than analysis of actual data. The connection between the two definitions is that if $n$ observations are made of a variable, $X$, that follows a particular distribution, then the sample variance calculated from those observations will approach $\Var(X)$ (as it is defined above) as $n$ goes to infinity. This is similar to how the arithmetic mean (i.e., average) of all the observations will approach $E(X)$ as $n$ goes to infinity (which we mentioned in section \ref{expected value}).
+
+\subsection{Standard deviation} \label{stdev}
+We have just seen that the variance is defined in terms of squared distances rather than the absolute value. We mentioned that this decision is mathematically useful since using a squaring function is much neater than using an absolute value function. \\
+
+\noindent However, since the distances are squared, the units of $\Var(X)$ will be different to the units of $X$. So, if a random variable, $X$, has particular units associated with it (for example, $X$ might measure time in seconds, or height in meters), then the variance will have those units squared (e.g., seconds squared or meters squared). \\
+
+\noindent The standard deviation is defined as the square root of the variance, and so it has the convenience of being expressed in the same units as $X$; this is the one and only reason why the standard deviation gets its own name (otherwise its significance is equivalent to that of the variance). The standard deviation is often given the symbol $\sigma$, so,
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.2\columnwidth}{
+	
+	\vskip 0.04cm
+	\begin{center}
+	$\displaystyle{\sigma = \sqrt{\Var(X)}}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+	\bigskip
+	
+\subsection{Example (mean and variance of Bernoulli)} \label{meanvarBernoulli}
+Calculate the mean and variance and standard deviation of a Bernoulli random variable $X$, with success probability $p$. \\
+
+\solution
+Recall that a Bernoulli random variable, $X$, is defined as a discrete random variable that has two possible outputs, $X = 0$ and $X = 1$, where $1$ is usually taken to indicate success. In this case we have success probability $p$, so $P(X = 1) = p$. Hence $P(X~=~0)~= 1 - p$. So,
+\[
+E(X) = \sum_x xp(x) = 0\times(1-p) + 1\times p = p.
+\]
+Now, to find the variance, we need to calculate the expected value of the squared distances from the mean, i.e., we need to find $\Var(X) = E((X - E(X))^2) = E((X - p)^2)$. To do this, we use the defintion of $E(g(X))$, from section \ref{def E(g(X))}; where in this case $g(X) = (X - p)^2$. Now,
+\begin{align*}
+\Var(X)  & = E((X - p)^2) \tag{since we found $E(X) = p$} \\
+	    & = \sum_x (x-p)^2p(x) \tag{definition of $E(g(X))$, with $g(X) = (X - p)^2$} \\
+	    & = (0-p)^2(1-p) + (1-p)^2p \tag{since $p(0) = 1-p$ and $p(1) = p$} \\
+	    & = p(1-p)(p+1-p) \tag{factoring out $p(1-p)$} \\
+	    & = p(1-p). \tag{since $p+1-p = 1$}
+\end{align*}
+So the variance is $\Var(X) = p(1-p)$. Thus the standard deviation is $\sigma = \sqrt{p(1-p)}$.
+
+\subsection{An alternative form for variance} \label{alt form var}
+Using the fact that $E(aX + b) = aE(X) + b$ (which we proved in section \ref{sec22.01}) we will find an alternative form for the variance. Keep in mind that $E(X)$ is a constant, so, for example, $E(E(X)) = E(X)$, since $E(c) = c$ for any constant $c$. In the following calculations we replace $E(X)$ with $\mu$ to make it more readable. Now,
+\begin{align*}
+\Var(X) & = E((X - \mu)^2) \tag{where $E(X) = \mu$ (change of symbols only)} \\
+	    & = E(X^2 - 2X\mu + \mu^2) \tag{expanding the brackets} \\
+	    & =  E(X^2) - 2\mu E(X) + \mu^2 \tag{since $E(aX + b) = aE(X) + b$} \\
+	    & =  E(X^2) - 2\mu^2 + \mu^2 \tag{since $E(X) = \mu$} \\
+	    & = E(X^2) - \mu^2
+\end{align*}
+So we can rewrite this as
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.4\columnwidth}{
+	
+	\vskip 0.04cm
+	\begin{center}
+	$\displaystyle{\Var(X) = E(X^2) - \squac{E(X)}^2}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+	\bigskip
+	
+\section{Finding mean and variance under straight line transformations} \label{meanvarUniform}
+\subsection{Standardising a uniform distribution}
+In section \ref{sec21.2} we learned a transformation that standardises any normal distribution. Now we will learn a similar transformation, that will standardise any uniform distribution to U($0,1$). \\
+
+\noindent Let $X \sim$ U($c,d$) for some $c,d \in \R$ with $c < d$. We claim that under the following transformation, $Y \sim$ U($0,1$):
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.3\columnwidth}{
+	
+	\vskip 0.04cm
+	\begin{center}
+	$\displaystyle{Y = g(X) = \frac{X - c}{d - c}}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+	\bigskip
+	
+\noindent \textbf{Proof:} \\
+\begin{align*}
+F_Y(y) & = P\brac{Y < y} \tag{definition of a cdf} \\
+	  & = P\brac{\frac{X - c}{d - c} < y} \tag{since $Y = \frac{X - c}{d - c}$} \\
+	  & = P(X - c < y(d-c)) \tag{$d > c$, so $d-c > 0$, so inequality unchanged} \\
+	  & = P(X < y(d-c) + c) \\
+	  & = F_X(y(d-c) + c). \tag{definition of a cdf} \\
+	  & = \left\{ \begin{array}{ll}
+	   			 0, & \; \text{if} \;\;\;\;\; y(d-c) + c < c \smallskip \\
+	  			 \frac{(y(d-c) + c) - c}{d - c}, & \; \text{if} \;\;\;\;\; c < y(d-c) + c < d \smallskip \\
+	  			 1, & \; \text{if} \;\;\;\;\; y(d-c) + c > d
+	  \end{array}\right. \tag{using cdf of U($c,d$)} \\
+	  & = \left\{ \begin{array}{ll}
+	   			0, & \; \text{if} \;\;\;\;\; y < 0 \smallskip \\
+	  			y, & \; \text{if} \;\;\;\;\; 0< y < 1 \smallskip \\
+	  			1 & \; \text{if} \;\;\;\;\; y > 1
+	  \end{array}\right.
+\end{align*}
+Which is the cdf of U($0,1$), as required. A few small calculations were skipped in the final step, these are left as an exercise to the reader. For example, in the top row we have the expression $y(d-c) + c < c$; we can subtract $c$ from both sides of this, giving $y(d-c) < 0$, then divide both sides by $(d-c)$ (a positive number) which gives $y < 0$. \\
+
+\noindent When simplifying the inequality, $c < y(d-c) + c < d$, from the right hand side of the middle row, it might be helpful to start by subtracting $c$, to give $0 < y(d-c) < d - c$, then divide by $d-c$.
+\subsection{Mean of a uniform distribution} \label{sec23.11}
+We will now calculate the mean of U($0,1$), then use this to find the mean of U($c,d$). \\
+
+\noindent For $Y \sim$ U($0,1$), the pdf is $f(y) = 1$, when $y \in [0,1]$, and $f(y) = 0$ otherwise. So, the mean is
+\[
+E(Y) = \int_{-\infty}^\infty yf(y) \; dy = \int_{0}^1 y \; dy = \squac{\frac{y^2}{2}}^1_0 = \frac{1}{2}.
+\]
+\noindent Now, let $X \sim$ U($c,d$). We know that $Y \sim$ U($0,1$) when $Y = \frac{X-c}{d-c}$. Rearranging for $X$ gives,
+\[
+X = Y(d-c) + c.
+\]
+So the mean of $X$ is
+\begin{align*}
+E(X)  & = (d-c)E(Y) + c \tag{since $E(aX+b) = aE(X) + b$} \\
+	& = \frac{d-c}{2} + c \tag{since $E(X) = \frac{1}{2}$} \\
+	& = \frac{d+c}{2}.
+\end{align*}
+So the mean of U($c,d$) lies half way between $c$ and $d$. \\
+
+\subsubsection{Variance of U$\boldsymbol{(0,1)}$} \label{variance of U(0,1)}
+
+We can obtain the variance of U($0,1$) as follows: We have,
+\[
+E(Y^2) = \int_{0}^1 y^2 \; dy = \squac{\frac{y^3}{3}}^1_0 = \frac{1}{3}.
+\]
+Thus, using the alternative form for variance, in section \ref{alt form var},
+\[
+\Var(Y) = E(Y^2) - (E(Y))^2 = \frac{1}{3} - \bfrac{1}{2}^2 = \frac{1}{3} - \frac{1}{4} = \frac{1}{12}.
+\]
+So, the standard deviation is
+\[
+\sigma = \sqrt{\Var(Y)} = \sqrt{\frac{1}{12}} = \frac{1}{2\sqrt{3}}.
+\]
+Now, can we use the variance of U($0,1$) to find the variance of U($c,d$)? The next section will help us answer this question.
+
+\subsection{Variance under a straight line transformation} \label{var(aX+b)}
+We know that the factor $a$ in $f(aX+b)$ causes compression/dilation (section \ref{dilation/compression, functions}), while $b$ is a translation. So, we expect $a$ (and not $b$) to affect the variance (which is a measure of dispersion, i.e., spread). \\
+
+\noindent Let $Y = aX+b$ (where $X$ has any known distribution). To simplify the appearance of the following steps we have replaced $E(X)$ with $\mu$,
+\begin{align*}
+\Var(Y) & = E((Y - E(Y))^2) \tag{definition of $\Var(Y)$} \\
+	   & = E(\squac{(aX+b) - E(aX+b)}^2) \tag{since $Y = aX+b$} \\
+	   & = E(\squac{aX+b - a\mu - b}^2) \tag{since $E(aX+b) = aE(X) + b = a\mu + b$} \\
+	   & = E(\squac{aX - a\mu}^2) \\
+	   & = E(a^2\squac{X - \mu}^2) \tag{since $(a(X-\mu))^2 = a^2(X-\mu)^2$ (index laws)} \\
+	   & = a^2E(\squac{X-\mu}^2) \tag{linearity, i.e., $E(kX) = kE(X)$} \\
+	   & = a^2\Var(X) \tag{defintion of $\Var(X)$, since $\mu = E(X)$}
+\end{align*}
+So we have found that
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.3\columnwidth}{
+	
+	\vskip 0.04cm
+	\begin{center}
+	$\displaystyle{\Var(aX+b) = a^2\Var(X)}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+	\bigskip
+	
+\noindent As we expected, the translation does not affect the variance, but the scaling does.
+
+\subsubsection{Variance of U($\boldsymbol{c,d}$)}
+In section \ref{sec23.11} we found that when $Y \sim$ U($0,1$), we have $\Var(Y) = \frac{1}{12}.$ We also found that for $X \sim$ U($c,d$), we have $X = Y(d-c) + c$. We can use these facts to find the varince of $X$, as follows.
+\begin{align*}
+\Var(X) & = \Var(Y(d-c) + c) \\
+	 & = (d-c)^2\Var(Y) \tag{since $\Var(aX+b) = a^2\Var(X)$} \\
+	 & = \frac{(d-c)^2}{12}.
+\end{align*}
+
+\section{chebyshev's inequality} \label{chebyshevs ineq}
+Chebyshev's inequality, like Markov's inequality, is a very general result about distributions (in fact Chebyshev's inequality is even more general than Markov's): To apply Chebyshev's inequality to a random variable, $X$, we don't even need to know the distribution of $X$, we just need to know its mean and variance. This is why we refer to it as `very general,' because it applies to any arbitrary distribution. Markov's inequality only applies to distributions where $X$ is non-negative. \\
+
+\noindent Markov's inequality gives us an upper bound for the probability that values of $X$ will be \textit{greater than some positive constant}, $t$. This upper bound is $E(X)/t$, meaning that $P(X \geq t)$ will always be less than or equal to $E(X)/t$. \\
+
+\noindent Chebyshev's inequality, on the other hand, gives us an upper bound for the probability that values of $X$ will lie \textit{greater than a certain distance from the mean}. \\
+
+\noindent Recall, in section \ref{distance}, we said that the mathematical definition of the distance from $a$ to $b$ on a real number line is $|a-b|$, so the distance from $X$ to the mean is defined to be
+\[
+\text{Distance from $X$ to $\mu$} = |X - \mu|
+\]
+So, where $t$ is some positive real constant, Chebyshev's inequality gives us an upper bound for $P(|X - \mu| \geq t)$, which reads ``the probability that the distance from $X$ to the mean is greater than some value, $t$.''
+
+\noindent Chebyshev's inequality is:
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.3\columnwidth}{
+	
+	\vskip 0.04cm
+	\begin{center}
+	$\displaystyle{P(|X - \mu| \geq t) \leq \frac{\sigma^2}{t^2}}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+	\bigskip
+	
+\noindent The upper bound that Chebyshev's inequality gives is $\sigma^2/t^2$. So, $P(|X - \mu| \geq t)$ will always be less than or equal to $\sigma^2/t^2$. Here, $\sigma$ is the standard deviation, so $\sigma^2 = \Var(X)$. \\
+
+\noindent Suppose, for example, that we want to know the \textit{minimum} probability that values of $X$ will fall \textit{within} $k$ standard deviations from the mean. We want a \textit{lower bound} for $P(|X-\mu| \leq k\sigma)$. Multiplying both sides of Chebyshev's inequality by $-1$, (which changes the direction of the inequality) then adding $1$ to both sides gives
+\[
+1 - P(|X-\mu| \geq t) \geq 1 - \frac{\sigma^2}{t^2}.
+\]
+On the left hand side we have $1 - P(|X-\mu| \geq t)$, which is equal to $P(|X-\mu| < t)$, by probability measure axiom 1. So,
+\[
+P(|X-\mu| < t) \geq 1 - \frac{\sigma^2}{t^2}
+\]
+Substituting in $t = k\sigma$, we get $\frac{\sigma^2}{t^2} = \frac{\sigma^2}{(k\sigma)^2} = \frac{1}{k^2},$ so
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.35\columnwidth}{
+	
+	\vskip 0.04cm
+	\begin{center}
+	$\displaystyle{P(|X-\mu| < k\sigma) \geq 1 - \frac{1}{k^2}}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+	\bigskip
+
+\noindent This is sometimes given as an alternative form of Chebyshev's inequality. \\
+
+\noindent Suppose we want the probability that the value of \textit{any} arbitrary random variable, $X$, falls within two standard deviations from the mean (this is the case with $k = 2$). Using the above rule, this probability must be \textit{at least}
+\[
+1 - \frac{1}{k^2} = 1 - \frac{1}{2^2} = 0.75 = 75\%.
+\]
+This is interesting, because it says that values fall within two standard deviations of the mean with \textit{at least} 75\% probability \textbf{regardless of the distribution of $\boldsymbol{X}$}. \\
+
+\noindent People with some experience in statistics will be familiar with the 68-95-99.7\% rule, which gives the probabilities that values will fall within 1, 2, and 3 standard deviations from the mean in a normal distribution. This rule says that 95\% of probabilities fall within two standard deviations from the mean of $X$. Using Chebyshev's, we got an (at least) 75\% probability. The 68-95-99.7\% rule is thus a big improvement on Chebyshev's; yet it only applies to the normal distribution. Our result here of $75\%$ applies to \textit{any} arbitrary distribution. 
+
+%Using Chebyshev's inequality, with $t - k\sigma$, we have 
+%\begin{align*}
+%P(|X-\mu| \leq k\sigma) & = 1 - P(|X - \mu| \geq k\sigma) \\
+%		& \leq 1 - \frac{\sigma^2}{(k\sigma)^2} \\
+%		& = 1 - \frac{1}{k^2}
+%\end{align*}
+%So we have found that
+%\[
+%P(|X-\mu| \leq k\sigma) = 1 - \frac{1}{k^2}.
+%\]
+
+\subsubsection{Proof of Chebyshev's inequality}
+Consider $X$, a random variable with mean $\mu$ and variance $\sigma^2$. Let $t > 0$. \\
+
+\noindent We will need the following fact: If $a > 0$ and $b > 0$, then
+\[
+a > b \;\;\; \iff \;\;\; a^2 > b^2 
+\]
+Recall that the symbol `$\iff$' means, ``is equivalent to'' or ``if and only if.'' We can prove this equivalence by multiplying both sides of $a > b$ by $a$ to get $a^2 > ab$. Then we multiply both sides of $a > b$ by $b$ to get $ab > b^2$. Now we have $a^2 > ab > b^2$, i.e., $a^2 > b^2$, as required. \\
+
+\noindent Now, $|X - \mu|$ is positive (since it is an absolute value), and we defined $t$ to be positive also. Hence
+\[
+|X - \mu| \geq t \;\;\; \iff \;\;\; (X - \mu)^2 \geq t^2 \tag{$\bigstar$}
+\]
+Now, Markov's inequality is $P(X \geq t) \leq \frac{E(X)}{t}$. Using this, with $(X - \mu)^2$ instead of $X$ and with $t^2$ instead of $t$,
+\[
+P((X - \mu)^2 \geq t^2) \leq \frac{E((X - \mu)^2)}{t^2}
+\]  
+We know that $\sigma^2 = \Var(X) = E((X - \mu)^2)$ by definition, and we just showed in ($\bigstar$) that $(X - \mu)^2 \geq t^2$ is equivalent to $|X - \mu| \geq t$, so
+\[
+P(|X - \mu| \geq t) \leq \frac{\sigma^2}{t^2}.
+\]
+Which is Chebyshev's inequality, as required.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

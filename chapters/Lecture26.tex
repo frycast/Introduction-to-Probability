@@ -1,0 +1,356 @@
+\chapter{Lecture 26: Joint distributions} \label{multi-variate distribution} \label{joint distribution} \label{bi-variate}
+Two (or more) random variables can be defined on the same sample space. For example, rolling two standard dice we might define $Y$ to be the total number of dots showing, and define $X$ to be the number of dice showing an even number, when the two dice are thrown. \\
+
+\noindent We can look at the distribution of $X$ and $Y$ combined, to try and understand how the two variables interrelate. This involves looking at a pmf (discrete) or pdf (continuous) which is a function of two variables, $p(x,y)$ or $f(x,y)$ respectively. Distributions whose pdfs are functions of more than one variable are called \textbf{multi-variate} or \textbf{joint distributions.} When the pmfs or pdfs are functions of two variables we call the distribution \textbf{bi-variate}. \\
+
+\noindent When the random variables are discrete we use a \textbf{joint probability mass function}. When the random variables are continuous, we use a \textbf{joint probability density function.}
+
+\subsection{Joint probability mass function} \label{p(x_i,y_j)=P(X=x_i,Y=y_j)} \label{joint pmf}
+For two discrete random variables,
+\begin{align*}
+X & \; \brac{\text{which takes values $x_1,x_2,x_3,\ldots$}} \;\;\;\; \text{and} \\
+Y & \; \brac{\text{which takes values $y_1,y_2,y_3,\ldots$}}
+\end{align*}
+the function rule for the joint probability mass function is written $p(x,y)$.  The probability that $X = x_i$ and $Y = y_j$ is written $P(X=x_i,Y=y_j)$, so
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.35\columnwidth}{
+	
+	\vskip 0.04cm
+	\begin{center}
+	$\displaystyle{p(x_i,y_j) = P(X = x_i,Y=y_j)}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+	\bigskip
+
+\noindent In fact, $P(X = x_i, Y=y_j)$, is shorthand for $P(\set{X = x_i} \cap \set{Y = y_j})$, which can be read ``the probability that $X$ equals $x_i$ \textit{and} $Y$ equals $y_j$.'' \\
+
+
+\noindent Using the two standard dice example, with $Y$ counting the number of dots showing and $X$ counting the number of dice showing an even number, we get
+\[
+P(X = 0,Y= 4) = P(\set{(1,3),(3,1)}) = \frac{2}{36} = \frac{1}{13}. 
+\]
+That is, the probability that there are no even numbers showing \textit{and} that the two numbers showing add to $4$, is $1/13.$ More examples:
+\begin{align*}
+P(X = 1,Y= 4) & = P(\varnothing) = \frac{0}{36} = 0. \\
+P(X=2,Y=4) & = P(\set{(2,2)}) = \frac{1}{36}
+\end{align*}
+We got $P(X=1,Y=4) = 0$ since there is no case where exactly one even number is showing \textit{and} the two numbers showing add to $4$. \\
+
+\noindent Rather than using a function rule to return the probabilities associated with a discrete random variable, it is common to record the probabilities in a table or array. One way to give the probabilities for a joint distribution in an array is to label the rows by the possible values of one random variable, and the columns by the possible value of the other random variable. \\
+
+\noindent For example, suppose a fair coin is tossed three times. Let $X$ be the number of heads on the first toss, and let $Y$ be the total number of heads (in the three tosses). There are $2^3 = 8$ possible outcomes. So, e.g., $P(X = 0,Y = 0) = P(\set{ttt}) = \frac{1}{8}$. We can lay out the array as follows
+\[
+\begin{array}{cc|cccc|c} 
+&& \multicolumn{3}{c}{\boldsymbol{y}} & \\
+&& \multicolumn{1}{c}{0} &  \multicolumn{1}{c}{1} &  \multicolumn{1}{c}{2} &  3 & \\ \hline
+
+$$\boldsymbol{x}$$ \multirow{3}{*}{$$} &0& \frac{1}{8} & \frac{2}{8} & \frac{1}{8} & 0 & \\ 
+								  &1&  0                 & \frac{1}{8} & \frac{2}{8} & \frac{1}{8} & \\ \hline
+&&&&&&
+\end{array}
+\]
+To satisfy the probability measure axioms, bi-variate joint probability mass functions must satisfy these two properties:
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.45\columnwidth}{
+	
+	\vskip 0.04cm
+	\begin{center}
+	\begin{itemize}
+	\item $p(x_i,y_j) \geq 0 \;\; \text{for all $x_i$ and $y_j$}$
+	\item $\displaystyle{\sum_i\sum_jp(x_i,y_j) = 1}$
+	\end{itemize}
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+	\bigskip
+
+\noindent If there are more than two random variables, then we just extend this in the obvious way (e.g., tri-variate distributions require $p(x_i,y_j,z_k) \geq 0$ and $\sum_i\sum_j\sum_kp(x_i,y_j,z_k) = 1$). \\
+
+\noindent In terms of an array of probabilities, this is equivalent to requiring that
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.45\columnwidth}{
+	
+	\vskip 0.04cm
+	\begin{center}
+	\begin{itemize}
+	\item Each entry is non-negative
+	\item The sum of all entries is 1 \\
+	 \phantom{|}
+	\end{itemize}
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+	\bigskip
+
+\noindent We should check that these conditions hold for the probabilities given in the array above, for the coin toss example: Clearly each entry is non-negative, and
+\[
+\frac{1}{8} + \frac{2}{8} + \frac{1}{8} + \frac{1}{8} + \frac{2}{8} + \frac{1}{8} = 1.
+\]
+So the probabilities satisfy the requirements. \\
+
+\subsection{Recovering marginal probabilities} \label{marginal probabilities} \label{marginal probability mass functions} \label{p_X(x_i) and p_Y(y_i)}
+In this section we will only look at bi-variate distributions, but the ideas can be extended to more than two variables. \\
+
+\noindent In section \ref{law of total probability} we derived the law of total probability. In so doing, we came accross the fact that if $B_1,B_2,\ldots,B_n$ is a collection of exhaustive and mutually disjoint events then, for any event $A$,
+\[
+P(A) = P(A \cap B_1) + P(A \cap B_2) + \ldots + P(A \cap B_n).
+\]
+In section \ref{disjran} we showed that different outputs of one random variable, say $Z$, always specify disjoint events (e.g., $\set{Z = 1}$ is necessarily disjoint from $\set{Z = 2}$). Also, the domain of a random variable is always the whole sample space (from the definition of a random variable, section \ref{sec8.10}), which means that the collection of all possible outputs of $Z$ must be exhaustive. Hence, we can rewrite the above statement to suit bivariate joint distributions:
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.95\columnwidth}{
+	
+	\vskip 0.04cm
+	\begin{center}
+	$\displaystyle{P(X = x_i) = P(X = x_i,Y=y_1) + P(X = x_i,Y=y_2) + P(X = x_i,Y=y_3) + \ldots}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+
+\noindent In other words, to find the probability that $X$ takes the value $x_i$, we leave $X = x_i$ fixed and sum over all possible values of $Y$. We can write this more compactly, using $p_X$ to denote the pmf of $X$:
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.35\columnwidth}{
+	
+	\vskip 0.04cm
+	\begin{center}
+	$\displaystyle{p_X(x_i) = \sum_j p(x_i,y_j)}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+
+\noindent In an array, where $Y$ represents the column number and $X$ represents the row number, this amounts to summing over all probabilties in the row corresponding to $x_i$. The same idea applies if we want to find $P(Y = y_j);$ we just hold $Y = y_j$ fixed and sum over all possible values of $X$:
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.35\columnwidth}{
+	
+	\vskip 0.04cm
+	\begin{center}
+	$\displaystyle{p_Y(y_j) = \sum_i p(x_i,y_j)}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+
+\noindent In our array, this amounts to summing up all of the values in the column corresponding to $y_j$. So, looking again at the coin toss example. The possible values of $X$ are $X=0$ and $X=1$. Hence $P(Y = 1)$ is given by
+\begin{align*}
+P(Y = 1) & = P(X = 0,Y=1) + P(X = 1,Y=1) \\
+	& = \frac{2}{8} + \frac{1}{8} \\
+	& = \frac{3}{8}.
+\end{align*}
+In our array, this amounts to finding the column $Y = 1$, then summing up all the values in that column. Similarly, $P(X = 1)$ is found by locating the row $X = 1$, then summing up all the values in that row:
+\[
+P(X = 1) = 0 + \frac{1}{8} + \frac{2}{8} + \frac{1}{8} = \frac{1}{2}.
+\]
+We can add these probabilities to our array, by placing them in the \textit{margins} of the array, as follows:
+\[
+\begin{array}{cc|cccc|c} 
+&& \multicolumn{3}{c}{\boldsymbol{y}} & \\
+&& \multicolumn{1}{c}{0} &  \multicolumn{1}{c}{1} &  \multicolumn{1}{c}{2} &  3 & p_X(x_i) \\ \hline
+
+$$\boldsymbol{x}$$ \multirow{3}{*}{$$} &0& \frac{1}{8} & \frac{2}{8} & \frac{1}{8} & 0 & \\ 
+				 &1&  0                 & \frac{1}{8} & \frac{2}{8} & \frac{1}{8} & \boldsymbol{\frac{1}{2}} \\ \hline
+\multicolumn{1}{c}{p_Y(y_j)} &&&\boldsymbol{\frac{3}{8}}&&
+\end{array}
+\]
+The probabilities associated with the individual random variables in a joint distribution are called \textbf{marginal probabilities}, which alludes to the fact that they are often conveniently written in the \textit{margins} of an array (at least when the random variables are discrete and finite), as we have done above. The functions, $\boldsymbol{p_X(x_i)}$ and $\boldsymbol{p_Y(y_i)}$, which give the marginal probabilities, are called \textbf{marginal probability mass functions}. We have not filled in all of the marginal probabilities, just $p_X(1)$ and $p_Y(1)$, since these are the ones we have found so far. In the array below we have filled in the remaining marginal probabilities.
+\[
+\begin{array}{cc|cccc|c} 
+&& \multicolumn{3}{c}{\boldsymbol{y}} & \\
+&& \multicolumn{1}{c}{0} &  \multicolumn{1}{c}{1} &  \multicolumn{1}{c}{2} &  3 & p_X(x_i) \\ \hline
+
+$$\boldsymbol{x}$$ \multirow{3}{*}{$$} &0& \frac{1}{8} & \frac{2}{8} & \frac{1}{8} & 0 &\boldsymbol{\frac{1}{2}}  \\ 
+	                        &1&  0                 & \frac{1}{8} & \frac{2}{8} & \frac{1}{8} & \boldsymbol{\frac{1}{2}} \\ \hline
+\multicolumn{1}{c}{p_Y(y_j)} &&\boldsymbol{\frac{1}{8}}&\boldsymbol{\frac{3}{8}}&\boldsymbol{\frac{3}{8}}&\boldsymbol{\frac{1}{8}}
+\end{array}
+\]
+You should check that each marginal probability, $p_Y(y_j)$, is the sum of the joint probabilities in its column, and that each marginal probability, $p_X(x_i)$, is the sum of the joint probabilities in its row.
+
+\subsection{Joint cumulative distribution function} \label{joint cdf}
+The joint cumulative distribution function is written $F(x,y)$. It is defined to be the probability that $X \leq x$ \; \textit{and} \; $Y \leq y$; written $P(X \leq x, Y \leq y)$ (which is shorthand for the more formal $P(\set{X \leq x} \cap \set{Y \leq y})$). So
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.35\columnwidth}{
+	
+	\vskip 0.04cm
+	\begin{center}
+	$\displaystyle{F(x,y) = P(X \leq x, Y \leq y)}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+
+\noindent Which in the case of discrete random variables is given by summing the joint pmf, $p(x_i,y_j)$, over all $x_i \leq x$, and over all $y_j \leq y$: 
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.35\columnwidth}{
+	
+	\vskip 0.04cm
+	\begin{center}
+	$\displaystyle{F(x,y) = \sum_{x_i \leq x}\sum_{y_j \leq y}p(x_i,y_j)}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+
+\noindent In our array, $F(x,y)$ is the sum of all the probabilities within the rectangle that consists of all rows up to (and including) row $x$, and all columns up to (and including) column $y$. For example, in our coin experiment, $F(1,2)$ is the sum of all the highlighted probabilities in the array below:
+
+\[
+\begin{array}{cc|cccc|c} 
+&& \multicolumn{3}{c}{\boldsymbol{y}} & \\
+&& \multicolumn{1}{c}{0} &  \multicolumn{1}{c}{1} &  \multicolumn{1}{c}{2} &  3 & p_X(x_i) \\ \hline
+
+$$\boldsymbol{x}$$ \multirow{3}{*}{$$} &0&   \cellcolor{gray!10} \frac{1}{8} & \cellcolor{gray!10} \frac{2}{8} & \cellcolor{gray!10} \frac{1}{8} & 0 &\boldsymbol{\frac{1}{2}}  \\ 
+	                        &1& \cellcolor{gray!10}    0                 &  \cellcolor{gray!10} \frac{1}{8} &  \cellcolor{gray!10} \frac{2}{8} & \frac{1}{8} & \boldsymbol{\frac{1}{2}} \\ \hline
+\multicolumn{1}{c}{p_Y(y_j)} &&\boldsymbol{\frac{1}{8}}&\boldsymbol{\frac{3}{8}}&\boldsymbol{\frac{3}{8}}&\boldsymbol{\frac{1}{8}}
+\end{array}
+\]
+
+\section{Multinomial distribution} \label{multinomial distribution} \label{multinomial coefficients}
+In section \ref{1 the binomial distribution} we met the binomial distribution, Bin($n,p$), with $n$ independent Bernoulli trials and success probability $p$; there are only two possible outcomes, success or failure. The multinomial distribution is a generalisation of this to more than two possible outcomes. \\
+
+\noindent Suppose, instead of two, there are $r$ possible (mutually exclusive and exhaustive) outcomes (the fact that they are mutually exclusive means that only one of the outcomes can happen during each trial, and the fact that they are exhaustive means that at least one must happen during each trial). To each of the $r$ outcomes we assign a success probability $p_i$, where $i \in \set{1,2,3,\ldots,r}$. Just as with the binomial distribution, we conduct $n$ independent trials (i.e. the outcome of one trial must not affect the outcome of another trial). \\
+
+\noindent Rather than have a single discrete random variable, we will use $r$ discrete random variables, $Y_1, Y_2, \ldots, Y_r$. We want $Y_i$ to count the number of times, $k_i$, that outcome $i$ is observed during the $n$ trials. So $p_i$ is the probability of success, on each trial, for $Y_i$. To summarise, we have a collection of $r$ random variables, $Y_1,Y_2,\ldots,Y_r$, which are each undergoing a sequence of $n$ independent Bernoulli trials (and each $Y_i$ has success probability $p_i$). \textbf{In other words, $\boldsymbol{Y_i \sim}$ Bin($\boldsymbol{n,p_i}$), for each $\boldsymbol{Y_i}$.} \\
+
+\noindent During the $n$ trials, each random variable, $Y_i$, will have a certain number of successes, $k_i$. We are interested in finding
+\[
+P(Y_1 = k_1, Y_2 = k_2, \ldots, Y_r = k_r)
+\]
+For some particular choices of $k_1, k_2, \ldots, k_r$. Remember that this is shorthand for the more formal,
+\[
+P(\set{Y_1 = k_1} \cap \set{Y_2 = k_2} \cap \ldots \cap \set{Y_r = k_r}).
+\]
+For example, imagine you are in a dark room with one spotlight facing you, initially turned off. You are instructed that the spotlight will flash 10 times, and each time it will flash either red, yellow, or green. Let $Y_1$ measure the amount of times it flashes red, let $Y_2$ measure yellow, and let $Y_3$ measure green. You are told that the light flashes red with 50\% probability, yellow with 25\%, and green with 25\%. This means that $Y_2$ and $Y_3$ each have a Bin($10,0.25$) distribution, and $Y_1$ has a Bin($10,0.5$) distribution. What is the probability that the spotlight flashes red 5 times, yellow 3 times, and green 2 times? This is the same as asking for
+\[
+P(Y_1 = 5, Y_2 = 3, Y_3 = 2)
+\]
+We will return to this example later, first we will derive the pmf in general. For each trial, one of the $Y_i$ must be a success (since the outcomes are exhaustive). Also, if $Y_1$ is a success on one trial, then $Y_i$, for all $i \neq 1$, must fail on that trial (since the outcomes are mutually exclusive). Hence there is exactly one success for each trial, so the number of successes must be equal to the number of trials, i.e., $k_1 + k_2 + \ldots + k_r = n$. \\
+
+\noindent When we derived the pmf for the binomial distribution, in section \ref{1 the binomial distribution}, we found that there were $\binom{n}{k}$ ways that $k$ successes could occur in $n$ trials. Now, for the mutinomial distribution, we need to know \textbf{how many ways, $\boldsymbol{N}$, that the $\boldsymbol{n}$ trials can be broken up into $\boldsymbol{r}$ groups, where the number of members in each group is $\boldsymbol{k_1,k_2,\ldots,k_r}$.} The number of members in the first group is $\binom{n}{k_1}$, we then fill the second group by choosing $k_2$ successes out of the remaining $n - n_1$ trials. We then fill the third group by choosing $k_3$ successes out of the remaining $n - n_1 - n_2$ trials, and so on. Eventually, the final group is filled by choosing $k_r$ successes out of the remaining $k_r$ trials (since $k_1 + k_2 + \ldots + k_r = n$ implies that $k_r = n - k_1 - k_2 - \ldots - k_{r-1}$). Giving
+\begin{align*}
+N     & = \binom{n}{k_1}\binom{n-k_1}{k_2}\binom{n-k_1-k_2}{k_3}\ldots\binom{k_r}{k_r} \\
+        & = \frac{n!}{k_1!\boldsymbol{(n-k_1)!}}\frac{\boldsymbol{(n-k_1)!}}{k_2!\boldsymbol{(n-k_1-k_2)!}}\frac{\boldsymbol{(n-k_1-k_2)!}}{k_3!\boldsymbol{(n-k_1-k_2-k_3)!}}\ldots\frac{\textbf{etc...}}{k_{r-1}!\boldsymbol{k_r!}}\frac{\boldsymbol{k_r!}}{k_r!0!} \\
+        & = \frac{n!}{k_1!k_2!k_3!\ldots k_r!}. \tag{cancelling terms in bold}
+\end{align*}
+Expressions of this form are called \textbf{multinomial coefficients}. Recall that the binomial coefficients (section \ref{secbinom}) are found in the expansion of $(x_1 + x_2)^n$; analogously, the multinomial coefficients are found in the expansion of $(x_1 + x_2 + \ldots + x_r)^n$. \\
+
+\noindent Ignoring the $N$ ways that the successes can occur, each pattern of success consists of $Y_1$ succeeding $k_1$ times (each time with probability $p_1$), and $Y_2$ succeeding $k_2$ times (each time with probability $p_2$), and so on to $Y_r$. So the probability associated with each pattern is $p_1^{k_1}p_2^{k_2}\ldots p_r^{k_r}$. Since there are $N$ possible patterns (and we found an expression for $N$, above) we have the following expression for \textbf{the pmf of the multinomial distribution:}
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.55\columnwidth}{
+	
+	\vskip 0.04cm
+	\begin{center}
+	$\displaystyle{p(k_1,k_2,\ldots,k_r) = \frac{n!}{k_1!k_2!k_3!\ldots k_r!}p_1^{k_1}p_2^{k_2}\ldots p_r^{k_r}}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+	
+\noindent We can use this to find $P(Y_1 = 5, Y_2 = 3, Y_3 = 2)$ in our red, yellow, and green spotlight example:
+\begin{align*}
+P(Y_1 = 5, Y_2 = 3, Y_3 = 2) & = p(5,3,2) \\
+	& = \frac{10!}{5!3!2!}(0.5)^5(0.25)^3(0.25)^2 \tag{recall we had $n = 10$ trials} \\
+	& \approx 0.0769.
+\end{align*}
+
+\noindent When using the mutinomial distribution, it is often a good idea to double check that $p_1 + p_2 + \ldots + p_r = 1$ and that $k_1 + k_2 + \ldots + k_r = n$. For our spotlight example we have $0.5 + 0.25 + 0.25 = 1$ and $5 + 3 + 2 = 10$, as required. \\
+
+
+\subsection{Marginal probabilities of the multinomial distribution}
+\noindent When joint probability mass functions are specified by an array, it is usually easy to find the marginal probabilities by summing (we covered this in section \ref{marginal probabilities}). Arrays are used when the distribution is bi-variate, and the total number of probabilities to consider is fairly small. For the multinomial distribution, the number of random variables and associated probabilities can be arbitrarily large. Hence, the marginal probabilities are usually not easily obtained by summing. \\
+
+\noindent Usually, the best way to obtain the marginal probabilities, $p_{Y_i}(k_i)$, in a multinomial distribution is to consider how they arise. Recall that individually, each $Y_i$ has a Bin($n,p_i$) distribution. So, using the pmf of Bin($n,p_i$),
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.55\columnwidth}{
+	
+	\vskip 0.04cm
+	\begin{center}
+	$\displaystyle{p_{Y_i}(k_i) = P(Y_i = k_i) = \binom{n}{k_i}p_i^{k_i}(1-p_i)^{n - k_i}}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+
+\subsection{Example}
+Suppose that the Australian Beaureau of Statistics reports that 73\% of residential fires occur in houses, 20\% occur in apartments, and 7\% occur in in `other' types of dwellings. If one branch of the Country Fire Authority is called out to 4 fires this week, what is the probability that two of those four are house fires, one is an apartment fire, and one is `other?' \\
+
+\solution
+Let $Y_1,Y_2,Y_3$ be discrete random variables that measure the types of fires attended this week. There were a total of $n = 4$ fires. Let $Y_1$ count house fires, $Y_2$ count apartment fires, and $Y_3$ count `other' fires. Then using the pmf of the multinomial distribution with $n = 4, p_1 = 0.73, p_2 = 0.2,$ and $p_3 = 0.07$,
+\begin{align*}
+P(Y_1 = 2,Y_2 = 1,Y_3 = 1) & = \frac{4!}{2!1!1!}(0.73)^2(0.2)^1(0.07)^1 \\
+	& \approx 0.0895.
+\end{align*}
+
+\section{Multi-variate hypergeometric distribution} \label{Multi-variate hypergeometric distribution}
+The multinomial (and hence the binomial) distribution corresponds to cases of sampling with replacement, i.e., it applies in situations where the trials are independent from one another. The hypergeometric distribution (introduced in section \ref{ex11.1}) deals with trials that are not independent (the outcome of each trial affects the probabilities associated with future trials), i.e., it applies in situations of sampling without replacement. The hypergeometric distribution is used when a population consists of some members of type $A$, and the rest are of type $B$. \\
+
+\noindent The multi-variate hypergeometric distribution applies when the population can be divided into more than two types (just like the `outcomes' of the multinomial distribution, these `types' are mutually exclusive and exhaustive). \\
+
+\noindent For $Y \sim$ Hypergeom($N,M,n$), the pmf is
+\[
+p(k) = \frac{\binom{M}{k}\binom{N-M}{n-k}}{\binom{N}{n}}
+\]
+The population, $N$, is composed of only two types. If there are $m_1$ of type $A$, and there are $m_2$ of type $B$, then the total population is $N = m_1 + m_2$. Similarly, our sample (of size $n$) is also composed of two types. If there are $k_1$ of type $A$ in our sample, and $k_2$ of type $B$, then there are a total of $n = k_1 + k_2$ people in the sample. Using $m_1, m_2, k_1,$ and $k_2$ we can rewrite the above as
+\[
+p(k_1,k_2) = \frac{\binom{m_1}{k_1}\binom{m_2}{k_2}}{\binom{N}{n}}
+\]
+This is just another way to write the hypergeometric distribution, where $k_2$ is no longer written in terms of $k_1$ and $m_2$ is no longer written in terms of $m_1$. In practicality it is completely useless to write it this way, since we have unnecessarily introduced new variables. However, we can now see how to extend the hypergeometric distribution to the multi-variate hypergeometric disribution. \\
+
+\noindent Suppose the population, of size $N$, consists of $r$ types, $A_1, A_2,\ldots, A_r$, where type $A_i$ has $m_i$ members, so that $m_1 + m_2 + \ldots + m_r = N$. Now suppose we take a random sample of size $n$, and we let the discrete random variable, $Y_i$, measure how many people, $k_i$, in our sample, are members of type $A_i$. So $k_1 + k_2 + \ldots + k_r = n$. Then $P(Y_1 = k_1, Y_2 = k_2, \ldots Y_r = k_r$) is given by
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.45\columnwidth}{
+	
+	\vskip 0.04cm
+	\begin{center}
+	$\displaystyle{p(k_1,k_2,\ldots,k_r) = \frac{\binom{m_1}{k_1}\binom{m_2}{k_2}\ldots\binom{m_r}{k_r}}{\binom{N}{n}}}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+
+\subsection{Example}
+A committee of 3 people is selected from a group of 15 students: 7 first years, 3 second years, and 5 third years. What is the probability that there are two first years and no second years chosen? \\
+
+\solution
+The population size is $N = 15$. The sample size is $n = 3$. Let $Y_1,Y_2,Y_3$ be discrete random variables counting first, second, and third years respectively. There are, respectively, $m_1 = 7, m_2 = 3,$ and $m_3 = 5$ first, second, and third years in the population. If there are $k_1 = 1$ first years chosen and $k_2 = 0$ second years chosen, then there must have been $k_3 = 1$ third year chosen, since we require $k_1 + k_2 + k_3 = n$. Using the pmf of the multi-variate hypergeometric distribution with the chosen parameters gives
+\begin{align*}
+P(Y_1 = 2, Y_2 = 0, Y_3 = 1) & = \frac{\binom{7}{2}\binom{3}{0}\binom{5}{1}}{\binom{15}{3}} \\
+	& = \frac{7!}{2!5!}\frac{5!}{1!4!}\times\frac{12!3!}{15!} \\
+	& = \frac{3}{13}. \tag{cancelling many common factors}
+\end{align*}
+The probability that there are two first years and no second years chosen is $\frac{3}{13}.$

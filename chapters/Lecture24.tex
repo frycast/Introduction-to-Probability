@@ -1,0 +1,234 @@
+\chapter{Lecture 24: Summation with two labels}
+
+\subsection{Refresher on summation with one variable}
+In section \ref{linearity} we learned that finite sums and convergent sums are linear. So, for example
+\[
+\sum_{i=1}^n ap(i) = a\sum_{i=1}^np(i) \;\;\;\;\;\;\; \text{and} \;\;\;\;\;\; \sum_{i = i}^n (p(i) + q(i)) =  \sum_{i = i}^np(i) + \sum_{i = i}^nq(i).
+\]
+What about adding a real constant, $c$, to each term in a finite sum? What will the effect be? In other words,
+\[
+\sum_{j=1}^n (p(j) + c) = \;\; ?
+\]
+
+\solution 
+Expanding the sum gives
+\begin{align*}
+\sum_{j=1}^n (p(j) + c) & = \squac{p(1) + c} +  \squac{p(2) + c} + \ldots +  \squac{p(n) + c} \\
+	& = \underbrace{c + c + \ldots + c}_{n \;\; \text{times}} + \; p(1) + p(2) + \ldots + p(n) \\
+	& = nc + \sum_{j=1}^n p(j).
+\end{align*}
+
+\section{Summation with two labels} \label{r(i,j)}
+Consider the following table containing 4 weeks of daily rainfall data (in millimeters) from La Trobe University weather station.
+\[
+\begin{array}{|c|c|c|c|c|c|c|c|} \hline
+\textbf{Week} & \textbf{Su} & \textbf{Mo} & \textbf{Tu} & \textbf{We} & \textbf{Th} & \textbf{Fr} & \textbf{Sa} \\ \hline
+\boldsymbol{1} &3.2  	       &7.6 		   &3.4           &0		&4.2       	&1.6		    &0.4		
+\\ \hline
+\boldsymbol{2}&0    	       &0 		   &4.6           &4.6		&20.8       	&1.6		    &0.2	
+\\ \hline
+\boldsymbol{3}&0.2  	       &8.8 		   &1.6           &0		&0.4       	&1.6		    &1.8	
+\\ \hline
+\boldsymbol{4}&0.2    	       &0   		   &0.2           &0		&0       	&0		    &1.0 
+\\ \hline
+\end{array}
+\]
+The data is arranged in rows and columns. So, for example, the amount of rainfall on the Monday of week 3 is given by the value in row 3, column 2 (the value is 8.8). We can label the rows with one integer, say $i$, and the columns with another integer, say $j$. Then we can define $\boldsymbol{r(i,j)}$ to be a function of $i$ and $j$, which \textbf{returns the value in row $\boldsymbol{i}$, column $\boldsymbol{j}$.} So
+\[
+r(3,2) = 8.8, \;\;\;\; \text{gives the rainfall on Monday of week 3.}
+\]
+Thursday is the $5^\text{th}$ column, so the amount of rainfall on, for example, Thursday of week 1, is given by $r(1,5) = 4.2$. Try to complete the following examples before looking at the solutions: \\
+
+\noindent \textbf{Example (a):} \\
+\noindent Using $r(i,j)$ and summation notation, write down the total rainfall in week 2. \\
+
+\solution
+To get the total rainfall in week 2, we need to leave $i$ (the row) fixed at $i = 2$, and sum over all of the days (i.e., all of the possible values for $j \in \set{1,2,3,4,5,6,7}$). Hence
+\[
+\text{Total rainfall week 2} \; = \sum_{j = 1}^7 r(2,j).
+\]
+We can check our expression is correct by expanding the sum
+\begin{align*}
+\sum_{j = 1}^7 r(2,j) & = r(2,1) + r(2,2) + r(2,3) + r(2,4) + r(2,5) + r(2,6) + r(2,7). \\
+	& = 0 + 0 + 4.6 + 4.6 + 20.8 + 1.6 + 0.2.
+\end{align*}
+Which is indeed the sum of all of the values in week 2. \\
+
+\noindent \textbf{Example (b):} \\ 
+\noindent Using $r(i,j)$ and summation notation, write down the total combined rainfall for the whole table. \\
+
+\solution
+In the previous example we saw that the total rainfall in week 2 was the sum of $r(2,j)$ over all 7 values of $j$. Similarly, the total rainfall in week 1 must be the sum of $r(1,j)$, over all 7 values of $j$. The total rainfall in week $i$ is the sum of $r(i,j)$ over all possible values of $j$. Hence
+\begin{align*}
+\text{Total rainfall in table} \; & = \; \text{Total week 1} \; + \; \text{Total week 2} \; + \; \text{Total week 3} \; + \; \text{Total week 4} \\
+	& =  \; \sum_{j = 1}^7 r(1,j) + \sum_{j = 1}^7 r(2,j) + \sum_{j = 1}^7 r(3,j) + \sum_{j = 1}^7 r(4,j).
+\end{align*}
+
+\noindent \textbf{Example (c):} \\
+\noindent Using $r(i,j)$ and summation notation, write down the total combined rainfall on all the weekends in the table. \\
+
+\solution
+We need to think slightly differently here, because it is more efficient now if we sum down the columns rather than accross the rows. We need to sum the total rainfall on all Sundays (column 1) with the total rainfall on all Saturdays (column 7). So we need to sum $r(i,1)$ over all possible $i$, and $r(i,7)$, over all possible $i$. There are 4 weekends, corresponding to four weeks, so $i \in \set{1,2,3,4}$. Hence
+\[
+\text{Total rainfall on all weekends} \; = \; \sum_{i = 1}^4 r(i,1) + \sum_{i = 1}^4 r(i,7)
+\]
+
+
+\subsection{Intro to multiple summation}  \label{multiple summation}
+We need a better way to write down the solutions in examples (b) and (c) above. In each case we are adding multiple sums together. We can use summation notation to represent \textbf{sums of sums} the same way that we use summation notation to represent sums of anything else. \\
+
+\noindent \textbf{Better way to write the solution to example (b)}: \\
+\noindent The solution to example (b) was
+\[
+\text{Total rainfall in table} =  \; \sum_{j = 1}^7 r(1,j) + \sum_{j = 1}^7 r(2,j) + \sum_{j = 1}^7 r(3,j) + \sum_{j = 1}^7r(4,j).
+\]
+Notice that the only thing that changes in each term is the value of $i$ (the week). We are adding the sums from weeks 1,2,3, and 4 together. So, we are doing:
+\[
+\text{Sum from $i = 1$ to $4$ of} \; \brac{ \sum_{j = 1}^7 r(i,j) }
+\]
+Which can be rewritten in summation notation as
+\[
+\text{Total rainfall in table} = \sum_{i = 1}^4\brac{\sum_{j = 1}^7 r(i,j)}
+\]
+\noindent We do not need to include the brackets in this notation, since it is clear that we mean the same thing when we write it without brackets. So we can write
+\[
+\text{Total rainfall in table} = \sum_{i = 1}^4\sum_{j = 1}^7 r(i,j) \tag{leaving out the brackets}
+\]
+\bigskip
+
+\noindent \textbf{Better way to write the solution to example (c)}: \\
+\noindent The solution to example (c) was
+\[
+\text{Total rainfall on all weekends} \; = \; \sum_{i = 1}^4 r(i,1) + \sum_{i = 1}^4 r(i,7)
+\]
+This time, notice that the only thing that changes in each term is the value of $j$ (the day). We are adding the sum from day 1 (Saturday), to the sum from day 2 (Sunday). So we are doing:
+\[
+\text{Sum of $j = 1$ and $j = 7$ of} \; \sum_{i = 1}^4 r(i,j)
+\]
+Which can be rewritten in summation notation as
+\[
+\text{Total rainfall on all weekends} = \sum_{j \in \set{1,7}}\sum_{i = 1}^4 r(i,j)
+\]
+We have used the subscript $j \in \set{1,7}$ to indicate that the sum should only be over $j = 1$ (Saturday) and $j = 7$ (Sunday). Sometimes the subscript $j = 1,7$ is used instead, but both ways of writing the subscript mean the same thing. \\
+
+
+
+\subsection{Multiple summation in general}
+From examples (b) and (c), we can see that multiple summation is very similar to summation involving only one sum. The difference is that we need to introduce two variables, say $i$ and $j$, rather than just one variable. We then use one summation symbol for each variable. In general, for some function $f(i,j)$, if we want to sum over all possible values of both variables, we can just write
+\[
+\sum_i\sum_j f(i,j)
+\]
+
+\subsubsection{Interchanging the order of summation} \label{Interchanging the order of summation}
+One thing that we might notice is that in example (c) we didn't really need to sum down the columns first (we only chose to do this because it was more efficient with our old notation). If we had of started by summing along the rows we would have had
+\begin{align*}
+\text{Total rainfall on weekends} \; & = \; \sum_{j \in \set{1,7}}\!\!r(1,j) \; + \sum_{j \in \set{1,7}}\!\!r(2,j) \; + \sum_{j \in \set{1,7}}\!\!r(3,j) \; + \sum_{j \in \set{1,7}}\!\!r(4,j). \\
+	& = \; \sum_{i=1}^4\sum_{j \in \set{1,7}} r(i,j)
+\end{align*}
+Since this is equal to our previous result (we have just found total rainfall on weekends again), this means that
+\[
+\sum_{i=1}^4\sum_{j \in \set{1,7}} r(i,j) = \sum_{j \in \set{1,7}}\sum_{i = 1}^4 r(i,j)
+\]
+Which shows that we can \textbf{interchange the order of the summation}, at least in this one case. \\
+
+\noindent In the case of example (b), we could have found the total rainfall on all days by summing down the columns first, then along the rows. So we can interchange the order of the summation in example (b) as well:
+\[
+ \sum_{i = 1}^4\sum_{j = 1}^7 r(i,j) =  \sum_{j = 1}^7\sum_{i = 1}^4 r(i,j)
+\]
+It turns out that we can always interchange the order of summation. So, in general
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.4\columnwidth}{
+	
+	\vskip 0.04cm
+	\begin{center}
+	$\displaystyle{\sum_i\sum_j f(i,j) = \sum_j\sum_i f(i,j)}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+	\bigskip
+
+\noindent The fact that the order of summation can be interchanged is really just a consequence of the fact that $a + b = b + a$ (this is called the commutativity of addition). If you are not convinced 
+
+\section{Calculating means for discrete random variables}
+We will now develop a formula that can come in handy when calculating the mean of a discrete random variable whose outputs are all the positive integers $k \in \set{1,2,3,\ldots}$. In our derivation we will need to use the following sum:
+\begin{align*}
+P(X \geq k) & = P(X = k) + P(X = k+1) + P(X = k+2) + \ldots \\\
+		  & = \sum_{i=k}^\infty P(X = i) \tag{$\bigstar$}
+\end{align*}
+Now, let $X$ be a discrete random variable whose outputs are all positive integers. Then
+\begin{align*}
+E(X)  & = \sum_{k=1}^\infty kP(X = k)  \tag{definition of $E(X)$} \\
+	& = p(1) + 2p(2) + 3p(3) + 4p(4) + \ldots
+\end{align*}
+To understand the following step, notice (below) that, in the sum on the right hand side, $p(1)$ appears once, $p(2)$ appears twice, $p(3)$ appears 3 times, and so on:  
+\begin{align*}
+p(1) + 2p(2) + 3p(3) + 4p(4) + \ldots & = \squac{p(1) + p(2) + p(3) + p(4) + \ldots} \\
+	& \phantom{=} + \squac{p(2) + p(3) + p(4) + \ldots} \\
+	& \phantom{=} + \squac{p(3) + p(4) + \ldots}  \\
+	& \phantom{=} + \squac{p(4) + \ldots} + \ldots \ssk \\
+	& = P(X \geq 1) + P(X \geq 2) + P(X \geq 3) + \ldots \\
+	& = \sum_{k=1}^\infty P(X \geq k) \\
+	& = \sum_{k=1}^\infty \sum_{i=k}^\infty P(X = i) \tag{using $\bigstar$ for $P(X \geq k)$}
+\end{align*}
+Hence we have, for any random variable whose outputs are $k \in \set{1,2,3,\ldots}$,
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.4\columnwidth}{
+	
+	\vskip 0.04cm
+	\begin{center}
+	$\displaystyle{E(X) = \sum_{k=1}^\infty \sum_{i=k}^\infty P(X = i)}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+	\bigskip
+
+\noindent If we wanted, we could have stopped at the second last step, where we had
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.4\columnwidth}{
+	
+	\vskip 0.04cm
+	\begin{center}
+	$\displaystyle{E(X) = \sum_{k=1}^\infty P(X \geq k)}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+	\bigskip
+
+
+
+\noindent We will use this result to calculate the mean of the geometric distribution.
+
+
+\subsection{Mean of geometric distribution} \label{meanGeom}
+Let $X \sim$ Geom($p$). Then $X$ has outputs $k \in \set{1,2,3,\ldots}$. \\
+
+\noindent Before we use the result that we just derived to find the mean of the geometric distribution, we need the following fact: \\
+\begin{align*}
+P(X \geq k) & = 1 - P(X < k) \\
+	          & = 1 - P(X \leq k - 1) \tag{since $k \in \set{1,2,3,\ldots}$} \\
+	          & = 1 - F(k-1) \tag{definition of cdf} \\
+	          & = 1 - \squac{1-(1-p)^k} \tag{cdf of Geom($p$), section \ref{geom cdf}} \\
+	          & = (1 - p)^k. \tag{$\clubsuit$}
+\end{align*}
+Now,
+\begin{align*}
+E(X) 	& = \sum_{k=1}^\infty P(X \geq k) \tag{result in the box above} \\
+	& = \sum_{k=1}^\infty (1-p)^k \tag{since $P(X \geq k) = (1-p)^k$ by $\clubsuit$} \\
+	& = \sum_{m=0}^\infty (1-p)^{m+1} \tag{where we define $k = m+1$, so when $k = 1, m = 0$} \\
+	& = (1-p)\sum_{m=0}^\infty(1-p)^m \tag{since $(1-p)^{m+1} = (1-p)(1-p)^m$ (index laws)} \\
+	& = (1-p)\frac{1}{1-(1-p)} \tag{infinite sum of a geometric series, section \ref{geometric series}} \\
+	& = \frac{1-p}{p}.
+\end{align*}
+So the mean of the geometric distribution is $\frac{1-p}{p}$. The formula for the sum of a geometric series, from section \ref{geometric series}, was: $\displaystyle{\sum_{m=0}^\infty a^m = \frac{1}{1-a}}$, where in this case we had $a = (1-p)$. 

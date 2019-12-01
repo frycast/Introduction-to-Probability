@@ -1,0 +1,358 @@
+\chapter{Lecture 22: Tranformation by the cdf, and expected values}
+
+\section{Transformation by the cdf} \label{U}
+In lecture 21 we learned how to transform a random variable, $X$, and we learned some tools for finding the distribution of $Y$ when $Y = g(X)$. We looked at cases when the transformation, $g$, was invertible, i.e., strictly increasing or decreasing (where method of distributions applies), and we looked at cases where $g$ was non-invertible (where we needed to use Leibniz's rule to evaluate a probability integral). \\
+
+\noindent Now we will learn a particularly interesting and useful application of transformations. In particular, we will look at the transformation $\boldsymbol{U = F_X(X)}$. Here, we have transformed a random variable, $X$, by using its own cdf, $F_X$, as the transformation. So, normally for a transformation we would write $Y = g(X)$, but in this case we have replaced $g$ with $F_X$, and we have used the symbol $U$ instead of $Y$. \\
+
+\noindent Why are we writing $U$ instead of $Y$? As we will soon see, it is because \textbf{every time we transform $\boldsymbol{X}$ using its own cdf, $\boldsymbol{F_X,}$ the resulting variable will have the U($\boldsymbol{0,1}$) distribution}; i.e., it will be uniformly distributed on $[0,1];$ we use $U$ to represent a continuous random variable whose distribution is U($0,1$). \\
+
+\noindent So, this equation, $U = F_X(X)$, tells us which transformation to use (i.e., $F_X$) to transform any random variable, $X$, into $U$.  \\
+
+\noindent This is an interesting and useful fact that relates the uniform distribution to other distributions. \\
+
+\noindent Suppose, instead, that we want to start with a uniformly distributed random variable, $U$ (something which is comparatively easy to generate on a computer), and we wish to find the right function to transform $U$ into some continuous random variable, $X$, where $X$ is distributed however we want (i.e., we want to choose the cdf, $F_X$, ourselves). \\
+
+\noindent Solving for $X$ in the equation $U = F_X(X)$, gives $\boldsymbol{X = F^{-1}_X(U)}$. This equation tells us that we can choose any cdf, $F_X$, find $F^{-1}_X$, then apply this transformation to $U$, to obtain a random variable, $X$, whose cdf is $F_X$. This is a handy result, since many computer packages can easily be used to generate uniformly distributed `random' numbers. By applying $F^{-1}_X$ to them, we can generate new random numbers which follow the distribution whose cdf is $F_X$. This is a useful way to generate `random' numbers following whatever distribution that we want. \\
+
+\noindent Note that for any continuous cdf, $F_X$, there always exist some interval, $[a,b]$, on which $F_X$ is strictly increasing (see section \ref{cdf(continuous)}). Also, $F_X$ is flat everwhere else. Hence we need to restrict the domain of $F_X$ to $[a,b]$, when finding $F^{-1}(x)$. We spoke about this concept in more detail in section \ref{cdf strictly increasing 1} when we discussed inverse functions and percentiles.
+%\begin{center}
+%\begin{tikzpicture}
+%\axesmacro{-0.1}{4}{-0.1}{2.5}{x}{F_X(x)}
+%\plotmacro{0.8}{3}{-cos{(\x*180/pi)} + 0.7}{black}
+%\plotmacro{-0.1}{0.8}{0}{black}
+%\plotmacro{3}{4}{1+0.69}{black}
+%\draw (0,1.69) node [rotate = 90] {\tiny$|$} node [left] {$1$};
+%\draw (0.8,0) node {\tiny$|$} node [below = 1mm] {$a$};
+%\draw (3,0) node {\tiny$|$} node [below] {$b$};
+%\end{tikzpicture}
+%\end{center}
+\subsection{Proof that $\boldsymbol{U = F_X(X)}$}
+\noindent \textbf{Proposition:} Let $U = F_X(X)$ (where $X$ is a random variable with known distribution and cdf $F_X$). Then $U$ has a uniform distribution on $[0,1]$. \\
+
+\noindent \textbf{Proof:} \\
+Firstly, by letting $U = F_X(X)$, we have defined the outputs, $u$, of $U$, to be $u = F_X(x)$. Now, the outputs of $F_X$, like any cdf, must be between 0 and 1, so it follows that $u \in [0,1]$. \\
+
+\noindent Let $F_U$ represent the cdf of $U$. In the following proof we restrict the doman of $F_X$ to the interval [$a,b$] on which $F_X$ is increasing. Since $F_X$ is increasing, we know that $F^{-1}_X$ is also increasing (see section \ref{increasing fact II}), which is why the direction of the inequality does not change in step 3 below
+\begin{align*}
+F_U(u) & = P(U < u) \\
+	& = P(F_X(X) < u) \tag{since $U = F_X(x)$} \\
+	& = P(X < F^{-1}_X(u)) \tag{step 3} \\
+	& = F_X(F^{-1}_X(u)) \tag{by defintion of a cdf, i.e., $F_X(x) = P(X < x)$} \\
+	& = u. \tag{since inverse functions undo eachother}
+\end{align*}
+So, for all $u \in [0,1]$ we have $F_U(u) = u$. Since $u \in [0,1]$, it also follows that $P(U~<~0)~=~0$ and that $P(U < 1) = 1$. So, we have
+\[
+F_U(u) = \left\{\begin{array}{ll}
+0, & \; \text{if} \;\; u < 0  \smallskip \\
+u, & \; \text{if} \;\; u \in [0,1]  \smallskip \\ 
+1, & \; \text{if} \;\; u > 1
+\end{array} \right.
+\]
+Which is the cdf of U($0,1$), as required.
+\subsection{Proof that $\boldsymbol{X = F^{-1}_X(U)}$}
+\textbf{Proposition:} Let $X = F^{-1}(U)$, where $U$ is a uniform random variable on $[0,1]$. Then $X$ has cdf $F$. \\
+
+\noindent \textbf{Proof:} \\
+Let $X =  F^{-1}(U)$, for some cdf $F$. We again restrict the domain of $F$ to the interval on which $F$ is increasing, so the inequality remains unchanged in step 3. In step 5 we use the fact that $F(x) \in [0,1]$, since $F$ is a cdf (and cdfs by definition must only have outputs between 0 and 1)
+\begin{align*}
+F_X(x) & = P(X < x) \\
+	& = P(F^{-1}(U) < x) \tag{since $X = F^{-1}(U)$} \\
+	& = P(U < F(x)) \tag{step 3} \\
+	& = F_U(F(x)) \\
+	& = F(x). \tag{step 5, since $F_u(u) = u$ for $u \in [0,1]$}
+\end{align*}
+So $X$ has cdf $F$, as required.
+
+
+\section{Expected values} \label{measures of location} \label{expected value} \label{E(X)}
+In section \ref{mode definition} we learned about the mode, and in section \ref{cdf strictly increasing 1} we learned about the median. Both of these quantities are known as \textbf{measures of location}: The mode tells us which position, on the $x$-axis, corresponds to the most likely output; the median tells us which position has values falling above and below it with equal (50\%) probability. Their values depend on the parameters of the model. \\
+
+\noindent Measures of location don't tell us how `spread out' the distribution is. \\
+
+\noindent Another widely used measure of location is the \textbf{expected value}, $\boldsymbol{E(X)}$, of a random variable, $X$. It is also known as the \textbf{mean}, and given the symbol $\boldsymbol{\mu}$. The expected value is a real number which, intuitively speaking, tells us what the average outcome of an experiement will (approximately) be, if we repeat the experiment many times. \\
+
+\noindent In lecture 34 we will learn about the `law of large numbers,' which in most cases guarantees that, if an experiment is repeated $n$ times, then the average outcome of all the repetitions will eventually converge to the expected value, as $n$ goes to infinity. \\
+
+\noindent Note that the `\textbf{average}' is sometimes referred to as the `\textbf{arithmetic mean}'; this is not to be confused with the `mean', which, as we have just stated, is another word for expected value. Most people will be familiar with the average: It is the sum of all results of an experiment, divided by the number of trials. \\
+
+\noindent The expected value is defined differently for discrete and continuous distributions:
+
+\subsubsection{$\boldsymbol{E(X)}$ when $\boldsymbol{X}$ is discrete}
+For a discrete random variable, we define the expected value (i.e., the mean) to be
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.35\columnwidth}{
+	
+	\vskip 0.04cm
+	\begin{center}
+	$\displaystyle{E(X) = \sum_i x_i P(X = x_i)}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+	
+\noindent If the number of possible values of $x$ is infinite, then this sum is infinite, in which case the definition only makes sense if the sum is convergent (an infinite sum that is not convergent will not be `equal' to anything). \\
+
+\noindent This definition is also sometimes written as
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.35\columnwidth}{
+	
+	\vskip 0.04cm
+	\begin{center}
+	$\displaystyle{E(X) = \sum_x xp(x)}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+
+\noindent Which means the same thing (the subscript $x$ under the summation symbol means `sum over all possible $x$.' Also, recall that $p(x)$ represents a function rule which gives $P(X = x)$, see section \ref{pp(k)P(X=k)f(k)F(K)} to revise our use of this notation). \\
+
+\subsubsection{$\boldsymbol{E(X)}$ when $\boldsymbol{X}$ is continuous}
+For a continuous random variable, we define the expected value (i.e., the mean) to be
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.35\columnwidth}{
+	
+	\vskip 0.04cm
+	\begin{center}
+	$\displaystyle{E(X) = \int_{-\infty}^\infty xf(x) \; dx}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+
+\noindent Provided that this integral exists.
+
+\subsection{Example (discrete)} \label{ex22.1}
+Consider an outcome space $\Omega = \set{\omega_1,\omega_2,\omega_3,\omega_4,\omega_5}$ for which the probabilities are specified in the table below, along with the corresponding values of a random variable, $X$:
+\[
+\begin{array}{|c|c|c|c|c|c|} \hline
+\boldsymbol{\omega}       & \omega_1   & \omega_2  & \omega_3& \omega_4& \omega_4 \\ \hline
+\boldsymbol{P(\omega)}  & \frac{1}{8}&\frac{1}{2}&\frac{1}{8}&\frac{1}{16}&\frac{3}{16} \\ \hline
+\boldsymbol{X(\omega)}  & -2         	     &      -1          &         1         &       2           &     0     \\ \hline
+\end{array}
+\]
+\begin{enumerate}[(a)]
+\item Find the probabilities for $Y = X^2$
+\item Calculate $E(X)$
+\item Calculate $E\brac{X^2}$
+\item Calculate $\squac{E(X)}^2$
+\end{enumerate}
+\bigskip
+
+\solution[to (a)]
+As a side note, this is a good example of a non-invertible function $Y = g(X)$: We have, for example, $(-2)^2 = 4$ and $2^2 = 4$ (that is, $-2$ and 2 both map to the same element, which is the definition of a function not being invertible). \\
+
+\noindent So, $\set{X = 2}$ and $\set{X = -2}$ are both mapped to $\set{Y = 4}$. Hence, using the values from the table,
+\[
+P(Y = 4) = P(X = -2) + P(X = 2) = \frac{1}{8} + \frac{1}{16} = \frac{3}{16}.
+\]
+Similarly, $(-1)^2 = 1^2 = 1,$ so 
+\[
+P(Y = 1) = P(X = -1) + P(X = 1) = \frac{1}{2} + \frac{1}{8} = \frac{5}{8}.
+\]
+Finally, $0^2 = 0$, so
+\[
+P(Y = 0) = P(X = 0) = \frac{3}{16}.
+\]
+We have found a corresponding value of $Y$ for each value of $X$, so we must have a value of $Y$ for every event $\omega$, so we are done. Notice that $P(Y = 0) + P(Y = 1) + P(Y = 4) = \frac{3}{16} + \frac{5}{8} + \frac{3}{16} = 1$. So, the probabilities for $Y$ sum to 1, which indicates that our calculations have been accurate (since we always know that $P(\Omega) = 1$). \\
+\bigskip
+
+\solution[to (b)]
+Using the definition of $E(X)$ (discrete case) we have
+\begin{align*}
+E(X)  & = \sum_i x_iP(X = x_i) \\
+	& = X(\omega_1)P(\omega_1) + X(\omega_2)P(\omega_2) + X(\omega_3)P(\omega_3) + X(\omega_4)P(\omega_4) + X(\omega_5)P(\omega_5) \\
+	& = -2\times\frac{1}{8} + -1\times\frac{1}{2} + 1\times\frac{1}{8} + 2\times\frac{1}{16} + 0\times\frac{3}{16} \tag{from the table} \\
+	& = -\frac{1}{2}.
+\end{align*}
+So, if we repeated the experiment many times, we would expect the average of all the results to be roughly $-\frac{1}{2}$. This makes sense because, looking at the table, we can see that, generally, higher probabilities are associated with the negative values of $X$; for example, $P(X = -1) = \frac{1}{2}$. \\
+\bigskip
+
+\solution[to (c)]
+We found in the solution to (a) that $Y \in \set{0,1,4}$. So, using the definition of $E(X)$ again,
+\begin{align*}
+E(X^2) & = E(Y)  \\
+	    & = \sum_i y_i P(Y = y_i) \\
+	    & = 0\times P(Y = 0) + 1\times P(Y = 1) + 4\times P(Y = 4) \tag{since $Y \in \set{0,1,4}$} \\
+	    & = 0\times\frac{3}{16} + 1\times\frac{5}{8} + 4\times\frac{3}{16} \tag{using results from (a)} \\
+	    & = \frac{11}{13}. 
+\end{align*}
+So, \textit{the expected value has changed}, even though the events themselves and the probabilities associated with them have not changed. This is because, in this case, the expected value tells us what we should expect from $X^2$ (the square of the results), rather than from $X$. \\
+\bigskip
+
+\solution[to (d)]
+This question is here to illustrate that $E(X^2) \neq \squac{E(X)}^2$. Calculating the latter is easy, since it is just the square of $E(X)$, which we found in the solution to (b). We have
+\[
+\squac{E(X)}^2 = \brac{-\frac{1}{2}}^2 = \frac{1}{4}.
+\]
+
+
+\subsection{Expected value of Poisson distribution (discrete)} \label{meanPoisson}
+Recall that the probability mass function of Poi($\lambda$) is
+\[
+P(X = k) = \frac{\lambda^k}{k!}\e^{-\lambda}, \;\;\; \text{where} \; k \in \set{0,1,2,\ldots} 
+\]
+Where $X$ measures the number of some kind of occurrence, and $\lambda$ is the average number of occurrences per unit of continuum (e.g., messages in a network per second). \\
+
+\noindent What do we predict $E(X)$ to be? We should find that after many repetitions, the average of all of our observations will approach $\lambda$. Now, using the definition of $E(X)$, but starting at $k = 1$, rather than $k = 0$, since the term with $k = 0$ will be equal to $0\times P(X = 0) = 0$,
+\begin{align*}
+E(X)  & = \sum_{k = 1}^\infty kP(X = k) \\
+	& = \sum_{k = 1}^\infty k \frac{\lambda^k}{k!}\e^{-\lambda} \tag{pdf of Poi($\lambda$)} \\
+	& = \e^{-\lambda} \sum_{k = 1}^\infty \frac{\lambda^k}{(k-1)!} \tag{linearity, and $\frac{k}{k!} = \frac{1}{(k-1)!}$ cancelling the $k$}  \\
+	& =  \e^{-\lambda} \sum_{m = 0}^\infty \frac{\lambda^{m+1}}{m!} \tag{letting $m = k-1$ (so then $k = m+1$)} \\
+	& =  \lambda \e^{-\lambda} \sum_{m = 0}^\infty \frac{\lambda^{m}}{m!} \tag{linearity, and $\lambda^{m+1} = \lambda^m\lambda$ (index laws)} \\
+	& = \lambda \e^{-\lambda} \e^\lambda \phantom{\sum_m^\infty} \tag{power series definition of $\e^x$, section \ref{power series}}  \\
+	& = \lambda. \phantom{\sum_m^\infty} \tag{since $\e^{-\lambda} \e^\lambda = \e^0 = 1$ (index laws)}
+\end{align*}
+So $E(X) = \lambda$, which is what we predicted.
+
+\subsection{Expected value of Gamma distribution (continuous)} \label{meanGamma}
+Recall that the probability density function of Gamma($\alpha,\lambda$) is
+\[
+f(x) = \frac{\lambda^\alpha}{\Gamma(\alpha)}x^{\alpha-1}\e^{-\lambda x}, \;\;\; \text{for} \; x \geq 0,
+\]
+and $f(x) = 0$ otherwise. Also, remember that $\Gamma(\alpha + 1) = \alpha\Gamma(\alpha)$ (from section \ref{gamma properties}). \\
+We use the definition of $E(X)$ (the continuous case), except we only integrate from $0$ to $\infty$, since the integral from $-\infty$ to $0$ is equal to $0$ (as $f(x) = 0$ when $x < 0$),
+\begin{align*}
+E(X)  & = \int_0^\infty x \frac{\lambda^\alpha}{\Gamma(\alpha)}x^{\alpha-1}\e^{-\lambda x} \; dx \\
+	& = \int_0^\infty \frac{\lambda^\alpha}{\Gamma(\alpha)}x^{\alpha}\e^{-\lambda x} \; dx \tag{since $xx^{\alpha - 1} = x^\alpha$} \\
+	& = \frac{\alpha}{\lambda}  \int_0^\infty \frac{\lambda}{\alpha} \frac{\lambda^\alpha}{\Gamma(\alpha)}x^{\alpha}\e^{-\lambda x} \; dx \tag{linearity, and multiplying by $\frac{\alpha}{\lambda}\frac{\lambda}{\alpha} = 1$} \\
+	& = \frac{\alpha}{\lambda}  \int_0^\infty \frac{\lambda^{\alpha+1}}{\Gamma(\alpha + 1)}x^{\alpha}\e^{-\lambda x} \; dx. \tag{since $\alpha\Gamma(\alpha) = \Gamma(\alpha + 1)$ and $\lambda \lambda^\alpha = \lambda^{\alpha+1}$}
+\end{align*}
+On the right hand side we have $\frac{\alpha}{\lambda}$ multiplied by the integral of the pdf of Gamma($\alpha+1,\lambda$). Since this is a pdf, we know that the integral over all possible values for $x$ must be equal to 1, by probability measure axiom 1. Hence
+\[
+E(X) = \frac{\alpha}{\lambda}.
+\]
+Note that the mode (most probable value) of Gamma($\alpha,\lambda$) is $\frac{\alpha-1}{\lambda}$. This is a good example of a case where the mode is not equal to the mean. You can easily calculate the mode using calculus (i.e., by finding $f'(x)$ then solving for $x$ in $f'(x) = 0$). \\
+
+\subsubsection{Mean of exponential distribution}
+\noindent Let $X \sim$ Exponential($\lambda$). The exponential distribution is the special case of Gamma($\alpha,\lambda$), with $\alpha = 1$ (we showed this at the end of section \ref{gamma distribution1}). Hence we can find the mean of the exponential distribution:
+\[
+\text{For Exponential($\lambda$),} \;\; E(X) = \frac{\alpha}{\lambda}, \; \text{with $\alpha = 1$} \;\; \text{i.e.,} \;\;\;\; E(X) = \frac{1}{\lambda}.
+\]
+
+\section{Expected value of $\boldsymbol{g(X)}$} \label{def E(g(X))}
+In example \ref{ex22.1} we manually calculated $E(g(X))$ for the case $g(X) = X^2$, by first finding all of the probabilities for $Y = X^2$. In general, it will be easier to use the following definitions of $E(g(X))$: \\
+
+\noindent\textbf{When $\boldsymbol{X}$ is discrete}
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.4\columnwidth}{
+	
+	\vskip 0.04cm
+	\begin{center}
+	$\displaystyle{E(g(X)) = \sum_i g(x_i) P(X = x_i)}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+
+\noindent \textbf{When $\boldsymbol{X}$ is continuous}
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.35\columnwidth}{
+	
+	\vskip 0.04cm
+	\begin{center}
+	$\displaystyle{E(g(X)) = \int_{-\infty}^\infty g(x)f(x) \; dx}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+
+\noindent Note that, while we refer to these as `definitions' in this subject, they are actually a result of a theorem called the Law of the Unconscious Statistician, which will not be covered in this course. 
+
+\subsection{Important properties of expected value} \label{sec22.01}
+In general, it is unfortunately often true that
+\[
+E(g(X)) \neq g(E(X)).
+\]
+We saw this in example \ref{ex22.1}, parts (c) and (d), where we learned that
+\[
+E(X^2) \neq \squac{E(X)}^2 
+\]
+Which has $g(X) = X^2$. \\
+
+\noindent The following simple properties, however, are true in general, and will be very useful to us. \\
+
+\noindent We can prove each of these properties using the above definition of $E(g(X))$:
+\begin{enumerate}
+\item $E(c) = c$ for all $c \in \R$
+\item Linearity properties:
+\begin{itemize}
+\item $E(kX) = kE(X)$
+\item $E(a + X) = E(a) + E(X)$
+\end{itemize}
+\item $E(kX + a) = kE(X) + a$ (this is just a consequence of the above properties)
+\end{enumerate}
+
+\noindent Notice that, for the continuous case, the expected value is defined in terms of an integral. For the discrete case, it is defined in terms of a sum. Since integrals and sums are both linear, we should not be too surprised that the expected value is also linear, but be warned: Thinking that something is true, is never a good substitute for proving it.
+
+\subsubsection{Property (1)}
+\noindent \textbf{Proof (discrete case):}
+Let $X$ be a discrete random variable. Let $c \in \R$. Then
+\begin{align*}
+E(c)  & = \sum_i c P(X = x_i) \tag{definition of $E(g(X))$ with $g(x) = c$} \\
+	& = cP(X = x_1) + cP(X = x_2) + \ldots \\
+	& = c\brac{P(X = x_1) + P(X = x_2) + \ldots} \tag{factoring out $c$} \\
+	& = c. \tag{since $P(\Omega) = 1$}
+\end{align*}
+
+\noindent The proof of the continuous case is left as an exercise.
+
+\subsubsection{Property (2): Linearity}
+
+\noindent \textbf{Proof (continuous case):}
+Let $X$ be a continous random variable. Let $k \in \R$. Then, using the definition of $E(g(X))$, with $g(x) = kx$ we have
+\[
+E(kX) = \int_{-\infty}^\infty kxf(x) \; dx = k\int_{-\infty}^\infty xf(x) \; dx = kE(X) \tag{using linearity of integrals}
+\]
+Now, let $a \in \R$, then using linearity of integrals again we get
+\[
+E(a+X) = \int_{-\infty}^\infty (a+x)f(x) \; dx = \int_{-\infty}^\infty af(x) \; dx + \int_{-\infty}^\infty xf(x) \; dx = E(a) + E(X).
+\]
+Hence $E(kX) = kE(X)$  and $E(a + X) = E(a) + E(X)$, so expected value is linear. \\
+
+\noindent Proving the discrete case is left as an exercise.
+
+
+\subsection{Example (mean of normal distribution)} \label{meanNormal}
+Let $Z \sim$ N($0,1$). By the definition of $E(Z)$ we have
+\begin{align*}
+E(Z)  & = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^\infty z\e^{-z^2/2} \; dz \tag{using pdf of N($0,1$)} \\
+	& = 0.
+\end{align*}
+The reason this integral evaluates to $0$ is because $z$ in an odd function, and $\e^{-z^2/2}$ is an even function: The product of an odd function with an even function is always an odd function, and the integral over a symmetric interval of an odd function is always equal to 0 (see section \ref{symmetric interval}). \\
+
+\noindent Now, let $X \sim$ N($\mu,\sigma^2$). Recall that $X$ can be transformed into $Z$ (standard normal) by letting
+\[
+Z = \frac{X - \mu}{\sigma} \tag{section \ref{sec21.2}}
+\]
+\noindent Using this, and the fact that $E(Z) = 0$, calculate $E(X)$. \\
+
+\solution
+Solving for $X$ in the equation above gives, $X = \sigma Z + \mu$. Hence,
+\[
+E(X) = E(\sigma Z + \mu) = \sigma E(Z) + \mu = \mu. \tag{since $E(Z) = 0$}
+\]
+So the mean of the normal distribution is $\mu$.
+
+%\noindent For example, if a standard, 6 sided, balanced die, is rolled many times, then eventually the average of all of the outcomes of the rolls will approach $3.5$, which (we will soon see) is the expected value.
+
+
+
+
+

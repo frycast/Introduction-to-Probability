@@ -1,0 +1,257 @@
+\chapter{Lecture 18: Antiderivatives of more complicated functions I}
+In section \ref{derivativetable1} we developed a small table of antiderivative formulas. Then, in section \ref{Using FTC to find definite integrals}, we learned how to use antiderivatives to find definite integrals.  \\
+
+\noindent In section \ref{product rule} we learned a formula (the ``product rule'') for differentiating functions that can be expressed as a product of two functions. Then, in section \ref{chain rule}, we learned a formula (the chain rule) for differentiating functions which can be expressed as a composition of two functions. These were
+\[
+\frac{d}{dx}\brac{f(x)g(x)} = f'(x)g(x) + f(x)g'(x) \qquad \text{and} \qquad \frac{d}{dx}\brac{f(g(x))} = f'(g(x))g'(x)
+\]
+
+\noindent There are two corresponding antiderivative formulas, one for antidifferentiating products of functions (called \textbf{integration by parts}) and one for antidifferentiating compositions of functions (called \textbf{integration by substitution}); these can be derived from the product and chain rules respectively. \\
+
+\noindent In this lecture we will learn to use integration by parts, and in the next lecture we will learn integration by substitution.
+
+\section{Integration by parts} \label{integration by parts}
+Starting from the product rule for derivatives, we can derive the integration by parts rule. The product rule is
+\[
+\frac{d}{dx}\brac{f(x)g(x)} = f'(x)g(x) + f(x)g'(x)
+\]
+%Define a new function, $f(x)$, so that $f(x) = k'(x)$. Then $k(x) = \int f(x) \; dx = F(x)$. So we can rewrite the above as
+%\[
+%\frac{d}{dx}\brac{F(x)g(x)} = f(x)g(x) + F(x)g'(x)
+%\]
+%Antidifferentiating both sides gives
+%\[
+%\int\frac{d}{dx}\brac{F(x)g(x)} \; dx = \int f(x)g(x) + F(x)g'(x) \; dx
+%\]
+%The antiderivative cancels the derivative on the left hand side, and on the right hand side we use linearity, giving
+%\[
+%F(x)g(x) = \int f(x)g(x) \; dx + \int F(x)g'(x) \; dx
+%\]
+%Subtracting $ \int F(x)g'(x) \; dx$ from both sides gives us the integration by parts rule:
+%
+%  	\bigskip
+%	
+%	\hfil\fbox{
+%	\begin{minipage}{0.53\columnwidth}{
+%	
+%	\vskip 0.02cm
+%	\begin{center}
+%	$\displaystyle{ \int f(x)g(x) \; dx = F(x)g(x) - \int F(x)g'(x) \; dx}$
+%	\end{center}
+%	}
+%	\end{minipage}}
+%	\bigskip
+Antidifferentiating both sides gives
+\[
+\int\frac{d}{dx}\brac{f(x)g(x)} \; dx = \int f'(x)g(x) + f(x)g'(x) \; dx
+\]
+The antiderivative cancels the derivative on the left hand side, and on the right hand side we use linearity, giving
+\[
+f(x)g(x) = \int f'(x)g(x) \; dx + \int f(x)g'(x) \; dx
+\]
+Subtracting $ \int f(x)g'(x) \; dx$ from both sides gives us the integration by parts rule:
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.53\columnwidth}{
+	
+	\vskip 0.02cm
+	\begin{center}
+	$\displaystyle{ \int f'(x)g(x) \; dx = f(x)g(x) - \int f(x)g'(x) \; dx}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+
+\noindent Another way that it is commonly written is to let $u = f(x)$, and $v = g(x)$; then
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.4\columnwidth}{
+	
+	\vskip 0.02cm
+	\begin{center}
+	$\displaystyle{ \int u'v \; dx = uv - \int uv' \; dx}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+
+\noindent When using the integration by parts rule, we need to be unusually mindful. If we want to antidifferentiate a product, then we need to nominate one factor to be $f'(x)$, and another factor to be $g(x)$. Looking at the right hand side, this means that we will need to integrate $f'(x)$ to get $f(x)$. Also, we will need to differentiate $g(x)$ to get $g'(x)$. We then need the expression $\int f(x)g'(x) \; dx$ on the far right to be something simpler that can be integrated easier than the expression that we started with; otherwise we end up having to use integration by parts again on $\int f(x)g'(x) \; dx$, which can lead to us being stuck in an endless loop for all eternity. \\
+
+\noindent It is perhaps best taught by example. \\
+
+\noindent A good function to practice on is $h(x) = x\e^{-x}$. Suppose that we haphazardly select $f'(x) = x$ and $g(x) = \e^{-x}$. Then
+\[
+f(x) = \int x \; dx = \frac{1}{2}x^2 \qquad \text{and} \qquad g'(x) = -\e^{-x}
+\]
+Now, using integration by parts
+\begin{align*}
+\int x\e^{-x} \; dx & = f(x)g(x) - \int f(x)g'(x) \; dx \\
+		        & = \frac{1}{2}x^2\e^{-x} - \int \frac{1}{2}x^2 (-\e^{-x}) \; dx. \tag{plugging in our results} \\
+		        & = \frac{1}{2}x^2\e^{-x} + \frac{1}{2} \int x^2 \e^{-x} \; dx. \tag{linearity}
+\end{align*}
+We started off needing to integrate $x\e^{-x}$, and now we need to integrate $x^2\e^{-x}$. Things have not gotten any better; they have gotten worse. If we keep going like this, we may never make it out. \\
+
+\noindent We made a mistake, though it is easily fixed by changing our approach. This time we let $f'(x) = \e^{-x}$, and we let $g(x) = x$. Then
+\[
+f(x) = \int \e^{-x} \; dx = -\e^{-x} \qquad \text{and} \qquad g'(x) = 1
+\]
+This time, using integration by parts gives
+\begin{align*}
+\int x\e^{-x} \; dx & = f(x)g(x) - \int f(x)g'(x) \; dx \\
+		& = (-\e^{-x})x - \int (-\e^{-x})\times1 \; dx \tag{plugging in our results} \\
+		& = -\e^{-x}x + \int \e^{-x} \; dx \tag{linearity} \\
+		& = -\e^{-x}x - \e^{-x} \\
+		& = -\e^{-x}(x+1).
+\end{align*}
+This time things went much more smoothly. The trick was to recognise that we would eventually need to integrate a product involving $g'(x)$; letting $g(x) = x$ meant that we would (conveniently) end up integrating a product involving $g'(x) = 1$. 
+
+\subsection{Example}
+Find an antiderivative of $x\ln(x)$. \\
+
+\solution
+Since we do not even know how to integrate $\ln(x)$ yet (but we do know how to differentiate it), we decide to choose $g(x) = \ln(x)$ and $f'(x) = x$. Then
+\[
+g'(x) = \frac{1}{x} \qquad \text{and} \qquad f(x) = \int x \; dx = \frac{1}{2}x^2 
+\]
+Now, using integration by parts
+\begin{align*}
+\int x\ln(x) \; dx & = f(x)g(x) - \int f(x)g'(x) \; dx	\\
+		& = \frac{1}{2}x^2\ln(x) - \int \frac{1}{2}x^2 \frac{1}{x} \; dx \tag{plugging in our results} \\
+		& =  \frac{1}{2}x^2\ln(x) - \int \frac{1}{2}x \; dx \\
+		& = \frac{1}{2}x^2\ln(x) - \frac{1}{4}x^2 \\
+		& = \frac{1}{2}x^2\brac{\ln(x) - \frac{1}{2}}.
+\end{align*}
+
+\subsection{Antiderivative of $\boldsymbol{\ln(x)}$}
+So far, we know that $\frac{d}{dx}\brac{\ln(x)} = \frac{1}{x}$. However, our table of antiderivatives (given in section \ref{derivativetable1}) does not include a formula for the antiderivative of $\ln(x)$. We now develop one using a clever application of integration by parts. \\
+
+\noindent If we let $g(x) = \ln(x)$, and $f'(x) = 1$, then $\ln(x) = f'(x)g(x)$; this means that we can use integration by parts on $\ln(x)$. We also need the following:
+\[
+f(x) = \int 1 \; dx = x \qquad \text{and} \qquad g'(x) = \frac{1}{x}.
+\]
+Using integration by parts we have
+\begin{align*}
+\int \ln(x) \; dx & = f(x)g(x) - \int f(x)g'(x) \; dx \\
+	& = x\ln(x) - \int x\frac{1}{x} \; dx \\
+	& = x\ln(x) - \int 1 \; dx \\
+	& = x\ln(x) - x.
+\end{align*}
+We have found a useful antiderivative formula:
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.35\columnwidth}{
+	
+	\vskip 0.02cm
+	\begin{center}
+	$\displaystyle{\int \ln(x) \; dx = x\ln(x) - x}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+
+\section{Integration by parts with definite integrals} \label{sec18.2}
+When using integration by parts on a definite integral, we need to be mindful to think about the terminals. The rule becomes
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.63\columnwidth}{
+	
+	\vskip 0.02cm
+	\begin{center}
+	$\displaystyle{ \int_a^b f'(x)g(x) \; dx = \squac{f(x)g(x)}_a^b - \int_a^b f(x)g'(x) \; dx}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+
+\noindent For example, suppose we wish to evaluate $\int_0^\infty x\e^{-x} \; dx$. In section \ref{integration by parts} we used integration by parts to find that
+\[
+\int x\e^{-x} \; dx =  -\e^{-x}x + \int \e^{-x} \; dx 
+\]
+Adding the terminals we get
+\begin{align*}
+\int_0^\infty x\e^{-x} \; dx & =  \squac{-\e^{-x}x}_0^\infty + \int_0^\infty \e^{-x} \; dx  \\
+		& = 0 + \int_0^\infty \e^{-x} \; dx \tag{since $\e^{-x} \rightarrow 0$ as $x \rightarrow \infty$} \\
+		& = \squac{-\e^{-x}}_0^\infty \\
+		& = 0 - (-\e^{-0}) \tag{since $\e^{-x} \rightarrow 0$ as $x \rightarrow \infty$} \\
+		& = 1. \tag{as $\e^0 = 1$ (index laws)}
+\end{align*}
+
+\subsection{Example}
+Find $\int_0^3 x^2\e^{-x} \; dx$. \\
+
+\solution
+Let $f'(x) = \e^{-x}$ and let $g(x) = x^2$. Then
+\[
+f(x) = \int \e^{-x} \; dx = -\e^{-x} \qquad \text{and} \qquad g'(x) = 2x
+\]
+\noindent Using integration by parts,
+\begin{align*}
+\int_0^3 x^2\e^{-x} \; dx & = \squac{f(x)g(x)}_0^3 - \int_0^3 f(x)g'(x) \; dx \\
+	& = \squac{-\e^{-x}x^2}_0^3 - \int_0^2 (-\e^{-x})2x \; dx \tag{plugging in our results} \\
+	& = \squac{-\e^{-x}x^2}_0^3 + 2\int_0^2 \e^{-x}x \; dx \tag{linearity} \\
+	& = \squac{-\e^{-x}x^2}_0^3 + 2\squac{-\e^{-x}(x+1)}_0^3 \tag{by the result in section \ref{integration by parts}} \\
+	& = -\e^{-3}3^2 - 0 + 2\brac{-\e^{-3}(3+1) - (-1)} \\
+	& = 2 - 17\e^{-3}.
+\end{align*}
+
+\section{Proofs for some properties of the gamma function} \label{sec18.1}
+\subsubsection{Proof that $\boldsymbol{\Gamma(\alpha) = (\alpha-1)\Gamma(\alpha-1)}$} 
+In section \ref{gamma properties} we mentioned this important property of the gamma function. Now we can prove it using integration by parts: \\
+
+\noindent By definition, the gamma function is
+\[
+\Gamma(\alpha) = \int_0^\infty x^{\alpha - 1}\e^{-x} \; dx
+\]
+Let $f'(x) = \e^{-x}$ and let $g(x) = x^{\alpha - 1}$. Then
+\[
+f(x) = \int \e^{-x} \; dx = -\e^{-1} \qquad \text{and} \qquad g'(x) = (\alpha - 1)x^{\alpha - 2}.
+\]
+Now, using integration by parts gives
+\begin{align*}
+\Gamma(\alpha) & = \squac{f(x)g(x)}_0^\infty - \int_0^\infty f(x)g'(x) \; dx \\
+	& = \squac{-\e^{-x}x^{\alpha - 1}}_0^\infty + (\alpha - 1)\int_0^\infty \e^{-x}x^{\alpha - 2} \; dx \tag{using linearity}\\
+	& = 0 + (\alpha - 1)\int_0^\infty e^{-x}x^{\alpha - 2} \; dx \tag{since $\e^{-x} \rightarrow 0$ as $x \rightarrow \infty$} \\
+	& = (\alpha - 1)\Gamma(\alpha - 1). \tag{definition of gamma function}
+\end{align*}
+Which is what we wanted to show.
+
+\subsubsection{Proofs that $\boldsymbol{\Gamma(1) = 1}$ and $\boldsymbol{\Gamma(n) = (n-1)!}$ for $\boldsymbol{n \in \N}$}
+By the definition of the gamma function we have
+\[
+\Gamma(2) = \int_0^\infty x^{2-1}\e^{-x} \; dx = \int_0^\infty x\e^{-x} \; dx
+\]
+We evaluated this integral in \ref{sec18.2}; we found that $\int_0^\infty x\e^{-x} \; dx = 1$. Hence,
+\[
+\Gamma(2) = 1.
+\]
+Using the fact that 
+\[
+\boldsymbol{\Gamma(\alpha) = (\alpha - 1)\Gamma(\alpha - 1)} \tag{$\bigstar$}
+\]
+we have
+\[
+\Gamma(2) = (2-1)\Gamma(2-1) = \Gamma(1)
+\]
+So $\Gamma(1) = 1$ as well. \\
+
+\noindent Now, let $n$ be a natural number. For the following steps we just use $\bigstar$ repeatedly:
+\begin{align*}
+\Gamma(n) & = (n-1)\Gamma(n-1)  \tag{by $\bigstar$} \\
+	& = (n-1)(n-2)\Gamma(n-2) \tag{as $\Gamma(n-1) = (n-2)\Gamma(n-2)$} \\
+	& = (n-1)(n-2)(n-3)\Gamma(n-3)  \tag{as $\Gamma(n-2) = (n-3)\Gamma(n-3)$}\\
+	& = \ldots \tag{continue applying $\bigstar$ repeatedly} \\
+	& = (n-1)(n-2)(n-3)\times\ldots\times\Gamma(3) \\
+	& = (n-1)(n-2)(n-3)\times\ldots\times2\Gamma(2) \tag{as $\Gamma(3) = 2\Gamma(2)$} \\
+	& = (n-1)(n-2)(n-3)\times\ldots\times2\times1\times\Gamma(1). \tag{as $\Gamma(2) = 1\Gamma(1)$} \\
+	& = (n-1)!  \tag{as $\Gamma(1) = 1$}
+\end{align*}
+Hence $\Gamma(n) = (n-1)!$, as required.
+

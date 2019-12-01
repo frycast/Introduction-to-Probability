@@ -1,0 +1,359 @@
+\chapter{Lecture 11: Hypergeometric distribution}
+In lecture \ref{lect10} we met the Bernoulli distribution with success parameter $p$, and the binomial distribution, Bin($n,p$). Both of these distributions apply to discrete random variables. Now we will meet our third distribution, the hypergeometric distribution, which is also based on a discrete random variable. 
+
+\subsection{Motivating example} \label{ex11.1}
+A fleet of 16 buses are checked for exhaust levels by an environmental agency. The check consists of sampling 8 buses at random from the fleet. There are 2 buses with defective exhaust systems in the fleet. What is the probability that the agency finds the two faulty buses? \\
+
+\noindent \textit{Solution:} \\
+Let $X$ be the discrete random variable counting the number of defective buses inspected. Suppose that the agency samples \textit{with replacement}. Then each of the 8 trials will be identical Bernoulli trials, each trial independently resulting in success with some probability $p$, where ``success'' is detecting a defective bus. So, the process would follow a binomial distribution. Since we know that 2 out of the 16 buses are defective we conclude that
+\[
+p = \frac{2}{16} = \frac{1}{8}
+\]
+So $X \sim$ Bin($8,\frac{1}{8}$). \\
+
+\noindent In which case we would have
+\begin{align*}
+P(X = 2) & = \binom{8}{2}\bfrac{1}{8}^2\brac{1-\frac{1}{8}}^{8-2} \tag{using pmf from Bin$\brac{8,\frac{1}{8}}$}\\
+	      & = \frac{8!}{6!2!}\bfrac{1}{8}^2\bfrac{7}{8}^6 \\
+	      & = \frac{8\times 7}{2} \frac{7^6}{8^8} \tag{index laws} \\
+	      & \approx 0.1963.
+\end{align*}
+However, this scenario is unlikely; the agency is much more likely to avoid checking the same bus twice; i.e., the agency would be conducting sampling \textit{without replacement and without order}. Hence, the Bernoulli trials are not independent from one another. In example \ref{ex10.2.2} we used sampling without replacement and without order to count defective fuses from a pool of 5000 fuses; we used the binomial distribution then, but recall that this approximation was ever so slightly inaccurate. In the current scenario, using the binomial distribution would be far too inaccurate since the size of the sample (2) is relatively large in comparison to the size of the pool of available choices (16). \\
+
+\noindent Let $Y$ be a new discrete random variable counting the number of defective buses. We will derive an expression for the probability that $k$ defective buses are found in the sample, i.e., $P(Y = k)$, using a more realistic distibution for this scenario. \\
+
+\noindent Recall from section \ref{secprobcounting} that if all outcomes are equally likely, then the probability associated with some event $E$ is \\
+\[
+P(E) = \frac{\text{number of outcomes in $E$}}{\text{number of possible outcomes}} \tag{$\star$}
+\]
+\noindent The total number of ways of choosing the 8 buses from the pool of 16 (using unordered sampling without replacement) is,
+\[ 
+\binom{16}{8}.
+\]
+this is the denominator (number of possible outcomes). Now,
+There are 2 defective buses, and the number of ways of choosing $k$ defective buses out of these 2 is
+\[
+\binom{2}{k}.
+\]
+There are $16 - 2 = 14$ non-defective buses. Once we have looked at choosing $k$ defective buses from the 2 defectives, we will have $8-k$ choices left to make from the $14$ non-defectives. The number of ways of choosing $8-k$ buses from $14$ is
+\[
+\binom{14}{8-k}.
+\]
+We have broken the task of sampling buses into two independent stages; we find the $k$ defective buses, then we find the remaining $8-k$ non-defective buses. So, according to the multiplication rule (section \ref{secmult}), the total number of ways of completing both tasks is
+\[
+\binom{2}{k}\binom{14}{8-k},
+\]
+this is the number of outcomes in $\set{Y = k}$. Hence, using ($\star$),
+\[
+P(Y = k) =\frac{\text{no. outcomes in $\set{Y=k}$}}{\text{number of possible outcomes}} = \frac{\displaystyle{\binom{2}{k}\binom{14}{8-k}}}{\displaystyle{\binom{16}{8}}}.
+\]
+In particular,
+\begin{align*}
+P(Y = 2) & = \frac{\binom{2}{2}\binom{14}{8-2}}{\binom{16}{8}} \\
+	      & = \frac{\displaystyle{\frac{2!}{2!0!}\frac{14!}{8!6!}}}{\displaystyle{\frac{16!}{8!8!}}} \\
+	      & = \frac{14!}{8!6!}\frac{8!8!}{16!} \\
+	      & = \frac{8!}{6!16\times15} \tag{cancelling common factors}\\
+	      & = \frac{8\times7}{16\times15} \tag{cancelling common factors}\\
+	      & = \frac{1\times7}{2\times15}  \tag{cancelling common factors}\\
+	      & = \frac{7}{30}.
+\end{align*}
+
+\subsection{The hypergeometric distribution} \label{hypergeometric distribution}
+If we generalise the derivation from the previous example, we get the hypergeometric distribution: Consider a population of $N$ individuals of two types, $A$ and $B$, where there are $M$ individuals of type $A$; and hence there are $N - M$ of the other type (type $B$). A random sample of size $n$ is drawn \textit{without replacement}. Let $X$ be the number of individuals of type $A$ in the sample. Then
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.5\columnwidth}{
+	
+	\vskip 0.1cm
+	\begin{center}
+	$\displaystyle{P(X = k) = p(k) = \frac{\displaystyle{\binom{M}{k}\binom{N-M}{n-k}}}{\displaystyle{\binom{N}{n}}}}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+	\bigskip
+
+\noindent This is the probability mass function (pmf) of $X$. \textbf{The values of $\boldsymbol{k}$ must be ``sensible'' compared to $\boldsymbol{M, N - M}$ and $\boldsymbol{n}$}, so that the binomial coefficients all exist (e.g., we can not have $k > M$). \\
+
+\noindent In the previous example (example \ref{ex11.1}), we used $N = 16$; type $A$ was ``defective buses'' and type $B$ was ``non-defective'' buses; we had $M = 2$ individuals of type $A$ and hence $N - M = 14$ individuals of type $B$. The sample size was $n = 8$. You are encouraged to check that this general formula for the pmf of the hypergeometric distribution reduces to the result in example \ref{ex11.1} when we choose these values for the parameters. \\
+
+\noindent We say that $X$ is distributed according to the \textbf{hypergeometric distribution with parameters $\boldsymbol{N, M}$ and $\boldsymbol{n}$}. We write Hypergeometric($N,M,n$), which can be abbreviated Hypergeom($N,M,n$). A population containing two types of individuals is sometimes described as \textbf{dichotomous}. \label{dichotomous} \\
+
+\noindent A population may not immediately appear to be of two types only. But if there is only one attribute of interest $A$, then we can classify all other individuals to be of type ``not having attribute $A$;'' then the hypergeometric distribution applies.
+
+\subsection{Example}
+\noindent \textbf{Question 1:} Consider a population of 20, in which 17 are of type $A$, and half are sampled without replacement. What are the possible values for $k$? \\
+
+\noindent \textit{Solution:} \\
+This example has $N = 20, M = 17$ and $n = \frac{N}{2} = 10$. We need to take a look at the pmf of Hypergeom($20,17,10$). We have,
+\[
+p(k) = \frac{\displaystyle{\binom{17}{k}\binom{3}{10-k}}}{\displaystyle{\binom{20}{10}}}
+\]
+Our requirement for $k$ is that it is chosen in such a way that the binomial coefficients exist. For $\binom{17}{k}$ to exist we need 
+\[
+k \leq 17.
+\] 
+For $\binom{3}{10-k}$ to exist we need $10 - k \leq 3$. Using the rules for manipulating inequalities (section \ref{secinecrule}), we can simplify this to
+\[
+10 - k \leq 3 \;\;\; \text{implies} \;\;\; 10 \leq 3 + k \;\;\; \text{implies} \;\;\; 10 - 3 \leq k.
+\]
+So we require $k \geq 7$. But this is not all we need for $\binom{3}{10-k}$ to exist; we also require $k \leq 10$ (so that $10-k$ is not a negative number). Hence $7 \leq k \leq 10$. So, the possible values for $k$ are
+\[
+k \in \set{7,8,9,10}.
+\]
+\bigskip
+
+\noindent \textbf{Question 2:} Consider a population of 20, in which 3 are of type $A$, and half are sampled without replacement. What are the possible values for $k$? \\
+
+\noindent \textit{Solution:} \\
+In this case we need to look at the pmf of Hypergeom($20,3,10$),
+\[
+p(k) = \frac{\displaystyle{\binom{3}{k}\binom{17}{10-k}}}{\displaystyle{\binom{20}{10}}}
+\]
+For $\binom{3}{k}$ to exist we require 
+\[
+k \leq 3.
+\]
+For $\binom{17}{10-k}$ to exist we require $10-k \leq 17$ and we require $k \leq 10$. Using the rules for manipulating inequalities we have
+\[
+10 - k \leq 17 \;\;\; \text{implies} \;\;\; 10 \leq 17 + k \;\;\; \text{implies} \;\;\; 10 - 17 \leq k.
+\]
+So we require $k \geq -7$. But we cannot have a negative number of individuals of type $A$ in our sample so $k \geq 0$ anyway. Hence $k \geq 0$ and (from the previous result) $k \leq 3$. So the possible values for $k$ are
+\[
+k \in \set{0,1,2,3}.
+\]
+
+\subsubsection{A formula for the possible values for $k$}
+Looking at the pmf of the hypergeometric distribution with your chosen parameters is a perfectly good way to find the possible values for $k$. However, if you want to use the following formula, it could be a quicker way to achieve the same result (or check that your working out has been accurate). \\
+
+\noindent Looking at the pmf of Hypergeom($N,M,n$) in the box on page \pageref{hypergeometric distribution} we can see that for $\binom{N-M}{n-k}$ to exist we need
+\[
+n - k \leq N - M \;\;\; \text{implies} \;\;\; n - N + M \leq k.
+\]
+We also need $0 \leq k$. So, whichever is the maximum out of $0$ and $n - N + M$ will be the lowest possible value for $k$, i.e., 
+\[
+\text{max}\set{0,n - N + M} \leq k.
+\] 
+But this is not all we need for $\binom{N-M}{n-k}$ to exist; we also need $n-k$ to be non-negative, so we need $k \leq n$. Now, for $\binom{M}{k}$ to exist we need $k \leq M$. So, whichever is the minimum out of $n$ and $M$ will be the highest possible value for $k$, i.e.,
+\[
+k \leq \text{min}\set{n,M}.
+\] 
+Putting these two results together we get
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.5\columnwidth}{
+	
+	\vskip 0.1cm
+	\begin{center}
+	$\text{max}\set{0,n-N+M} \leq k \leq \text{min}\set{n,M}.$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+	\bigskip
+
+\noindent If we plug in $N  =20, M = 17,$ and $n = 10$ (from qustion 1) we get
+\[
+\text{max}\set{0,10-20+17} \leq k \leq \text{min}\set{10,17}.
+\]
+Which simplifies to
+\[
+7 \leq k \leq 10
+\]
+Which is the result we had previously. \\
+
+\noindent If we plug in $N = 20, M = 3,$ and $n = 10$ (from question 2) we get
+\[
+\text{max}\set{0,10-20+3} \leq k \leq \text{min}\set{10,3}.
+\]
+Which simplifies to
+\[
+0 \leq k \leq 3.
+\]
+Which is the result we had previously.
+
+\subsection{Example}
+From a group of 20 graduates, 10 are randomly selected for interview. What is the probability that the 10 selected includes the 5 best graduates? \\
+
+\noindent \textit{Solution:} \\
+Let $X$ be the discrete random vaiable that counts the number of ``5 best graduates'' that are in the sample. We have a population of $N = 20$ individuals, which can be split into two types, $A$ and $B$, with $A$ being the 5 best graduates and $B$ denoting the rest. There are $M = 5$ individuals of type $A$; and hence there are $N - M = 20 - 5 = 15$ of type $B$. A sample size of $n =  10$ are selected \textit{without replacement}; hence this is a hypergeometric distribution, i.e., $X \sim $ Hypergeom($20,5,10$). \\
+
+\noindent We wish to find $P(X = 5)$. Using the pmf for Hypergeom($20,5,10$) we have
+\begin{align*}
+P(X = 5) & = \frac{\displaystyle{\binom{5}{5}\binom{20-5}{10-5}}}{\displaystyle{\binom{20}{10}}} \\
+	     & = \frac{\binom{15}{5}}{\binom{20}{10}} \\
+	     & = \frac{15!}{10!5!}\times\frac{10!10!}{20!} \\
+	     & = \frac{15!10!}{20!5!} \\
+	     & = \frac{10\times9\times8\times7\times6}{20\times19\times18\times17\times16} \tag{cancelling common factors} \\
+	     & = \frac{7\times6}{2\times19\times2\times17\times2} \tag{cancelling common factors} \\
+	     & = \frac{7\times3}{19\times2\times17\times2} \tag{cancelling common factors} \\
+	     & = \frac{21}{1292}.
+\end{align*}
+
+
+\subsection{Checking validity of Hypergeom($\boldsymbol{N,M,n}$)}
+We should check that the pmf of the hypergeometric distribution satisfies the 3 probability measure axioms. Here we will only check that the probabilities sum to 1 (axiom 1). Axiom 3 does not need to be checked (see section \ref{validity of bin}), and axiom 2 is left to the reader to check. \\
+
+\noindent We wish to show that
+\[
+\sum_{k=0}^n \frac{\binom{M}{k}\binom{N-M}{n-k}}{\binom{N}{n}} = 1.
+\]
+Which can be rearranged to
+\[
+\sum_{k=0}^n \binom{M}{k}\binom{N-M}{n-k} = \binom{N}{n} \tag{$\star$}
+\]
+Hence we just need to show that this formula, ($\star$), is true, then it follows that the probabilities sum to 1. 
+Consider the expression
+\[
+(1+x)^2(1+x)^3 = (1+x)^5 \tag{using index laws}
+\]
+Using the binomial theorem (see section \ref{secbinom}) to expand the brackets on the left hand side we get
+\[
+\squac{\binom{2}{0} + \binom{2}{1}x + \binom{2}{2}x^2}\squac{\binom{3}{0} + \binom{3}{1}x + \binom{3}{2}x^2 + \binom{3}{3}x^3} = (1+x)^5
+\]
+If we expand the brackets of this expression on the left hand side we will find that the coefficient of $x^3$ is
+\[
+\binom{2}{0}\binom{3}{3} + \binom{2}{1}\binom{3}{2} + \binom{2}{2}\binom{3}{1}.
+\]
+This should match the coefficient of $x^3$ that we get from expanding the right hand side. Using the binomial theorem to expand the right hand side we get
+\[
+(1+x^5) = \binom{5}{0} + \binom{5}{1}x + \binom{5}{2}x^2 + \binom{5}{3}x^3 + \binom{5}{4}x^4 + \binom{5}{5}x^5. 
+\]
+The coefficient of $x^3$ is $\binom{5}{3}$. So we conclude that
+\[
+\binom{2}{0}\binom{3}{3} + \binom{2}{1}\binom{3}{2} + \binom{2}{2}\binom{3}{1} = \binom{5}{3}.
+\]
+Which can be rewritten as
+\[
+\sum_{k = 0}^n \binom{2}{k}\binom{5-2}{3-k} = \binom{5}{3}.
+\]
+Which is exactly the formula, ($\star$), which we wanted to prove
+\[
+\sum_{k=0}^n \binom{M}{k}\binom{N-M}{n-k} = \binom{N}{n}
+\]
+with $M = 2, N = 5$ and $n = 3$. \\
+
+\noindent This is, in no shape or form, a proof that $(\star)$ is true in general; we just looked at one particular case, rather than the general case. However, the general case can be proved using what we have done here as a guideline.
+
+\section{Relationship between Hypergeom($N,M,n$) and Binom($n,p$)}
+In example \ref{ex10.2.2} we used the binomial distribution for a scenario (counting defective fuses from a pool of 5000 fuses) in which the hypergeometric distribution would have technically been more accurate; yet we stated that the error caused by this choice would be negligable (as the sample size was small in comparison to the population). \\
+
+\noindent Suppose we let the size of the population get very large, so that $N \rightarrow \infty$, then we let $M$ grow accordingly so that $\frac{M}{N}$ remains constant. We will now show that, in this case, the hypergeometric distribution approaches the binomial distribution, with $p = \frac{M}{N}$. \\
+
+\noindent Consider the expression
+\[
+\frac{P(X = k)}{P(X = k+1)}.
+\]
+Letting $X \sim$ Binom($n,p$) we get
+\begin{align*}
+\frac{P(X = k)}{P(X = k+1)} & = \frac{\binom{n}{k}p^k(1-p)^{n-k}}{\binom{n}{k+1}p^{k+1}(1-p)^{n-k-1}} \tag{note that $n-(k+1) = n-k-1$} \ssk
+	& = \frac{\binom{n}{k}}{\binom{n}{k+1}}\frac{(1-p)^{n-k-(n-k-1)}}{p^{k+1-k}} \tag{index laws} \ssk
+	& =  \frac{\binom{n}{k}}{\binom{n}{k+1}}\frac{(1-p)}{p} \tag{since $n-k-(n-k-1) = 1$ and $k+1-k = 1$} \ssk
+	& = \frac{\displaystyle{\frac{n!}{(n-k)!k!}}}{\displaystyle{\frac{n!}{(n-k-1)!(k+1)!}}}\frac{(1-p)}{p} \tag{expanding the coefficients} \ssk
+	& = \frac{\displaystyle{\frac{1}{(n-k)!k!}}}{\displaystyle{\frac{1}{(n-k-1)!(k+1)!}}}\frac{(1-p)}{p} \tag{cancelling the $n!$} \bsk
+	& = \frac{(n-k-1)!(k+1)!}{(n-k)!k!}\frac{(1-p)}{p} \tag{simple algebra of fractions} \ssk
+	& = \frac{k+1}{n-k} \frac{(1-p)}{p}. \qquad (\bigstar) \tag{cancelling common factors}
+\end{align*}
+If you are confused about the final step you are encouraged to write out the expression then expand the factorials, e.g., looking at $(n-k-1)!$ in the numerator, we have $(n-k-1)! = (n-k-1)\times(n-k-2)\times\ldots\times2\times1$ and looking at $(n-k)!$ in the denominator, we have $(n-k)! = (n-k)\times(n-k-1)\times\ldots\times2\times1$; you will then be able to see that most of the terms cancel, i.e.,
+\[
+\frac{(n-k-1)!}{(n-k)!} = \frac{(n-k-1)\times(n-k-2)\times\ldots\times2\times1}{(n-k)\times(n-k-1)\times\ldots\times2\times1} = \frac{1}{n-k}
+\]
+And
+\[
+\frac{(k+1)!}{k!} = \frac{(k+1)\times k \times \ldots \times 2 \times 1}{k \times (k-1) \times \ldots \times 2 \times 1} = k+1.
+\]
+If you are still not convinced then try it with some concrete values for $k$ and $n$; it might jog your intuition to look at some specific cases (i.e., try $k = 3$ and $n = 8$).
+
+\noindent Now, let $Y \sim$ Hypergeom($N,M,n$). Then we get,
+\begin{align*}
+\frac{P(Y = k)}{P(Y = k+1)} & = \frac{\binom{M}{k}\binom{N-M}{n-k}}{\binom{N}{n}} \times \frac{\binom{N}{n}}{\binom{M}{k+1}\binom{N-M}{n-k-1)}} \\
+	& = \frac{\binom{M}{k}\binom{N-M}{n-k}}{\binom{M}{k+1}\binom{N-M}{n-k-1)}} \tag{cancelling the $\binom{N}{n}$} \ssk
+	& = \frac{\displaystyle{\frac{M!}{(M-k)!k!}\frac{(N-M)!}{(N-M-(n-k))!(n-k)!}}}{\displaystyle{\frac{M!}{(M-(k+1))!(k+1)!}\frac{(N-M)!}{(N-M-(n-k-1))!(n-k-1)!}}} \tag{expanding the coefficients} \bsk
+	& =  \frac{\displaystyle{\frac{1}{(M-k)!k!}\frac{1}{(N-M-(n-k))!(n-k)!}}}{\displaystyle{\frac{1}{(M-(k+1))!(k+1)!}\frac{1}{(N-M-(n-k-1))!(n-k-1)!}}} \tag{cancelling $M!$ and $(N-M)!$} \bsk
+	& = \frac{(M-(k+1))!(k+1)!(N-M-(n-k-1))!(n-k-1)!}{(M-k)!k!(N-M-(n-k))!(n-k)!} \tag{simple algebra of fractions} \bsk
+	& = \frac{(k+1)}{(n-k)}\frac{(N-M-(n-k-1))}{(M-k)} \tag{cancelling common factors}
+\end{align*}
+To fully grasp the previous step you are encouraged, again, to write out the expression, expand the factorials, and see that many of the terms cancel. \\
+
+\noindent Now, if we divide the numerator and the denominator of this expression by $N$ we get
+\begin{align*}
+\frac{(k+1)}{(n-k)}\frac{(N-M-(n-k-1))}{(M-k)}
+	& = \frac{(k+1)}{(n-k)}\frac{(N-M-(n-k-1))}{(M-k)} \times \frac{1/N}{1/N} \\
+	& = \frac{(k+1)}{(n-k)}\frac{(\frac{N}{N}-\frac{M}{N}-\frac{(n-k-1)}{N})}{(\frac{M}{N}-\frac{k}{N})} \\
+	& = \frac{(k+1)}{(n-k)}\frac{(1-p-\frac{(n-k-1)}{N})}{(p-\frac{k}{N})} \tag{since we let $p = \frac{M}{N}$.}
+\end{align*}
+Now as $N \rightarrow \infty$, the terms with $N$ in the denominator will approach zero. So, as long as we fix $p$ to remain constant we get
+\[
+\lim_{N\rightarrow\infty}\brac{\frac{(k+1)}{(n-k)}\frac{(1-p-\frac{(n-k-1)}{N})}{(p-\frac{k}{N})}} = \frac{(k+1)}{(n-k)}\frac{1-p}{p}.
+\]
+Which is exactly our expression labelled ($\bigstar$) that we obtained from the pmf of the binomial distibution. So we have
+\[
+\frac{P(X=k)}{P(X=k+1)} = \frac{P(Y=k)}{P(Y = k+1)}. \label{unfinished1}
+\]
+
+\subsection{A nice symmetry property}
+The hypergeometric distribution has many nice symmetry properties. We will now show just one of these properties. \\
+
+\noindent Let $X$ be a discrete random variable with $X \sim$ Hypergeom($N,M,n$). \\
+
+\noindent Let $Y$ be a discrete random variable counting the number of \textit{type $B$} found in a population of size $N$, which has $M$ individuals of type $A$. There are $N - M$ members of type $B$, so $Y \sim$ Hypergeom($N,N-M,n$). Suppose we want to find $P(Y = n - k)$. To find this, we can look at the pmf of Hypergeom($N,M,n$) and replace $M$ with $N - M$, and replace $k$ with $n - k$. We get
+\begin{align*}
+P(Y = n-k) & = \frac{\displaystyle{\binom{N - M}{n - k}\binom{N-(N - M)}{n-(n - k)}}}{\displaystyle{\binom{N}{n}}} \bsk
+ 		& = \frac{\displaystyle{\binom{N - M}{n - k}\binom{N-N + M}{n - n + k}}}{\displaystyle{\binom{N}{n}}} \bsk
+ 		& = \frac{\displaystyle{\binom{N - M}{n - k}\binom{M}{k}}}{\displaystyle{\binom{N}{n}}} \bsk
+ 		& = \frac{\displaystyle{\binom{M}{k}\binom{N - M}{n - k}}}{\displaystyle{\binom{N}{n}}} \bsk
+ 		& = P(X = k).
+\end{align*}
+So, the probability of finding $n - k$ members of type $B$, is equal to the probability of finding $k$ members of type $A$.
+
+ 
+\subsection{Example} \label{unfinished2}
+``Capture-recapture'' is a method used to estimate the sizes of animal populations. Researches will capture $r$ animals, tag them, and then release them. Later on, a random sample of $n$ animals is captured and the number of tagged animals among them is noted; we will let $Y$ denote the number of tagged animals found in this sample of size $n$. \\
+
+\noindent This is a case of random sampling without replacement. $Y$ has a hypergeometric distribution which depends on $N$, the population size, which is unknown. \\
+
+\noindent The observed values of $Y$ can then be used to get information about $N$. \\
+
+\noindent \textbf{Question:} Suppose that $M = 4$ animals are tagged and released. Later $n = 3$ animals are captured at random from the same population. Find $P(Y=1)$ as a function of $N$.  \\
+
+\noindent \textit{Solution:} \\
+We have $Y \sim$ Hypergeom($N,4,3$). So
+\begin{align*}
+P(Y = 1) & = \displaystyle{\frac{\displaystyle{\binom{4}{1}\binom{N-4}{2}}}{\displaystyle{\binom{N}{3}}}} \ssk
+	      & = \frac{4!}{3!1!}\frac{(N-4)!}{(N-4-2)!2!}\times\frac{(N-3)!3!}{N!} \ssk
+	      & = \frac{4!}{3!}\frac{3!}{2!}\frac{(N-4)!(N-3)!N!}{(N-6)!} \tag{just rearranging} \ssk
+	      & = \frac{4!}{2!}\frac{(N-3)!N!}{(N-6)(N-5)} \tag{cancelling some common factors} \ssk
+	      & = 12\frac{(N-3)!N!}{(N-6)(N-5)}.
+\end{align*}
+In actual capture recapture methods, $P(Y = k)$ is expressed as a function of $N$, then some techniques (which are usually covered in a subject on analysis) are used to find the value of $N$ which maximises $P(Y = k)$. This number is then called the ``\textit{maximum likelihood estimate of $N$};'' it is taken as the most likely population size.
+
+\subsection{Example}
+There are $n$ people in a room. What is the probability that at least two of them share a birthday? How many people do there have to be for the probability that 2 of them have the same birthday to exceed 0.5? \\
+
+\noindent \textit{Solution:} \\
+Let $A$ be the event that at least two of them share a birthday. Then $A^c$ is the event that none of them share a birthday. It will be easier for us to start by finding $P(A^c)$. \\
+
+\noindent Recall that for some event $E$, where all outcomes in the sample space are equally likely, we have (from section \ref{secprobcounting})
+\[
+P(E) = \frac{\text{Number of outcomes in $E$}}{\text{Number of possible outcomes}}
+\]
+So suppose I start by writing down the first person's birthday; the probability that his or her birthday is not already on my list is $\frac{365}{365}$. I then write down the second person's birthday; the probability that his or her birthday is not on my list is $\frac{364}{365}$. Then the third person, $\frac{363}{365}$; and so on. After asking $n$ people I get (using the multiplication rule)
+\begin{align*}
+P(A^c) & = \frac{365}{365}\times\frac{364}{365}\times\frac{363}{365}\times\ldots\times\frac{365-(n-1)}{365} \\
+	   & = \frac{365\times364\times\ldots\times(365-n+1)}{365^n}
+\end{align*}
+To understand why we stopped at $365 - (n - 1)$ think about how we made $n$ choices corresponding to $n$ people, and on the first choice we had $365 - 0$ in the numerator. So on the first choice we subtracted $1-1 = 0$; on the second choice we subtracted $2-1 = 1$; on the third choice we subtracted $3-1 = 2$; so on the $n^\text{th}$ choice we subtract $n - 1$. \\
+
+\noindent Now, we have an expression for $P(A)$, but we need an expression for $P(A^c)$. For this we can use the fact that
+\[
+P(A) = 1 - P(A^c) = 1 - \frac{365\times364\times\ldots\times(365-n+1)}{365^n}.
+\]
+Finally, we want to know how many people, $n$, that we need to ask for the probability to exceed $0.5$. That is, we need to solve for $n$ in the expression,
+\[
+0.5 \leq 1 - \frac{365\times364\times\ldots\times(365-n+1)}{365^n}.
+\]
+This would normally be a relatively easy task, but this expression cannot be solved for $n$ using logarithms (try it). One alternative method is to generate a table of values pertaining to a range of different choices for $n$, and to decide which values of $n$ return a probability greater than $0.5$. According to a table of values that was generated on the statistical software package Rice, the minimum number of people that we have to ask is $n = 23$.

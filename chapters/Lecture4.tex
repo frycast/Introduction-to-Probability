@@ -1,0 +1,469 @@
+\chapter{Lecture 4: Sequences and limits}
+%PARTLY STRAIGHT OUT OF THE LECTURES
+When we introduced sets (see section \ref{axioms}), we mentioned that the order of the elements in a set is not important, and that repetition is not allowed. A sequence, on the other hand, is an \textbf{ordered list} in which \textbf{repetition of elements is allowed}. A sequence can be specified either by \label{sequence}
+\begin{itemize}
+\item
+Listing the values; or,
+\item
+Giving a rule for calculating the values.
+\end{itemize}
+So that we can keep record of the order of the elements in a sequence, we give each element a label. The labels are the natural numbers $\N$; that is, the labels are elements from the set $\set{1,2,3,4,\ldots}$. Sometimes we label starting from $0$ rather than $1$, in which case the labels are elements from the set $\set{0,1,2,3,\ldots}$. We refer to this labelling set as the \textbf{index set} for the sequence. \label{index set}
+
+\subsection{Example} \label{example4}
+What is the fourth term in each of the following sequences? For $k \in \N,$ what general rule can we use to specify the $k^{\text{th}}$ term? 
+\begin{enumerate}[(i)]
+\item $2,4,6,8,10,\ldots$
+\item $-2,4,-8,16,-32,\ldots$
+\item $\displaystyle{\frac{1}{2},\frac{1}{3},\frac{1}{4},\frac{1}{5},\frac{1}{7},\ldots}$
+\end{enumerate}
+Solutions:
+\begin{itemize}
+\item In (i), the fourth term is $8$ and the $k^{\text{th}}$ term is given by $2k$,
+\item In (ii), the fourth term is $16$ and the $k^{\text{th}}$ term is given by $(-2)^k$,
+\item In (iii), the fourth term is $\frac{1}{5}$ and the $k^{\text{th}}$ term is given by $\displaystyle{\frac{1}{k+1}}$.
+\end{itemize}
+You can check that the $k^{\text{th}}$ term is given correctly by substituting the values $k = 1,2,3,4 \; \text{or} \; 5$ into the rule for the sequence, then comparing your result to the elements in the sequence. For example, to find the third term in sequence (ii) we substitute $k = 3$ into the rule for sequence (ii), giving $(-2)^3 = 8$, which is the third term in sequence (ii), as required.
+
+\subsection{Application of sequences in statistics} \label{ass}
+%STRAIGHT FROM LECTURES
+Statisticians often label events using natural numbers, since doing so is intuitive and useful; the probabilities of the events can then be given by a rule based on those natural numbers. For example, consider the probability that a patient will respond to treatment with a new drug after $k$ doses, where $k \in \set{1,2,3,\ldots}$. We have just labelled a set of events using natural numbers. We may find that the probability of responding on a given dose starts at some value, $b$, and decreases by a factor of one half with each dose. So, the ordered list of probabilities forms a sequence
+\[
+b,\frac{b}{2}, \frac{b}{4}, \frac{b}{8}, \frac{b}{16}, \frac{b}{32}, \ldots
+\]
+\textbf{Notation:} \\
+One way to label the terms of a sequence is to think of the sequence as a function. A sequence can be thought of as a \textbf{function whose domain is the natural numbers and whose codomain is the real numbers} (recall section \ref{sectionfunctions} on page \pageref{sectionfunctions}). This means that we can use the same notation that we use for functions,
+\[
+s(k) = (\text{rule in terms of $k$}), \qquad \text{where} \; k \in \N \label{s(k)}
+\]
+Then the sequence above representing the effectiveness of drug dosages has elements
+\[
+s(1) = b,\;\;\;\; s(2) = \frac{b}{2}, \;\;\;\; s(3) = \frac{b}{4} \qquad \text{and} \qquad s(k) = \frac{b}{2^k}.
+\]
+\subsection{Example} \label{s(k)u(n)}
+%THIS EXAMPLE EXACTLY SAME AS LECTURES
+Consider the following two sequences $s(k)$ and $u(n)$. The first sequence has been specified by giving a rule in terms of $k$, where $k \in \N$. The second sequence has been specified by giving a rule in terms of $n$, where $n \in \N$.
+\begin{itemize}
+\item
+$s(k) = \displaystyle{\frac{1}{k!}}$
+\item
+$u(n) = \displaystyle{\frac{n}{n+1}}$
+\end{itemize}
+Find the first three terms of each of the two sequences. \\
+
+Solution: \\
+Evaluating $s(k)$ for $k = 1,2,3$ gives
+\[
+s(1) = \frac{1}{1!} = 1, \qquad s(2) = \frac{1}{2!} = \frac{1}{2\times 1} = \frac{1}{2}, \qquad s(3) = \frac{1}{3!} = \frac{1}{3\times 2 \times 1} = \frac{1}{6}.
+\]
+Evaluating $u(n)$ for $n = 1,2,3$ gives
+\[
+u(1) = \frac{1}{1+1} = \frac{1}{2}, \qquad u(2) = \frac{2}{2+1} = \frac{2}{3},\qquad u(3) = \frac{3}{3+1} = \frac{3}{4}.
+\]
+
+
+\subsection{The limit of a sequence, convergence, and divergence} \label{sectionlimit}
+%SOME WORDS STRAIGHT FROM LECTURE
+Have another look at the first three terms of the sequences $s(k)$ and $u(n)$ from example \ref{s(k)u(n)} above. What do you notice about the terms of $s(k)$ as $k$ gets larger? What about $u(n)$? \\
+
+\noindent It appears that the terms of $s(k)$ are getting closer to zero, while the terms of $u(n)$ are getting closer to 1. What do you think will happen as $k$ and $n$ get extremely large? Well, when $k$~and~$n$ both equal 100 we get
+\[
+s(100) = \frac{1}{100!}, \qquad u(100) = \frac{100}{101}
+\]
+We mentioned in example \ref{80books} that $80!$ is greater than the estimated number of atoms in the known universe. So, $100!$ is a huge number. This means that 1/(100!) is an extremely small number, very close to zero; if you type it into a calculator it will probably return zero. On the other hand, 100/101 is a number very close to 1 (in decimal form it is approximately 0.99). \\
+
+%OUT OF LECTURES
+In general, the behaviour of the terms in a sequence as the index gets very large could be:
+\begin{enumerate}[(1)]
+\item The terms approach a fixed non-zero value (e.g., 1 or 12, or -16);
+\item The terms get very small (approach 0);
+\item The terms fluctuate from positive to negative or do not have any particular behaviour;
+\item The terms get very large (approach infinity, ``$\infty,$'' or negative infinity, ``$-\infty$''). \label{symbinfty} \label{limit sequence}
+\end{enumerate}
+
+\noindent If a sequence satisfies (1) or (2), that is, if a sequence approaches some fixed value $x$, then we say that the sequence has a \textbf{limit}. To write this more succinctly, we introduce the ``$\rightarrow$'' symbol which translates (roughly) to ``approaches.'' We write
+\[
+\boldsymbol{\textbf{If, as} \;\; k \rightarrow \infty, \;\;\; s(k) \rightarrow x, \;\; \textbf{then} \;\; \lim_{k \rightarrow \infty}s(k) = x.} \label{symbrightarrow}
+\]
+This can be read, ``if, as $k$ approaches infinity, $s(k)$ approaches $x$, then the limit of $s(k),$ as $k$ approaches infinity, is equal to $x$.'' On the other hand, if (3) or (4) is true, that is, if the terms of the sequence approach infinity or if the terms have no particular behaviour, then we say that the \textbf{limit does not exist.} \\
+
+\noindent When the limit exists (i.e., in cases (1) and (2)), we say that a sequence is \textbf{convergent}. \\ When the limit does not exist (i.e., in cases (3) and (4)), we say that a sequence is \textbf{divergent}. \label{convergent} \label{divergent}
+
+
+\subsection{Example}
+The two sequences $s(k)$ and $u(n)$ from section \ref{sectionlimit} above both have limits. That is,
+\[
+\text{as} \;\; k \rightarrow \infty, \;\;\; s(k) \rightarrow 0, \;\; \text{so} \;\; \lim_{k \rightarrow \infty}s(k) = 0;
+\]
+and,
+\[
+\text{as} \;\; n \rightarrow \infty, \;\;\; u(n) \rightarrow 1, \;\; \text{so} \;\; \lim_{n \rightarrow \infty}u(n) = 1.
+\]
+In example \ref{example4}, sequence (i) has no limit. Sequence (i) has $k^{\text{th}}$ term given by $2k$, and as $k \rightarrow \infty$, $2k \rightarrow \infty$. So sequence (i) satisfies (4), and thus the limit of sequence (i) does not exist. \\
+
+\noindent Again, from example \ref{example4}, sequence (ii) has no limit. Sequence (ii) has $n^{\text{th}}$ term given by $(-2)^n.$ Recall that the first few terms of sequence (ii) were
+\[
+-2,4,-8,16,-32,\ldots
+\]
+
+\noindent So, as $n \rightarrow \infty$ the terms of sequence (ii) will continue to fluctuate from negative to positive. This means that sequence (ii) satisfies (3); so, as $n  \rightarrow \infty$ the limit of sequence (ii) does not exist.
+
+\subsection{Useful facts about limits of sequences} \label{limitfacts}
+\vspace{0.5cm}
+\textbf{A special sequence:} \\
+Consider the sequence $a^k$, where $a$ is a real number (i.e., $a \in \R$) and $k$ is a natural number (i.e., $k \in \N$). This sequence looks like
+\[
+a, a^2, a^3, a^4, \ldots
+\]
+\textbf{Fact 1:} If $-1 < a < 1$ (in other words, if $|a| < 1$), then the sequence $a^k$ converges. \\
+\textbf{Fact 2:} If $a < -1$ or $a > 1$ (in other words, if $|a| > 1$), then the sequence $a^k$ diverges. \\
+
+\vspace{0.5cm}
+\noindent \textbf{Multiplying sequences:} \\
+\noindent Another useful result allows us to multiply two convergent sequences together and find the limit. Suppose we have two sequences, $\nu(x)$ and $t(x)$, such that
+\[
+\lim_{x \rightarrow \infty}\nu(k) = a \qquad \text{and} \qquad \lim_{x \rightarrow \infty}t(n) = b.
+\]
+Then we can create a new sequence $p(x)$ by defining $p(x) = \nu(x)t(x)$ for all $x \in \N$. In other words, we just multiply $\nu(x)$ by $t(x)$ to get the elements of $p(x)$. So $p(x)$ would look like
+\[
+p(1) = \nu(1)t(1), \qquad p(2) = \nu(2)t(2), \qquad p(3) = \nu(3)t(3), \;\;\; \ldots
+\]
+\textbf{Fact 3:} The limit as $x$ approaches infinity of $p(x)$ is the product of the limits of $\nu(x)$ and $t(x)$. So in other words
+\[
+\lim_{x \rightarrow \infty}(\nu(x)t(x)) = \brac{\lim_{x \rightarrow \infty}\nu(x)}\times \brac{\lim_{x \rightarrow \infty}t(x)} = ab
+\]
+
+\subsection{Example} \label{ex4010}
+Suppose that 
+\[
+\nu(n) = 3 + \frac{1}{n^2} \qquad \text{and} \qquad t(n) = \frac{2n}{3n + 1}
+\]
+Then their product is the sequence $p(n)$ with
+\[
+p(n) = \brac{3 + \frac{1}{n^2}}\brac{\frac{2n}{3n + 1}}
+\]
+What is the limit, as $n$ approaches infinity, of $p(n)$? \\
+
+\noindent Firstly, we know from fact 3 in section \ref{limitfacts} above, that
+\[
+\lim_{n \rightarrow \infty}p(n) = \brac{\lim_{n \rightarrow \infty}\nu(n)}\times\brac{\lim_{n \rightarrow \infty}t(n)}
+\]
+Consider $\nu(n),$ \\
+As $n$ gets very large, $\frac{1}{n^2}$ approaches 0, so $3 + \frac{1}{n^2}$ approaches $3 + 0 = 3.$ We conclude that $\displaystyle{\lim_{n \rightarrow \infty}\nu(n) = 3}$ \\
+
+\noindent Now consider $t(n)$, \\
+Recall that $t(n) = \frac{2n}{3n+1}$. Let's see what happens when we substitute in some large values for $n$,
+\[
+t(20) = \frac{2\times20}{3\times20+1} = \frac{40}{61},\;\; \;\;\;\;\; t(50) = \frac{100}{151}, \;\;\;\;\;\;\; t(100) = \frac{200}{301}, \;\;\;\;\;\;\; t(1000) = \frac{2000}{3001}
+\]
+The ratio of $2n$ to $3n+1$ is getting closer and closer to $\frac{2n}{3n}$ as $n$ gets larger. This is because, in the denominator we are adding a finite number, 1, to $n$, and $n$ is allowed to grow infinitely large; this means that eventually $n$ will always be relatively far larger than $1$, so the difference that adding $1$ makes to the overall fraction will become infinitely small. 
+ So $\frac{2n}{3n+1}$ will be approximately equal to $\frac{2n}{3n} = 2/3.$ We conclude that $\displaystyle{\lim_{n \rightarrow \infty}t(n) = 2/3.}$ \\
+ 
+There is another way to look at this: We can divide both the numerator and the denominator of $t(n)$ by $n$. This wont change the value of the fraction, because we are doing the same thing to the numerator as we are to the denominator. So,
+\[
+t(n) = \frac{2n/n}{(3n+1)/n} = \frac{2}{3n/n + 1/n} = \frac{2}{3 + 1/n}.
+\]
+As $n$ gets infinitely large, the expression $1/n$ will approach 0. So $\frac{2}{3+1/n}$ approaches~$\frac{2}{3 + 0}~=~2/3$. Again, we conclude that $\displaystyle{\lim_{n \rightarrow \infty}t(n) = 2/3.}$ \\
+
+\noindent Now that we have the limits for both $\nu(n)$ and $t(n),$ we can find the limit of their product $p(n)$. Recall that,
+\[
+\lim_{n \rightarrow \infty}p(n) = \brac{\lim_{n \rightarrow \infty}\nu(n)}\times\brac{\lim_{n \rightarrow \infty}t(n)}
+\]
+Substituting in the values $3$ and $2/3$ that we found for the limits of $\nu(n)$ and $t(n)$ respectively, we get
+\[
+\lim_{n \rightarrow \infty}p(n) = 3 \times \frac{2}{3} = 2.
+\]
+
+\subsection{A special sequence and its limit (the number $\e$)} \label{sec4012}
+%We are unable to prove, in this course, that the following is true. Like many ideas that we have already introduced relating to limits, this type of result is usually only taught effectively during a second year level course on analysis. If it seems strange that the following result is true, then that is probably a good thing. Question everything; and if you dont understand something, then it may be because you arent being given all the information you need in order to understand it. So, keep calm and study stats.
+Just like $\pi$, the number $\e$ is an important irrational numerical constant that is found everywhere in nature. Its first few digits are,
+\[
+\e = 2.71828\ldots
+\]
+We can think of the term ``irrational'' as meaning that a number cannot be represented by a fraction whose numerator and denominator are integers (see example \ref{dot} on page \pageref{dot}). This is why we need other symbols to represent irrational numbers, like $\e$ or $\pi$. The number $\e$ is so important that it gets its own function: The \textbf{Exponential function,} $\boldsymbol{\textbf{exp}(x) = \e^x}$. We will learn alot about the interesting properties of $\e^x$ in the coming lectures. The following sequence and its limit is just one of the interesting places that $\e^x$ pops up (and the limit of this sequence is actually sometimes used in higher level mathematics as the \textit{definition} of $\e^x$). We won't be using this limit to represent $e^x$ more than once or twice in this subject, but the result is interesting nonetheless. For any real number $x$, \label{ex} \label{exponential function}
+\[
+\lim_{n \rightarrow \infty}\brac{1 + \frac{x}{n}}^n = \e^x
+\]
+For an interesting proof of this fact, using calculus, see Appendix \ref{appendix B}. For a better explanation of why $\e$ is so important, see the end of Appendix \ref{appendix B}, under the heading ``Compound interest, natural growth, and the number $\e.$''
+\subsection{Checking that a sequence can be used as a probability measure}
+%STRAIGHT OUT OF LECTURES
+As we have seen, certain sequences can be used to represent the probabilities of events, so long as the events can be represented by natural numbers. Which types of sequences can be used to represent probabilities? Recall the probability measure axioms (section \ref{paxioms} on page \pageref{paxioms}). A sequence $s(k)$ (or any function) can be used to represent probabilities if and only if it satisfies the probability measure axioms. \\
+
+Firstly, looking at the axioms, we should be able to see that $s(k)$ on its own cannot be used to measure probabilities. Currently $s(k)$ is just a sequence, so it only works when $k \in \N$, not when $k \subseteq \N$. Probability measures are functions that can take \textit{subsets} as their arguments, not just single elements; remember that events are subsets of $\Omega$, not just single elements. We need to define a new function that is capable of measuring the probabilities of \textit{subsets} of $\N$. To achieve this, we create the following function $p(X)$, which we define in terms of $s(k)$.
+\begin{center}
+We define $p(X)$ so that, for any event $X~=~\set{k_1,k_2,\ldots,k_n},$ \\ we let $p(X) = s(k_1) + s(k_2) + \ldots + s(k_n)$.
+\end{center}
+\noindent We can now test that our new function, $p(X)$, satisfies the axioms. Axiom 3 states that we require $\boldsymbol{p(A \cup B) = p(A) + p(B)}$. For any two events $A$ and $B$, we have
+\[
+A~=~\set{a_1,a_2,a_3,\ldots} \;\;\;\; \text{and} \;\;\;\; B = \set{b_1,b_2,b_3,\ldots},
+\]
+where $a_1,a_2,a_3,\ldots$ and $b_1,b_2,b_3,\ldots$ are all individual outcomes (i.e.,~elements~of~$\N$). So, \\
+$A~\cup~B~=~\set{a_1,a_2,a_3\ldots,b_1,b_2,b_3,\ldots}.$ Thus,
+\[
+p(A \cup \mathbf{B}) = s(a_1) + s(a_2) + s(a_3) + \ldots + \boldsymbol{s(b_1) + s(b_2) + s(b_3) + \ldots}  = p(A) + \mathbf{p(B)}.
+\]
+So axiom 3 is satisfied. \\
+
+\noindent Now we need to test axiom 2. Axiom 2 states that we require $p(A) \geq 0$ for any event $A$. Well, since $p(X)$ is defined as the \textit{sum} of values from $s(k)$, we only require that all of the $s(k)$ are greater than or equal to zero; then, of course, the sum of numbers greater than or equal to zero will also be a number greater than or equal to zero, so $p(X)$ will be greater than or equal to zero. So, satisfying axiom 2 really depends on $s(k)$. If $s(k)$ is a sequence where all of the elements are greater than or equal to zero, then $p(X)$ will satisfy axiom 2. Otherwise, axiom 2 will not be satisfied. For example, the sequences $\nu(n)$ and $t(n)$ from example \ref{ex4010} would satisfy axiom 2. \\
+
+\noindent One axiom remains to be tested; axiom 1. This axioms states that we require $p(\Omega) = 1$. Using our definition of $p(X)$ in terms of $s(k)$ we interpret the requirement to be
+\[
+p(\Omega) = s(k_1) + s(k_2) + s(k_3) + \ldots = 1.
+\]
+So we need to know that the sum of all of the elements of $s(k)$ is equal to 1. To test this, we need to know a little bit about \textbf{summation, and series}.
+
+\section{Summation and series}
+\subsection{Summation}
+%TOTALLY STRAIGHT FROM LECTURES
+The standard notation for summation is the symbol $\sum$, which is the capital Greek letter `sigma.' To sum up terms from a sequence $s(n)$, we indicate which terms we want to include by using an index, such as the symbol $n$. For example, \label{symbSigma} \label{sigma notation} \label{dummy variable} \label{index(sum)}
+\[
+\sum_{n=1}^5 p(n) = p(1) + p(2) + p(3) + p(4) + p(5)
+\]
+This is read as, ``the sum from $n = 1$ to 5 of $p(n)$.'' The index $n$ is sometimes called a ``dummy variable'' because $n$ doesn't appear on the right hand side of the equality.
+
+\subsection{Examples}
+\begin{itemize}
+\item $\displaystyle{\sum_{k=1}^3\frac{1}{k^2}} = \frac{1}{1^2} + \frac{1}{2^2} + \frac{1}{3^2} = 1 + \frac{1}{4} + \frac{1}{9}$
+\item $\displaystyle{\sqrt{1} + \sqrt{2} + \sqrt{3} + \ldots + \sqrt{87} = \sum_{\nu=1}^{87} \sqrt{\nu}}$
+\end{itemize}
+
+\subsection{Example} \label{ex413}
+Recall the sequence $t(n)$ from example \ref{ex4010} on page \pageref{ex4010}. Write out the following:
+\[
+\sum_{n=1}^3 5t(n).
+\]
+Solution: \\
+The sequence $t(n)$ has rule $t(n) = \frac{2n}{3n+1}$. So the required sum is,
+\begin{align*}
+\sum_{n=1}^3 5t(n) & = \sum_{n=1}^3 5\brac{\frac{2n}{3n+1}} \\	
+				    & = 5\brac{\frac{2}{3+1}} + 5\brac{\frac{2\times2}{3\times2+1}} + 5\brac{\frac{2\times3}{3\times3+1}} \\
+				    & = 5\brac{\frac{2}{4}} + 5\brac{\frac{4}{7}} + 5\brac{\frac{6}{10}} \\
+				    & = 5\brac{\frac{2}{4} + \frac{4}{7} + \frac{6}{10}} \tag{$\star$} \\
+				    & = \frac{117}{14}
+\end{align*}
+Notice on the step labelled with $(\star)$, we pulled the 5 outside the brackets (using the fact that multiplication is distributive over addition). This means that in the beginning we could have written
+\[
+\sum_{n=1}^3 5t(n) = 5 \sum_{n=1}^3 t(n) 
+\]
+Whenever we have some constant, like 5, multiplying the expression inside the sum, we can pull the constant outside of the sum. This property is sometimes referred to as a \textbf{linearity property} of sums. We will introduce linearity properties in section \ref{sec417}.
+
+
+\subsection{Example}
+See section \ref{secbinom} on page \pageref{secbinom} for a reminder on binomial coefficients. Write the binomial expansion $(1+x)^4$ in $\Sigma$ notation. Solution:
+\begin{align*}
+(1+x)^4 & = 1 + 4x + 6x^2 + 4x^3 + x^4 \\
+& = \binom{4}{0}x^0 + \binom{4}{1}x^1 + \binom{4}{2}x^2 + \binom{4}{3}x^3 + \binom{4}{4}x^4 \\
+& = \sum_{n = 0}^4 \binom{4}{n}x^n
+\end{align*}
+
+\subsection{Series} \label{sec415}
+%STRAIGHT OUT OF LECTURES
+In STM2PM we may use the notation \label{symbsumxp(x)}
+\[
+\sum_xp(x)
+\]
+to mean the sum of $p(x)$ over all the values for which $x$ is defined. For example, suppose that we define $x$ to be a variable belonging to the set $\set{1,3,16,-0.65,-1,128}$. Then 
+\[
+\sum_xp(x) = p(1) + p(3) + p(16) + p(-0.65) + p(-1) + p(128).
+\]
+It may be that summation makes sense over \textit{all} of the natural numbers. In this case we write
+\[
+\sum_{k=1}^\infty p(k) = p(1) + p(2) + p(3) + \ldots
+\]
+We call this object an \textbf{(infinite) series}. It is the limit as $n \rightarrow \infty$ of the following sequence of finite sums:
+\[
+\sum_{k=1}^1 p(k), \;\;\; \sum_{k=1}^2 p(k), \;\;\; \sum_{k=1}^3 p(k), \;\;\; \sum_{k=1}^4 p(k), \;\;\; \ldots \;, \; \sum_{k=1}^n p(k)
+\]
+This is just a regular sequence, but the terms of the sequence are sums. We write it as a sequence so that we can give meaning to the idea of the sum to infinity; we interpret the sum to infinity as the limit of this sequence. So in other words, \label{symbolsuminfty}
+\[
+\sum_{k=1}^\infty p(k) = \lim_{n \rightarrow \infty}\brac{\sum_{k=1}^np(k)}
+\]
+The symbol $n$ was used to label the finite sums, and just like the index $k$, it is a ``dummy variable'' because $n$ does not appear in the final result after we take the limit. \\
+
+\noindent If this limit exists, that is, if the sequence of finite sums converges, then we say that the \textbf{infinite series converges}. This means that \label{infinite series} \label{infinite series convergence}
+\[
+\sum_{k=1}^\infty p(k) = x
+\]
+for some finite real number $x$. We can also add convergent series together using the following property.
+\[
+\sum_{k=0}^\infty \brac{p(k) + s(k)} = \sum_{k=0}^\infty p(k) + \sum_{k=0}^\infty s(k).
+\]
+
+\section{Geometric series} \label{sec416} \label{geometric series} \label{common ratio}
+Geometric series appear everywhere in nature (we will soon see why); and as a result of their ubiquity, they have an important place in probability and statistics. A geometric \textit{series} can be thought of as the infinite sum of the following \textit{sequence},
+\[
+c,\; ca,\; ca^2,\; ca^3,\; ca^4,\; ca^5, \ldots 
+\]
+where $c$ and $a$ are real numbers, and we call $a$ the \textbf{common ratio}. In this sequence, each term is equal to the term before it, multiplied by a fixed value, $a$, the common ratio. For example, if $c = \frac{1}{2}$ and $a = 2$ then the sequence is
+\[
+\frac{1}{2}, \;\; \frac{1}{2}\times2,\;\; \frac{1}{2}\times2\times2,\;\; \frac{1}{2}\times2\times2\times2,\;\; \ldots
+\]
+Since $a^0 = 1$ and $a^1 = a$ (see section \ref{exponent} on page \pageref{exponent}), we can rewrite the sequence as follows,
+\[
+ca^0,\; ca^1, \; ca^2,\; ca^3, \; ca^4,\; ca^5, \; \ldots
+\]
+The geometric series is the infinite sum of this sequence. So \textbf{the~geometric~series~is},
+\[
+ca^0 + ca^1 + ca^2 + ca^3 + ca^4 + ca^5 + \ldots = \sum_{k=0}^\infty ca^k
+\]
+However, this is only really possible if $\displaystyle{\sum_{k=0}^\infty ca^k}$ exists, that is, if the series is convergent. It has been found that
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.4\columnwidth}{
+	
+	\vskip 0.02cm
+	\begin{center}
+	The geometric series converges if $|a| < 1$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+	
+\noindent In example \ref{ex413} we demonstrated that constants can be pulled outside of sums when the sums are finite. This is also true for infinite sums, as long as the infinite sums are convergent; in other words,
+\[
+\sum_{k=0}^\infty ca^k = c\sum_{k=0}^\infty a^k
+\]
+Sometimes the term geometric series is just used to refer to the sum, and we drop the constant, leaving
+\[
+\sum_{k=0}^\infty a^k
+\]
+An extremely useful property of geometric series is as follows: It can be proved mathematically that, if a geometric series converges then,
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.3\columnwidth}{
+	
+	\vskip 0.02cm
+	\begin{center}
+	$\displaystyle{\sum_{k=0}^\infty a^k = \frac{1}{1-a}}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+
+\subsection{Example}
+We are going to check (in a non-rigorous way) that the formula for the geometric series is true. In other words we will check that for any $a$ with $|a| < 1,$
+\[
+\displaystyle{\sum_{k=0}^\infty a^k = \frac{1}{1-a}}
+\]
+Expanding the left hand side we get,
+\[
+1 + a + a^2 + a^3 + \ldots = \frac{1}{1-a}
+\]
+Multiplying both sides by $(1-a)$ we get,
+\[
+(1-a)\brac{1 + a + a^2 + a^3 + \ldots} = 1
+\]
+Expanding the brackets on the left hand side we get,
+\[
+\brac{1 + a + a^2 + a^3 + \ldots} - a\brac{1 + a + a^2 + a^3 + \ldots} = 1
+\]
+Expanding the brackets further on the left hand side,
+\[
+1 + a + a^2 + a^3 + \ldots - a - a^2 - a^3 - a^4 - \ldots = 1
+\]
+We can rearrange the terms as follows, matching up the like terms,
+\[
+1 + a - a + a^2 - a^2 + a^3 - a^3 + \ldots = 1
+\]
+All the equivalent terms cancel (i.e., $a - a = 0$ and $a^2 - a^2 = 0$ and so on) leaving
+\[
+1 = 1
+\]
+So, if we wanted to reverse all of the steps we could get from the obvious statement, $1~=~1$, to the required formula, using only the rules of algebra. This shows that the formula is indeed correct. Note, however, that this is not a rigorous proof; we assumed that the expression $\brac{1 + a + a^2 + a^3 + \ldots}$ makes sense (i.e., that the series converges), which it does if $|a| < 1$. We also assumed that $1-a \neq 0$, which, again, is true if $|a| < 1.$
+
+\subsection{Example}
+Calculate $\displaystyle{\sum_{k=0}^\infty \bfrac{1}{2}^k}$. \\
+
+Firstly. Comparing to the formula for the sum of a geometric series we have $a = \frac{1}{2}$. Since $|a| < 1$ we know that we can use the formula. Now,
+\[
+\frac{1}{1-a} = \frac{1}{1-1/2} = \frac{1}{1/2} = \frac{1}{1}\times\frac{2}{1} = 2.
+\]
+So, by the formula for the sum of a geometric series it follows that,
+\[
+\sum_{k=0}^\infty \bfrac{1}{2}^k = 2
+\]
+
+\subsection{Linearity properties of summation} \label{sec417} \label{linearity}
+In example \ref{ex413} we showed that constants can be pulled outside of finite sums. So for any real constant $c$
+\[
+\sum_{k=0}^n cp(k) = c\sum_{k=0}^n p(k) \tag{a}
+\]
+In section \ref{sec416} we mentioned that this is also true if the sum is infinite but converges. In section \ref{sec415} we mentioned that for convergent series,
+\[
+\sum_{k=0}^\infty \brac{p(k) + s(k)} = \sum_{k=0}^\infty p(k) + \sum_{k=0}^\infty s(k).
+\]
+In fact this is also true for any finite series. That is,
+\[
+\sum_{k=0}^n \brac{p(k) + s(k)} = \sum_{k=0}^n p(k) + \sum_{k=0}^n s(k). \tag{b}
+\]
+These two properties, (a) and (b), that apply to finite series and convergent series, are together referred to as \textbf{linearity}. We say that sums are ``linear.'' In later lectures we will meet other functions (summation is actually a kind of function) that are also linear (see section \ref{linear derivatives}, for example). Specifically, when we look at derivatives and integrals in calculus, we will find that taking the derivative and  finding the integral, are both linear. \\
+
+\noindent We can sum up the idea of linearity by stating the following: A function, $f(x)$, is called linear if and only if
+\[
+f(cx) = cf(x) \tag{compare to (a) above}
+\] 
+and
+\[
+f(x + y) = f(x) + f(y) \tag{compare to (b) above}
+\]
+where $c$ is a constant.  \\
+
+\noindent The act of taking the limit is one function which we have already met that is linear. This means that, for any two functions $f$ and $g$, and for any constant $c$, we have
+\[
+\lim_{x \rightarrow 0} \brac{cf(x)} = c\lim_{x \rightarrow 0} \brac{f(x)} \tag{compare to (a) above}
+\]
+and
+\[
+\lim_{x \rightarrow 0} \brac{f(x) + g(x)} = \lim_{x \rightarrow 0} \brac{f(x)} + \lim_{x \rightarrow 0} \brac{g(x)} \tag{compare to (b) above}
+\]
+
+\subsection{Example}
+Calculate $\displaystyle{\sum_{k=0}^\infty\squac{3\bfrac{3}{4}^k + 3\bfrac{1}{2}^k}}$. \\
+
+\noindent Firstly, notice that the constant, $3$, is multiplying both terms in the sum so
+\[
+\sum_{k=0}^\infty\squac{3\bfrac{3}{4}^k + 3\bfrac{1}{2}^k} = \sum_{k=0}^\infty3\squac{\bfrac{3}{4}^k + \bfrac{1}{2}^k}.
+\]
+Now we can use the linearity of sums to pull the 3 outside the sum
+\[
+\sum_{k=0}^\infty3\squac{\bfrac{3}{4}^k + \bfrac{1}{2}^k} = 3\sum_{k=0}^\infty \squac{\bfrac{3}{4}^k + \bfrac{1}{2}^k}
+\]
+Again, we can use the linearity of sums,
+\[
+3\sum_{k=0}^\infty \squac{\bfrac{3}{4}^k + \bfrac{1}{2}^k} = 3\brac{\sum_{k=0}^\infty \bfrac{3}{4}^k + \sum_{k=0}^\infty \bfrac{1}{2}^k}
+\]
+Now we can use the geometric series with $a = \frac{3}{4}$ for the first sum, and again with $a = \frac{1}{2}$ for the second sum (since $|\frac{3}{4}|$ and $|\frac{1}{2}|$ are each less than 1). This gives,
+\begin{align*}
+3\brac{\sum_{k=0}^\infty \bfrac{3}{4}^k + \sum_{k=0}^\infty \bfrac{1}{2}^k} & = 3\brac{\frac{1}{1-3/4} + \frac{1}{1-1/2}} \\
+		& = 3\brac{\frac{1}{1/4} + \frac{1}{1/2}} \\
+		& = 3\brac{4 + 2} \\
+		& = 18.
+\end{align*}
+
+\subsection{Using power series to represent functions} \label{power series}
+Since the geometric series is a sum of \textit{powers} of the variable $a$, it is sometimes (much more generally) referred to as a \textbf{power series}. There are many types of power series, and the geometric series is just one of them. The geometric series can be thought of as another way to represent the function,
+\[
+f(x) = \frac{1}{1-x}
+\]
+where $|x| < 1.$ Indeed the formula for the sum of a geometric series says that
+\[
+\sum_{k=0}^\infty x^k = \frac{1}{1-x}
+\]
+Let's take a moment look at the power series representation of a different function. In section \ref{sec4012} we mentioned that the Exponential function $e^x$ is equal to the limit
+\[
+\lim_{n \rightarrow \infty}\brac{1 + \frac{x}{n}}^n = \e^x.
+\]
+Well, there are often many ways to represent the same function, and $e^x$ is one function for which there exists a variety of impressive representations. A new representation of $e^x$ that we have not yet introduced, is in terms of the following power series
+\[
+\sum_{k=0}^\infty\frac{x^k}{k!} = e^x.
+\]
+We will use this representation for $e^x$ in the coming lectures. \\
+
+\noindent Calculating the first few terms of the power series representation of $e^x$ gives,
+\begin{align*}
+e^x = \sum_{k=0}^\infty\frac{x^k}{k!} & = \frac{x^0}{0!} + \frac{x^1}{1!} + \frac{x^2}{2!} + \frac{x^3}{3!} \ldots \\
+			& = 1 + x + \frac{x^2}{2} +  \frac{x^3}{6} + \ldots
+\end{align*}
+This is not a geometric series, since consecutive terms do not differ by some constant ratio; however, it is nonetheless a power series. 

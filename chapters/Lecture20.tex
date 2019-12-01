@@ -1,0 +1,543 @@
+\chapter{Lecture 20: The normal distribution, and some more about functions}
+
+\subsection{Important fact about increasing functions I} \label{increasing fact I}
+Before we look at transformations, we need to revise an important fact about increasing functions. Recall that the definition of an increasing function, $h$, is that
+\[
+a < b \;\;\; \text{implies} \;\;\; h(a) < h(b).
+\]
+for all $a,b$ in the domain of $h$. This means, for example, that if we define $y = h(x)$, then
+\[
+a < x < b \;\;\; \text{implies} \;\;\; h(a) < y < h(b)
+\]
+We will look at a second important fact about increasing functions (which we do not need yet) in section \ref{increasing fact II}
+
+\section{Transformations} \label{transformation, functions} \label{def Y = g(X)}
+\noindent Suppose we have a function, $f$, whose outputs are some subset of the real numbers. Then a \textbf{transformation} of $f$ is another function, $g(f)$, which takes $f(x)$ as its input, and its outputs are real numbers. \\
+
+\noindent For example, $g(f(x)) = f(3x+2)$, and $g(f(x)) = (f(x))^3,$ are both different transformations of $f$. \\
+
+\noindent Since random variables are functions, we can use transformations on them. \\
+
+\noindent In section \ref{rate/scale gamma}, we carefully explained what is meant by ``scaling'' a random variable. In fact, \textbf{scaling is a type of transformation}. If we define $Y = g(X) = cX$ for some positive real number $c$, then $Y$ is a scaling of $X$. We discussed how the probability of $X$ falling in some interval $[a,b]$ is equal to the probability of $Y$ falling in the interval $[ca,cb]$; this is because $Y = cx$ whenever $X = x$, so $\set{X = x}$ and $\set{Y = cx}$ refer to the \textit{same event}. In other words
+\[
+P(a < X < b) = P(ca < Y < cb).
+\]
+\noindent In general, \textbf{this idea holds under any transformation $\boldsymbol{Y = g(X)}$}, where $g$ is an increasing function (see section \ref{increasing decreasing 2} for revision of what an increasing function is). We have
+\[
+P(a < X < b) = P(g(a) < Y < g(b)).
+\]
+The reason why we need $g$ to be increasing is so that we are sure that $g$ is invertible, and that $a < X < b$ implies $g(a) < Y < g(b)$ (see section \ref{increasing fact I} above). \\
+
+%Which, if we instead wish to go from right to left, can be rewritten as
+%\[
+%P(g^{-1}(a) < X < g^{-1}(b)) = P(a < Y < b).
+%\]
+
+
+
+%\noindent Suppose that $X$ takes some value $x$, then the set $\set{X = x}$ is the event corresponding to this value, $x$. We demonstrated, in section \ref{rate/scale gamma}, that the set $\set{Y = cx}$ refers to the \textit{same event} as the set $\set{X = x}$. Of course it follows that the the probability of $X$ falling in some interval $[a,b]$ is equal to the probability of $Y$ falling in the interval $[ca,cb]$. That is, $P(a < X < b) = P(ca < Y < cb)$. \\
+
+
+\noindent We have seen that a scaling of a random variable, $X$, is just multiplying $X$ by some factor, $c$. The other two kinds of transformation that we will learn about here are \textbf{translations} and \textbf{dilations}. A translation of $X$ is just adding some factor, $b$, to $X$. Suppose we define
+\[
+Y = g(X) = cX + b
+\]
+Then $Y$ is a scaling of $X$ by $c$, followed by a translation by $b$. In this lecture we will look at how dilations and translations affect graphs, then in the next lecture we will apply transformations to random variables.
+
+
+%A \textbf{transformation} (sometimes referred to as a \textbf{geometric transformation}) is a way of manipulating the graph of a set of points, like a shape, or the graph of a function. \\
+%
+%\noindent Given a function, $f(x)$, which outputs real numbers, a transformation of $f$ is another function, $g(f(x))$, which takes $f(x)$ as its input, and outputs a new real valued function, whose rule is an altered version of the rule for $f(x)$. \\
+%
+%\noindent For example, we might have the transformation $g(f(x)) = f(3x + 2)$. Then, if $f(x) = x^2$ we would have $g(f(x)) = (3x + 2)^2$. Or we might have $g(f(x)) = (f(x))^3 + 1.$ Then if $f(x) = 3x$ we would have $g(f(x)) = (3x)^3 + 1$. \\
+%
+%\noindent Since random variables are functions with real number outputs, we can also use transformations on random variables. \\
+%
+%\noindent In section \ref{rate/scale gamma}, we carefully explained what is meant by ``scaling'' a random variable. Here, we will learn that \textbf{scaling} is really a type of transformation, called a \textbf{dilation} or a \textbf{compression}. A dilation/compression of a random variable, $X$, is just multiplying $X$ by some factor, say $a$. The other kind of transformation that we will learn about here is a \textbf{translation}. A translation of $X$ is just adding some factor, $b$, to it. Suppose we define
+%\[
+%Y = g(X) = aX+b.
+%\]
+%Then $Y$ is a dilation/compression of $X$, by $a$, followed by a translation by $b$.
+
+\subsection{Dilations/compressions} \label{dilation/compression, functions}
+Dilations/compressions have the form $g(f(x)) = f(cx)$, for some $c > 0$. A dilation is different to a scaling. In contrast, a scaling has the form $g(f(x)) = cf(x)$. A dilation either stretches (i.e., dilates) or compresses the graph of $f$, horizontally. \\
+
+\noindent \textbf{If $\boldsymbol{c > 1}$, the graph of $\boldsymbol{g(f)}$ is a compressed version of $f$. If $\boldsymbol{c < 1}$, the graph of $\boldsymbol{g(f)}$ is a stretched (dilated) version of $\boldsymbol{f}$.} \\
+
+\noindent For example, let $g(f) = f(2x)$. Then at any point, $x$, the graph of $g(f)$ is doing exactly what the graph of $f(x)$ does at the point $2x$. Since $c = 2$ is greater than $1$, this is a compression. The following diagrams provide an example using $f(x) = x^2$, hence $g(f(x)) = (2x)^2$.
+\begin{center}
+\begin{minipage}{0.4\textwidth}
+	\begin{center}
+	\begin{tikzpicture}
+	\draw [very thick, domain =-1.5:1.5, samples=200,smooth] plot (\x,{\x*\x});
+	\draw [gray, ->] (-3,0) -- (3,0) node [below right] {$x$};
+	\draw [gray, ->] (0,-0.1) -- (0,3) node [above left] {$f(x)$};
+	\draw (1,0) node {\tiny$|$} node [below] {$1$};
+	\draw (-1,0) node {\tiny$|$} node [below] {$-1$};
+	\draw [dotted] (-1,0) -- (-1,3);
+	\draw [dotted] (1,0) -- (1,3); 
+	\end{tikzpicture}
+	\end{center} 
+\end{minipage}%
+\begin{minipage}{0.2\textwidth}
+	\begin{center}
+	\begin{tikzpicture}
+	\draw [gray!120, ->] (0,1.8) [out=10, in =170] to (2,1.8);
+	\draw [gray!120] (1,2) node [above] {$g(f) = f(2x)$};
+	\draw [gray!120] (1,2) node [below=4mm] {Compression};
+	\draw (0,0);
+	\end{tikzpicture}
+	\end{center} 
+\end{minipage}%
+\begin{minipage}{0.4\textwidth}
+	\begin{center}
+	\begin{tikzpicture}
+	\draw [very thick, domain =-0.75:0.75, samples=200,smooth] plot (\x,{(2*\x)*(2*\x)});
+	\draw [gray, ->] (-3,0) -- (3,0) node [below right] {$x$};
+	\draw [gray, ->] (0,-0.1) -- (0,3) node [above left] {$g(f(x))$};
+	\draw (1,0) node {\tiny$|$} node [below] {$1$};
+	\draw (-1,0) node {\tiny$|$} node [below] {$-1$};
+	\draw [dotted] (-1,0) -- (-1,3);
+	\draw [dotted] (1,0) -- (1,3); 
+	\end{tikzpicture}
+	\end{center}
+\end{minipage} 
+\end{center}
+Now let $g(f) = f\brac{\frac{1}{2}x}$. This is a dilation since $c = \frac{1}{2} < 1.$ In this example we use $f(x) = \e^{-\frac{1}{2}x^2}$. So $g(f(x)) = \e^{-\frac{1}{2}(x/2)^2}$.
+\begin{center}
+\begin{minipage}{0.4\textwidth}
+	\begin{center}
+	\begin{tikzpicture}[xscale = 3/4]
+	\draw [very thick, domain =-4:4, samples=200,smooth] plot (\x,{exp(-1/2*\x*\x)});
+	\draw [gray, ->] (-4,0) -- (4,0) node [below right] {$x$};
+	\draw [gray, ->] (0,-0.1) -- (0,2) node [above left] {$f(x)$};
+	\draw (1,0) node {\tiny$|$} node [below] {$1$};
+	\draw (-1,0) node {\tiny$|$} node [below] {$-1$};
+	\draw [dotted] (-1,0) -- (-1,2);
+	\draw [dotted] (1,0) -- (1,2); 
+	\end{tikzpicture}
+	\end{center} 
+\end{minipage}%
+\begin{minipage}{0.2\textwidth}
+	\begin{center}
+	\begin{tikzpicture}
+	\draw [gray!120, ->] (0,1.8) [out=10, in =170] to (2,1.8);
+	\draw [gray!120] (1,2) node [above] {$g(f) = f\brac{\frac{1}{2}x}$};
+	\draw [gray!120] (1,2) node [below=4mm] {Dilation};
+	\draw (0,0);
+	\end{tikzpicture}
+	\end{center} 
+\end{minipage}%
+\begin{minipage}{0.4\textwidth}
+	\begin{center}
+	\begin{tikzpicture}[xscale = 3/4]
+	\draw [very thick, domain =-4:4, samples=200,smooth] plot (\x,{exp(-1/2*(0.5*\x)*(0.5*\x))});
+	\draw [gray, ->] (-4,0) -- (4,0) node [below right] {$x$};
+	\draw [gray, ->] (0,-0.1) -- (0,2) node [above left] {$g(f(x))$};
+	\draw (1,0) node {\tiny$|$} node [below] {$1$};
+	\draw (-1,0) node {\tiny$|$} node [below] {$-1$};
+	\draw [dotted] (-1,0) -- (-1,2);
+	\draw [dotted] (1,0) -- (1,2); 
+	\end{tikzpicture}
+	\end{center}
+\end{minipage} 
+\end{center}
+
+\subsection{Translations} \label{translation, functions}
+Translations have the form $g(f(x)) = f(x+b)$ for some $b \in \R$. At any point $x$, the graph of $g(f)$ is doing exactly what the graph of $f$ does at the point $x + b$. The effect of the translation is to move (i.e., translate) the whole graph to the left or the right horizontally. \\
+
+\noindent \textbf{If $\boldsymbol{b > 0}$, the graph of $\boldsymbol{g(f)}$ is moved to the left, compared to $\boldsymbol{f}$. If $\boldsymbol{b < 0}$ the graph of $\boldsymbol{g(f)}$ is moved to the right.} \\
+
+\noindent Hence, if $b > 0$, then $g(f) = f(x-b)$ is a translation of $f$ to the right. \\
+
+\noindent For example, let $g(f(x)) = f(x+1)$, then $g(f)$ is a translation to the left by 1. The diagrams below use $f(x) = x(2-x)$, so $g(f(x)) = (x+1)(2-(x+1)) = (x+1)(1-x)$.  
+\begin{center}
+\begin{minipage}{0.4\textwidth}
+	\begin{center}
+	\begin{tikzpicture}
+	\draw [very thick, domain =-0.5:2.5, samples=200,smooth] plot (\x,{-\x*(\x-2)});
+	\draw [gray, ->] (-2,0) -- (3,0) node [below right] {$x$};
+	\draw [gray, ->] (0,-1) -- (0,2) node [above left] {$f(x)$};
+	\draw (1,0) node {\tiny$|$} node [below] {$1$};
+	\draw (-1,0) node {\tiny$|$} node [below left] {$-1$};
+	\draw [dotted] (1,-1) -- (1,2);
+	\end{tikzpicture}
+	\end{center} 
+\end{minipage}%
+\begin{minipage}{0.2\textwidth}
+	\begin{center}
+	\begin{tikzpicture}
+	\draw [gray!120, ->] (0,1.8) [out=10, in =170] to (2,1.8);
+	\draw [gray!120] (1,2) node [above] {$g(f) = f(x+1)$};
+	\draw [gray!120] (1,2) node [below=4mm] {Left translation};
+	\draw (0,0);
+	\end{tikzpicture}
+	\end{center} 
+\end{minipage}%
+\begin{minipage}{0.4\textwidth}
+	\begin{center}
+	\begin{tikzpicture}
+	\draw [very thick, domain =-1.5:1.5, samples=200,smooth] plot (\x,{(\x+1)*(1-\x)});
+	\draw [gray, ->] (-2,0) -- (3,0) node [below right] {$x$};
+	\draw [gray, ->] (0,-1) -- (0,2) node [above left] {$g(f(x))$};
+	\draw (1,0) node {\tiny$|$} node [below] {$1$};
+	\draw (-1,0) node {\tiny$|$} node [below left] {$-1$};
+	\draw [dotted] (1,-1) -- (1,2); 
+	\end{tikzpicture}
+	\end{center}
+\end{minipage} 
+\end{center}
+Now let $g(f) = f\brac{x-2}$. This is a translation to the right by 2. In diagram below we use $f(x) = x^3$. So $g(f(x)) = (x-2)^3$.
+\begin{center}
+\begin{minipage}{0.4\textwidth}
+	\begin{center}
+	\begin{tikzpicture}
+	\draw [very thick, domain =-1:1.2, samples=200,smooth] plot (\x,{\x*\x*\x});
+	\draw [gray, ->] (-2,0) -- (3,0) node [below right] {$x$};
+	\draw [gray, ->] (0,-1) -- (0,2) node [above left] {$f(x)$};
+	\draw (1,0) node {\tiny$|$} node [below] {$1$};
+	\draw (2,0) node {\tiny$|$} node [below] {$2$};
+	\draw [dotted] (2,-1) -- (2,2);
+	\draw [dotted] (1,-1) -- (1,2); 
+	\end{tikzpicture}
+	\end{center} 
+\end{minipage}%
+\begin{minipage}{0.2\textwidth}
+	\begin{center}
+	\begin{tikzpicture}
+	\draw [gray!120, ->] (0,1.8) [out=10, in =170] to (2,1.8);
+	\draw [gray!120] (1,2) node [above] {$g(f) = f(x+1)$};
+	\draw [gray!120] (1,2) node [below=4mm] {Right translation};
+	\draw (0,0);
+	\end{tikzpicture}
+	\end{center} 
+\end{minipage}%
+\begin{minipage}{0.4\textwidth}
+	\begin{center}
+	\begin{tikzpicture}
+	\draw [very thick, domain =1:3.2, samples=200,smooth] plot (\x,{(\x-2)*(\x-2)*(\x-2)});
+	\draw [gray, ->] (-2,0) -- (3,0) node [below right] {$x$};
+	\draw [gray, ->] (0,-1) -- (0,2) node [above left] {$g(f(x))$};
+	\draw (1,0) node {\tiny$|$} node [below] {$1$};
+	\draw (2,0) node {\tiny$|$} node [below] {$2$};
+	\draw [dotted] (2,-1) -- (2,2);
+	\draw [dotted] (1,-1) -- (1,2); 
+	\end{tikzpicture}
+	\end{center}
+\end{minipage} 
+\end{center}
+
+\section{Symmetry} \label{even and odd symmetry, functions}
+Symmetry is one of the most important and beautiful phenomena in mathematics. For starters, every equation could be argued to be a type of symmetry. We can often make use of symmetries to greatly simplify problems. Here, we will look at two specific types of symmetry, involving functions. \\
+
+\subsection{Even symmetry}
+A function is defined to have even symmetry if it satisfied the following condition:
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.25\columnwidth}{
+	
+	\vskip 0.02cm
+	\begin{center}
+	$\displaystyle{f(-x) = f(x)}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+
+\noindent Then we say that the function is \textbf{even}. This means the function does exactly the same thing for negative values of $x$ as it does for positive values of $x$. Below is a graph of an even function, $h(x) = x^2 - x^4$.
+	\begin{center}
+	\begin{tikzpicture}[yscale = 3]
+	\draw [very thick, domain =-1.05:1.05, samples=200,smooth] plot (\x,{\x*\x - \x*\x*\x*\x});
+	\draw [gray, ->] (-1.5,0) -- (1.5,0) node [below right] {$x$};
+	\draw [gray, ->] (0,-0.3) -- (0,0.5) node [above left] {$h(x)$};
+	\draw (1,0) node {\tiny$|$} node [below left] {$1$};
+	\draw (-1,0) node {\tiny$|$} node [below left] {$-1$};
+	\draw [dotted] (-1,-0.3) -- (-1,0.5);
+	\draw [dotted] (1,-0.3) -- (1,0.5); 
+	\end{tikzpicture}
+	\end{center} 
+Both functions in section \ref{dilation/compression, functions}, and their dilations, are also even. The graphs of even functions always appear to be two mirror images placed on either side of the $y$-axis. \\
+
+\noindent We can check that a function is even by substituting $-x$ into the function rule. For example,
+\[
+h(x) = x^2 - x^4 \;\; \text{implies} \;\; h(-x) = (-x)^2 - (-x)^4 = x^2 - x^4 = h(x).
+\]
+Since $h(-x) = h(x)$, we conclude that $h(x)$ is indeed even. \\
+
+\noindent It is a good exercise to prove to yourself that even powers of $x$, i.e., $x^2,x^4,x^6,x^8,\ldots$, are all odd functions.
+
+\subsection{Odd symmetry}
+A function is defined to have odd symmetry if it satisfied the following condition:
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.25\columnwidth}{
+	
+	\vskip 0.02cm
+	\begin{center}
+	$\displaystyle{f(-x) = -f(x)}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+
+\noindent Then we say that the function is \textbf{odd}. This means that for an odd function, whatever the function does for positive values of $x$, it does the negative of this for negative values of $x$. The graphs of odd functions appear to be two mirror images placed on either side of the $y$-axis, but one of the mirror images has been ``flipped'' upside down accross the $x$-axis. Below is the graph of an odd function, $h(x) = 2x^3 - x$.
+	\begin{center}
+	\begin{tikzpicture}[yscale = 3]
+	\draw [very thick, domain =-0.9:0.9, samples=200,smooth] plot (\x,{2*\x*\x*\x - \x});
+	\draw [gray, ->] (-1.5,0) -- (1.5,0) node [below right] {$x$};
+	\draw [gray, ->] (0,-0.3) -- (0,0.5) node [above left] {$h(x)$};
+	\draw (1,0) node {\tiny$|$} node [below right] {$1$};
+	\draw (-1,0) node {\tiny$|$} node [below left] {$-1$};
+	\draw [dotted] (-1,-0.3) -- (-1,0.5);
+	\draw [dotted] (1,-0.3) -- (1,0.5); 
+	\end{tikzpicture}
+	\end{center}
+The function $f(x) = x^3$, from section \ref{translation, functions}, is also odd. However, the translation of $x^3$ to the right by 2 is not odd. We can check that a function is odd by substituting $-x$ into its rule. For example
+\[
+h(x) = 2x^3 - x \;\; \text{implies} \;\; h(-x) = 2(-x)^3 - (-x) = -(2x^3 - x) = -h(x).
+\]
+Since $h(-x) = -h(x)$, we conclude that $h(x)$ is indeed odd. \\
+
+\noindent It is a good exercise to prove to yourself that odd powers of $x$, i.e., $x,x^3,x^5,x^7,x^9,\ldots$, are all odd functions.
+
+\subsection{Sums, products and compositions of even/odd functions}
+If you ever forget, it is easy to convince yourself of the following facts, using the short and intuitive proofs that are included below. The proofs all follow the same basic structure: Just define $f(x)$ and $g(x)$ to be even or add as you require, then define $h(x)$ to be their product/sum/composition as you require. Finally, write $h(-x)$ in terms of $f(-x)$ and $g(-x)$, then see what follows.
+\subsubsection{The sum of even functions is even.}
+Let $f(x)$ and $g(x)$ be even. Let $h(x) = f(x) + g(x)$. Then
+\[
+h(-x) = f(-x) + g(-x) = f(x) + g(x) = h(x).
+\]
+So $h(x)$ is even.
+\subsubsection{The sum of odd functions is odd.}
+Let $f(x)$ and $g(x)$ be odd. Let $h(x) = f(x) + g(x)$. Then
+\[
+h(-x) = f(-x) + g(-x) = -f(x) - g(x) = -(f(x) + g(x)) = -h(x).
+\]
+So $h(x)$ is odd.
+\subsubsection{The product of even functions is even.}
+Let $f(x)$ and $g(x)$ be even. Let $h(x) = f(x)g(x)$. Then
+\[
+h(-x) = f(-x)g(-x) = f(x)g(x) = h(x).
+\]
+So $h(x)$ is even.
+\subsubsection{The product of odd functions is even.}
+Let $f(x)$ and $g(x)$ be odd. Let $h(x) = f(x)g(x)$. Then
+\[
+h(-x) = f(-x)g(-x) = (-f(x))(-g(x)) = f(x)g(x) = h(x). \tag{as $(-1)\times(-1) = 1$}
+\]
+So $h(x)$ is even.
+\subsubsection{The product of an odd and an even function is odd}
+Let $f(x)$ be odd and let $g(x)$ be even. Let $h(x) = f(x)g(x)$. Then
+\[
+h(-x) = f(-x)g(-x) = -f(x)g(x) = -h(x).
+\]
+So $h(x)$ is odd.
+\subsubsection{A composition of two odd functions is odd}
+Let $f(x)$ and $g(x)$ be odd. Let $h(x) = f(g(x))$. Then
+\[
+h(-x) = f(g(-x)) = f(-g(x)) = -f(g(x)) = -h(x).
+\]
+So $h(x)$ is odd.
+\subsubsection{A composition of two even functions is even}
+Similar proof, left as exercise.
+\subsubsection{Where $\boldsymbol{f}$ is odd and $\boldsymbol{g}$ is even, the composition $\boldsymbol{f(g(x))}$ is even}
+Let $f(x)$ be odd and $g(x)$ be even. Let $h(x) = f(g(x))$. Then
+\[
+h(-x) = f(g(-x)) = f(g(x)) = h(x).
+\]
+So $h(x)$ is even.
+\subsubsection{Where $\boldsymbol{f}$ is even and $\boldsymbol{g}$ is odd, the composition $\boldsymbol{f(g(x))}$ is even}
+Similar proof, left as exercise.
+\subsubsection{Where $\boldsymbol{f}$ has unknown (or no) symmetry, and $\boldsymbol{g}$ has even symmetry, the composition $\boldsymbol{f(g(x))}$ is even} \label{proof20.1}
+Similar proof, left as exercise. Note that the functions $\log(x)$ and $\e^x$ are not specifically either even or odd, but the Gaussian $\e^{-x^2}$ is even, since it is equal to $\e^{x}$ composed with an even function, $-x^2$.
+
+\subsection{Definite integrals of even/odd functions} \label{symmetric interval}
+When an integral has terminals $-a$ and $a$, for some real number $a$, we call it an integral over a \textbf{symmetric interval}: This just means that the boundaries of the integral are the same distance away from the origin, on either side. The diagram below illustrates a definite integral, over a symmetric interval, $[-a,a]$, of an even function.
+\begin{center}
+\begin{tikzpicture}
+\draw [white, very thick, fill=gray!40, domain = -0.8:0.8, samples=200, smooth] (-0.8,0) -- plot (\x,{exp(\x*\x) - 2*\x*\x*\x*\x}) -- (0.8,0);
+\draw [very thick, domain = -1.7:1.7, samples=200, smooth] plot (\x,{exp(\x*\x) - 2*\x*\x*\x*\x});
+\draw [gray, ->] (-2.2,0) -- (2.2,0) node [below right] {$x$};
+\draw [gray, ->] (0,-1) -- (0,1.5) node [above left] {$f(x)$};
+\draw (0.8,0) node {\tiny$|$} node [below] {$a$};
+\draw (-0.8,0) node {\tiny$|$} node [below] {-$a$};
+\draw [dashed] (0.8,0) -- (0.8,{exp(0.8*0.8) - 2*0.8*0.8*0.8*0.8});
+\draw [dashed] (-0.8,0) -- (-0.8,{exp(0.8*0.8) - 2*0.8*0.8*0.8*0.8});
+\end{tikzpicture}
+\end{center}
+\subsubsection{Definite integral of an even function}
+Thinking of a definite integral as the area under a curve, it shouldn't be too hard to convince yourself that the definite integral of an even function, $f(x),$ over a symmetric interval, can be simplified as follows:
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.35\columnwidth}{
+	
+	\vskip 0.03cm
+	\begin{center}
+	$\displaystyle{\int_{-a}^a f(x) \; dx = 2\int_0^a f(x) \; dx}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+
+\noindent We could also write $\int_{-a}^a f(x) \; dx = 2\int_{-a}^0 f(x) \; dx.$ The point is that once we evaluate the integral for some interval of positive $x$ values, we also know the integral for the corresponding interval of negative $x$ values, due to symmetry.  \\
+
+\noindent \textbf{Proof:} Let $f(x)$ be an even function. We will use integration by substitution, right-to-left, with $x = g(u) = -u$. Then $g'(u) = -1$. Also, since $x = g(u) = -u$, we have $u = g^{-1}(x) = -x$ (solving for $u$ in $x = -u$). Now,
+\begin{align*}
+\int_{-a}^a f(x) \; dx & = \int_{-a}^0 f(x) \; dx + \int_{0}^a f(x) \; dx \tag{integral property, see section \ref{integration}} \\
+	& = \int_{g^{-1}(-a)}^{g^{-1}(0)} f(g(u))g'(u) \; du + \int_{0}^a f(x) \; dx \tag{right-to-left substitution} \\
+	& = \int_{a}^0 f(g(u))g'(u) \; du + \int_{0}^a f(x) \; dx \tag{since $g^{-1}(u) = -x$} \\
+	& = \int_{a}^0 -f(-u) \; du + \int_{0}^a f(x) \; dx \tag{since $g(u) = -u$ and $g'(u) = -1$} \\
+	& =  \int_{0}^a f(-u) \; du + \int_{0}^a f(x) \; dx\tag{integral property, see section \ref{integral b to a}} \\
+	& = \int_{0}^a f(u) \; du + \int_{0}^a f(x) \; dx \;\;\;\;\;\; (\bigstar) \tag{since $f$ is even} \\
+	& =  2\int_{0}^a f(x) \; dx. \tag{since $u$ is just a dummy variable}
+\end{align*}
+
+
+\subsubsection{Definite integral of an odd function}
+The diagram below illustrates a definite integral, over a symmetric interval $[-a,a]$, of an odd function, $h(x)$.
+\begin{center}
+\begin{tikzpicture}[yscale = 1.6,xscale = 1.2]
+\draw [very thick,white,fill=gray!40, domain = -0.95:0.95, samples=200, smooth] (-0.95,0) -- plot (\x,{1.3*\x*\x*\x*\x*\x - \x*\x*\x*\x*\x*\x*\x + 0.4*\x}) -- (0.95,0);
+\draw [very thick, domain = -1.3:1.3, samples=200, smooth] plot (\x,{1.3*\x*\x*\x*\x*\x - \x*\x*\x*\x*\x*\x*\x + 0.4*\x});
+\draw [gray, ->] (-2.1,0) -- (2.1,0) node [below right] {$x$};
+\draw [gray, ->] (0,-1) -- (0,1.3) node [above left] {$h(x)$};
+\draw (0.95,0) node {\tiny$|$} node [below] {$a$};
+\draw (-0.95,0) node {\tiny$|$} node [above] {-$a$};
+\draw [dashed] (-0.95,0) -- (-0.95,{-(1.3*0.95*0.95*0.95*0.95*0.95 - 0.95*0.95*0.95*0.95*0.95*0.95*0.95 + 0.4*0.95)});
+\draw [dashed] (0.95,0) -- (0.95,{(1.3*0.95*0.95*0.95*0.95*0.95 - 0.95*0.95*0.95*0.95*0.95*0.95*0.95 + 0.4*0.95)});
+\end{tikzpicture}
+\end{center}
+
+\noindent It should not be too hard to convince yourself that the area $\int_{-a}^0 g(x) \; dx$ is the negative of the area  $\int_{0}^a h(x) \; dx$. Hence
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.5\columnwidth}{
+	
+	\vskip 0.03cm
+	\begin{center}
+	$\displaystyle{\int_{-a}^a h(x) \; dx = \int_0^a h(x) - \int_0^a h(x)  = 0}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+
+\noindent The proof is exactly the same as the one for even functions, up to the line labelled ($\bigstar$), at which point you should use the fact that $h(-u) = -h(u)$ since $h$ is odd. This is left as an exercise. 
+
+
+%\noindent We have learned that each graph of an even function, for negative values of $x$, is an exact copy of the graph for positive values of $x$. 
+
+
+\section{Normal distribution} \label{normal distribution}
+Probably the best known continuous distribution is the \textbf{normal distribution}. It's popularity and usefulness is largely because of the Central Limit Theorem, which states that, given certain conditions, the averages of a set of independent variables (from any distribution) will eventually converge to the normal distribution (we will learn about the Central Limit Theorem in lecture 34). Hence, the normal distribution is often used by statisticians to represent continuous random variables when the distribution of those variables is unknown. \\
+
+\noindent The normal distribution was first described by Gauss. He used it to model the distribution of errors in physical measurements; measurement errors are thought to arise from many different unknown distributions, but their average converges to the normal distribution, by the Central Limit Theorem. \\
+
+\noindent The pdf of the normal distribution is a variation of the Gaussian function $\e^{-x^2}$ (from section \ref{bell curve}). It is
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.5\columnwidth}{
+	
+	\vskip 0.03cm
+	\begin{center}
+	$\displaystyle{f(x) = \frac{1}{\sigma\sqrt{2\pi}} \exp\brac{\frac{-(x-\mu)^2}{2\sigma^2}}}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+
+\noindent The values of $\mu$ and $\sigma^2$ are the parameters of the distribution. For short, we write \textbf{$\boldsymbol{X \sim}$ N($\boldsymbol{\mu,\sigma^2}$)}. The factor $\sqrt{2\pi}$ is related to the fact that $\Gamma(1/2) = \sqrt{\pi}$ and ensures, in accordance with probability measure axiom 1, that $\int_{-\infty}^\infty f(x) \; dx = 1$ (we will prove this in section \ref{check normal distribution}). \\
+
+\noindent Below are two pairs of graphs of $N(\mu,\sigma^2)$; one with $\mu$ fixed and one with $\sigma$ fixed. Notice that $\sigma$ has the effect of dilating and scaling the graph, while $\mu$ translates the graph.
+\begin{center}
+\begin{tikzpicture}[yscale = 5]
+	\tikzset{declare function={normalpdf(\m,\s,\x)=1/(\s*sqrt(2*pi))*exp(-(\x-\m)*(\x-\m)/(2*\s*\s));}}
+	\draw [very thick, domain=-4:4,samples=200,smooth] plot (\x,{normalpdf(0,1,\x)}) node [right] {N$(0,1)$};
+	\draw [very thick, blue, domain=-4:4,samples=200,smooth] plot (\x,{normalpdf(2,1,\x)}) node [above right] {N$(2,1)$};
+	\axesmacro{-4.2}{4.2}{-0.02}{0.85}{x}{f(x)}
+	\labeltheaxes{-4,-3,-2,-1,0,1,2,3,4}{0.2,0.4,0.6,0.8}
+\end{tikzpicture}
+\end{center}
+\begin{center}
+\begin{tikzpicture}[yscale = 5]
+	\tikzset{declare function={normalpdf(\m,\s,\x)=1/(\s*sqrt(2*pi))*exp(-(\x-\m)*(\x-\m)/(2*\s*\s));}}
+	\draw [very thick, domain=-4:4,samples=200,smooth] plot (\x,{normalpdf(0,2,\x)});
+	\draw [very thick, blue, domain=-4:4,samples=200,smooth] plot (\x,{normalpdf(0,1/2,\x)});
+	\draw [blue] (1,0.6) node [right] {N$(0,1/2)$};
+	\draw (3,0.2) node {N$(0,2)$};
+	\axesmacro{-4.2}{4.2}{-0.02}{0.85}{x}{f(x)}
+	\labeltheaxes{-4,-3,-2,-1,0,1,2,3,4}{0.2,0.4,0.6,0.8}
+\end{tikzpicture}
+\end{center}
+Notice, when $\mu = 0$ the maximum (i.e., mode) lies above the origin, and when $\mu = 2$ the mode lies above $x = 2$. In fact, $\mu$ is always equal to the mode of $N(\mu,\sigma^2)$. \\
+
+\noindent As was the case with the gamma distribution, the probability integrals do not always have exact solutions; they are done numerically, using software or an on-line calculator, and taking advantage of even symmetry about $\mu$. As with all continuous random variables, the probability integral, $P(a < X < b)$, is the integral from $a$ to $b$ of the pdf, i.e., 
+\[
+P(a < X < b) = \frac{1}{\sigma \sqrt{2\pi}}\int_a^b \exp\brac{-\frac{(t-\mu)^2}{2\sigma^2}} \; dt.
+\]
+
+\subsection{Standard normal distribution}  \label{standard normal distribution}
+The special case with $\mu = 0$ and $\sigma^2 = 1$ is called the \textbf{standard normal distribution.} \\
+
+\noindent The standard normal distribution, N$(0,1)$, is so important that its pdf is often given its own label, $\phi$, so that
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.35\columnwidth}{
+	
+	\vskip 0.03cm
+	\begin{center}
+	$\displaystyle{\phi(x) = \text{N}(0,1) = \frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+	
+\noindent Its cumulative distribution function also has its own label, $\Phi(x)$, so that
+
+  	\bigskip
+	
+	\hfil\fbox{
+	\begin{minipage}{0.3\columnwidth}{
+	
+	\vskip 0.03cm
+	\begin{center}
+	$\displaystyle{\Phi(x) = \int_{-\infty}^x \phi(t) \; dt}$
+	\end{center}
+	}
+	\end{minipage}}
+	\bigskip
+	
+\noindent Below is a graph of $\Phi(x)$.
+\begin{center}
+\begin{tikzpicture}[yscale = 4]
+\tikzset{declare function={erf(\x)=2*\x/sqrt(pi) - 2*(\x)^3/(3*sqrt(pi)) + (\x)^5/(5*sqrt(pi)) - (\x)^7/(21*sqrt(pi)) + (\x)^9/(9*12*sqrt(pi)) - (\x)^(11)/(sqrt(pi)*11*5*12) + (\x)^(13)/(13*6*5*12*sqrt(pi));}}
+\tikzset{declare function={stdnormalcdf(\x)=1/2*(erf(\x/sqrt(pi))+1);}}
+\axesmacro{-3.2}{3.2}{-0.02}{1.1}{x}{f(x)}
+\labeltheaxes{-3,-2,-1,0,1,2,3}{0.1,0.3,0.5,0.7,0.9,1}
+\plotmacro{-2.7}{2.7}{stdnormalcdf(\x)}{black}
+\end{tikzpicture}
+\end{center}
+
+\noindent In lecture 21, section \ref{sec21.2}, we will learn how any continuous random variable following an N$(\mu,\sigma^2)$ distribution can be transformed (via translation and scaling) to one following N($0,1$). By convention, the new variable (after transformation), which is standard normal, is labelled $Z$. The use of `$Z$' is because the normal distribtion is sometimes referred to as the $Z$-distribution.
+
+\section{Other distributions}
+So far we have introduced the continuous distributions U$(a,b)$, Gamma($\alpha,\lambda$), Exp($\lambda$) and N($\mu,\sigma^2$). These distributions are widely used, but you should not get the impression that this is an exhaustive list. Some other continuous distributions include:
+\begin{itemize}
+\item \textbf{Weibull}. Used for modelling lifetimes that do not suit an exponential distribution (i.e., which are not memoryless). The cdf is $F(x) = 1 - \exp\brac{-(x/\alpha)^\beta}$.
+\item \textbf{Pareto}. Used in economic modelling. The cdf is $F(x) = 1 - (\beta/x)^\alpha$ for $x \geq \beta$ and $F(x) = 0$ otherwise.
+\item \textbf{Power}. If $X$ is Pareto, then $Y = 1/X$ has a power distribution.
+\item \textbf{Beta}.
+\item \ldots many more.
+\end{itemize}
+

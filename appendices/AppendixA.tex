@@ -1,0 +1,96 @@
+\section{Appendix} \label{appendix A}
+
+	\subsubsection*{Proofs for consequences of probability measure axioms}
+	If you have not seen mathematical proofs before, then do not worry if these proofs seem complicated! It can be a 	        good idea to write down the steps yourself as you read through them.
+	\subsubsection*{Proof of consequence 1}
+	Let $A,B,C$ be mutually disjoint events, and suppose $P$ is a probability measure. \\
+	
+	 Then $A \cap C = \varnothing$ and $B \cap C = \varnothing$ (by the definition of mutually disjoint). \\
+	
+	\noindent So, as the union of two empty sets is also an empty set, we have $(A \cap C) \cup (B \cap C) = 	    	 
+	\varnothing$. $(\star)$ \\
+	
+	\noindent Now, by the distributive law (see page~\pageref{distributive law}) we have $(A \cap C) \cup (B \cap C) = 
+	(A \cup B) \cap C.$ \\ So, using this result along with ($\star$), we now know that $(A \cup B) \cap C = \varnothing$.  \\
+	
+	\noindent This means that the set $(A \cup B)$ and the set $C$ are disjoint. \\
+	
+	\noindent Hence by axiom 3 we have $P((A \cup B) \cup C) = P(A \cup B) + P(C).$ \;\;\; ($\dagger$) \\
+	
+	\noindent Also, $P(A \cup B) = P(A) + P(B)$ since $A$ and $B$ are disjoint. \\
+	
+	\noindent Hence, combining this last result with $(\dagger)$ we get $P(A \cup B \cup C) = P(A) + P(B) + P(C),$ \\ as 
+	required. \\ 
+	
+	\noindent We left out the brackets around $A \cup B$ in the last step because union is associative (see 
+	page~\pageref{distributive law}). \\
+	
+	\noindent The proof that this consequence extends to arbitrarily many events makes use of a mathematical 
+	technique called ``\textit{proof by induction}'' that is beyond the scope of this course.
+	
+	
+	\subsubsection*{Proof of consequence 2}
+	We wish to prove that $P(A^c) = 1 - P(A)$. \\
+	
+	\noindent Firstly, recall that $\Omega = A \cup A^c$ and $A \cap A^c = \varnothing$ (see page 
+	\pageref{distributive law}). \\
+	
+	\noindent By axiom 1 we have $P(\Omega) = 1$. Thus, as $A \cup A^c = \Omega$, we have $P(A \cup A^c) = 1$ 
+	also.  $(\star)$ \\
+	
+	\noindent Also, since $A \cap A^c = \varnothing$ means that $A$ and $A^c$ are disjoint, we have by axiom 3 that 
+	\\ $P(A \cup A^c) = P(A) + P(A^c)$. \\
+	
+	\noindent Combining this last result with ($\star$) we get $P(A) + P(A^c) = 1$. \\ Rearranging gives $P(A^c) = 1 - 
+	P(A)$, as required.
+	
+	\subsubsection*{Proof of consequence 3}
+	We wish to prove that $P(\varnothing) = 0$. This follows easily from consequence 2, and the fact that $\varnothing 
+	= \Omega^c$. \\
+	
+	We have, using consequence 2, $P(\varnothing) = P( \Omega^c) = 1 - P(\Omega).$ Now by axiom 1 we have 
+	$P(\Omega) = 1$ so $P(\varnothing) = 1 - 1 = 0,$ as required.
+	
+	\subsubsection*{Proof of consequence 4}
+	Let $A,B$ be two events such that $A \subseteq B.$ \\
+	
+	\noindent We wish to prove that $P(A) \leq P(B)$. \\
+	
+	
+	\noindent Notice that since $A$ is fully contained within $B$, we must have $B = A \cup C$ for some 
+	(possibly~empty) event~$C$. We can choose $C$ so that $A \cap C = \varnothing$. \\
+	
+	\noindent Then by axiom 3, $P(B) = P(A \cup C) = P(A) + P(C)$ (since we chose $C$ so that $A$ and $C$ are 
+	disjoint). \\
+	
+	\noindent Now, by axiom 2 we have~$P(C)~\geq~0$. So $P(B)$ is equal to $P(A)$ plus some number greater than 
+	or equal to zero. Hence $P(B) \geq P(A),$ as required.
+	
+	\subsubsection*{Proof of consequence 5}
+	To get an intuitive idea of why this consequence is true, consider the fact from page \pageref{distributive law}, 
+	that Size of $A\cup B$ = Size of $A$ + Size of $B$ - Size of $A \cap B$. The actual proof requires some ideas about 
+	sets that have not yet been introduced in this course, and it is slightly outside of the focus of the course. Hence 
+	some readers may wish to skip this proof. \\
+	
+	\noindent Let A,B be (not necessarily disjoint) sets, and suppose $P$ is a probability measure. We define the set 
+	$A\setminus B$ to be the set obtained from $A$ by excluding all elements that also belong to $B$ (i.e. by 
+	excluding all elements from $A \cap B$). We define $B\setminus A$ analogously. \\
+	
+	\noindent Notice this implies that $A =(A\setminus B) \cup (A \cap B)$ and similarly $B = (B\setminus A) \cup (A 
+	\cap B)$. Furthermore it implies that $(A\setminus B) \cap (A \cap B) = \varnothing$ and $(B\setminus A) \cap (A 
+	\cap B) = \varnothing$. \\
+	
+	\noindent Hence by axiom 3 we have $P(A) = P(A\setminus B) + P(A \cap B)$ and $P(B) = P(B\setminus A) + P(A 
+	\cap B)$. \\
+	
+	\noindent So $P(A) + P(B) = P(A\setminus B) + P(B\setminus A) + 2P(A \cap B)$. \qquad $(\star)$ \\
+	
+	\noindent With some consideration we can also see that $(A\setminus B) \cap (B\setminus A) = \varnothing$. \\ 
+	So the sets~$(A\setminus B),~(B\setminus A)$,~and~$A \cap B$ are mutually disjoint. Hence by consequence 1 
+	we have $P(A\setminus B) + P(B\setminus A) + P(A \cap B) = P((A\setminus B) \cup (B\setminus A) \cup (A \cap B)) 
+	= P(A \cup B)$. \\
+	
+	\noindent Therefore, substituting this result into $(\star)$ gives \\
+	$P(A) + P(B) = P(A \cup B) + P(A \cap B)$. \\
+	
+	So  $P(A \cup B) = P(A) + P(B) - P(A \cap B)$, as required.
